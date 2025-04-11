@@ -1,0 +1,122 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+
+  id String @id @default(uuid())
+  nome String
+  email String
+  senha String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+
+  @@map("users")
+}
+
+model Season {
+
+  id String @id @default(uuid())
+  numero Int
+  capa String
+  numParticipantesPorEquipe Int
+  inscricoesAbertas Boolean @default(false)
+  atual Boolean @default(false)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+
+  @@map("seasons")
+  jogos Jogo[]
+  equipes Equipe[]
+}
+
+model Jogo {
+
+  id String @id @default(uuid())
+  nome String
+  descricao String
+  link String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+
+  season Season @relation(fields: [seasonId], references: [id])
+
+  @@map("jogos")
+  seasonId String
+}
+
+model Equipe {
+
+  id String @id @default(uuid())
+  nome String
+  aprovada Boolean @default(false)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+
+  season Season @relation(fields: [seasonId], references: [id])
+
+  @@map("equipes")
+  seasonId String
+  participantes Participante[]
+}
+
+model Participante {
+
+  id String @id @default(uuid())
+  nome String
+  email String
+  genero String
+  ufes Boolean
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+
+  season Equipe @relation(fields: [equipeId], references: [id])
+
+  @@map("participantes")
+  equipeId String
+}
+
+model Material {
+
+  id String @id @default(uuid())
+  nome String
+  link String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+
+  @@map("materiais")
+}
+
+model Regra {
+
+  id String @id @default(uuid())
+  tipo String
+  conteudo String
+  imagem String?
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+
+  @@map("regras")
+}
+
+model Patrocinador {
+
+  id String @id @default(uuid())
+  nome String
+  logo String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+
+  @@map("patrocinadores")
+}
