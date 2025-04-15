@@ -1,6 +1,8 @@
 "use client"
 
 import MenuItem from "./MenuItem"
+import Image from "next/image"
+import logoPET from "../../../../public/logo-pet.png"
 import { IconeUsuarios, IconeSair, IconePerfil, IconeDinheiro, IconeDocumento, IconeComputador, IconeEquipe, IconeMaterial } from "./Icones"
 import { deleteCookieClient } from "@/lib/cookieClient"
 import { useRouter } from "next/navigation"
@@ -23,11 +25,10 @@ export default function Menu() {
         `}>
 
             <div className="h-16 p-3 flex justify-center items-center">
-
-                <img src='logo-pet.png' alt="Logo" className="h-full"/>
+                <Image src={logoPET} alt="logo pet" height={50}/>
             </div>
             <ul className="grow">
-                <MenuItem url="/admin" texto="Usuários" icone={IconeUsuarios}/>
+                <MenuItem url="/admin/usuarios" texto="Usuários" icone={IconeUsuarios}/>
                 <MenuItem url="/admin" texto="Season" icone={IconeComputador}/>
                 <MenuItem url="/admin" texto="Equipes" icone={IconeEquipe}/>
                 <MenuItem url="/admin" texto="Materiais" icone={IconeMaterial}/>
