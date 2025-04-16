@@ -1,70 +1,48 @@
 "use client"
 
 import Menu from "../components/Menu";
-import { getCookieClient } from "@/lib/cookieClient"
 import { useEffect, useState } from "react"
-import { api } from "@/services/api"
 import Titulo from "../components/Título";
 import { IconeLixeira } from "../components/Icones";
-import { useRouter } from "next/navigation";
-
-interface Usuario {
-
-    id: string
-    username: string
-}
+import { Usuario } from "@/models/Usuario";
+import { toast } from "sonner";
+import FormCadastrarUsuario from "../components/FormCadastrarUsuario";
 
 export default function Admin() {
 
-    const router = useRouter()
     const [usuarios, setUsuarios] = useState<Usuario[]>([])
 
-    async function deletaUsuario(id: string) {
+    const [abreCadastro, setAbreCadastro] = useState(false)
 
-        console.log(id)
-        
-        const token = getCookieClient()
+    async function deletaUsuario(usuario: Usuario) {
 
-        if(!token) return
-
-        try {
-            await api.delete("/users", {
-                params: {
-                    id: id
-                },
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-
-            alert("Usuário deletado com sucesso!")
-        }
-        catch(err) {
-            alert('Ocorreu um erro ao deletar.')
-            console.log(err)
-        }
+        await usuario.deletar()
 
         obtemUsuarios()
     }
+
+    async function cadastrarUsuario(username:string, senha:string) {
+
+        if(username === '' || senha === '') return
+
+        const usuario = new Usuario(username, undefined, senha)
+
+        await usuario.cadastrar()
+    }
     
     async function obtemUsuarios() {
-        
-        const token = getCookieClient()
 
-        if(!token) return
+        await Usuario.obtemTodos().then(users => {
 
-        try {
-            const response = await api.get("/users", {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+            const vetor: Usuario[] = []
+
+            users.map((u:any) => {
+
+                vetor.push(new Usuario(u.username, u.id))
             })
 
-            setUsuarios(response.data)
-        }
-        catch(err) {
-            console.log(err)
-        }
+            setUsuarios(vetor)
+        })
     }
 
     useEffect(() => {
@@ -78,13 +56,15 @@ export default function Admin() {
 
             return(
 
-            <tr key={usuario.id}>
+            <tr key={usuario.getId}>
 
                 <td className={`w-[200px] p-2 text-lg ${((i+1) % 2) ? 'bg-gray-300' : 'bg-gray-200'}`}>
-                        {usuario.username}
+                    {usuario.getUsername}
                 </td>
                 <td className={`w-[200px] p-2 text-lg ${((i) % 2) ? 'bg-gray-300' : 'bg-gray-200'} `}>
-                        <span onClick={() => deletaUsuario(usuario.id)} className="hover:text-red-500 cursor-pointer">{IconeLixeira}</span>
+                        <button onClick={() => deletaUsuario(usuario)} className="hover:text-red-500 hover:bg-blue-950 p-2 rounded-full">
+                            {IconeLixeira}
+                        </button>
                 </td>
             </tr>
 
@@ -97,6 +77,8 @@ export default function Admin() {
         <div className="flex">
             <Menu />
 
+            {abreCadastro ? <FormCadastrarUsuario cadastrarUsuario={cadastrarUsuario} fechar={() => setAbreCadastro(false)}/> : false}
+
             <div className="flex flex-col border p-10 w-full bg-gray-200">
 
                 <Titulo valor="Usuários"/>
@@ -105,11 +87,13 @@ export default function Admin() {
                     Nesta seção, você pode gerenciar os usuários que tem acesso ao sistema.
                 </p>
 
-                <table className="w-1/2">
-                    <thead className="font-bold">
+                <button onClick={() => setAbreCadastro(true)} className="w-max text-white font-bold bg-blue-950 p-3 rounded-md hover:bg-blue-900 duration-300 mb-5">Cadastrar Usuário</button>
+
+                <table className="w-1/2 rounded-xl">
+                    <thead className="font-bold bg-blue-950 text-white">
                         <tr>
-                            <td>username</td>
-                            <td>ações</td>
+                            <th className="rounded-tl-xl p-2">username</th>
+                            <th className="rounded-tr-xl p-2">ações</th>
                         </tr>
                     </thead>
                     <tbody>

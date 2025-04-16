@@ -1,5 +1,3 @@
-import Image from "next/image";
-import logoImg from '../../../public/logo.png'
 import { api } from "@/services/api";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
