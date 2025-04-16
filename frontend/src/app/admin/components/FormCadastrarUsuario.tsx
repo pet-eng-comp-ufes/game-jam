@@ -24,12 +24,12 @@ export default function FormCadastrarUsuario({fechar, cadastrarUsuario}: FormPro
 
                 <form action="" className="flex flex-col gap-4 mt-10">
 
-                    <input type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} value={username}
+                    <input name="username" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} value={username}
                     className="h-10 px-4 rounded-lg border border-gray-100 bg-gray-300 focus:bg-gray-200"/>
-                    <input type="password" placeholder="senha" onChange={(e) => setSenha(e.target.value)} value={senha}
+                    <input name="senha" type="password" placeholder="senha" onChange={(e) => setSenha(e.target.value)} value={senha}
                     className="h-10 px-4 rounded-lg border border-gray-100 bg-gray-300 focus:bg-gray-200"/>
 
-                    <button onClick={() => cadastrarUsuario(username, senha)} className="text-white font-bold bg-blue-950 p-3 rounded-md hover:bg-blue-900 duration-300">Cadastrar</button>
+                    <button type="button" onClick={() => cadastrarUsuario(username, senha)} className="text-white font-bold bg-blue-950 p-3 rounded-md hover:bg-blue-900 duration-300">Cadastrar</button>
                 </form>
             </section>
         </div>

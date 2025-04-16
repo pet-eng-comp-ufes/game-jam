@@ -23,6 +23,10 @@ class Usuario {
         return this.username
     }
 
+    static fromJson(json: any): Usuario {
+        return new Usuario(json.username, json.id)
+    }
+
     static async obtemTodos() {
 
         const token = getCookieClient()

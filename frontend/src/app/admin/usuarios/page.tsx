@@ -5,8 +5,8 @@ import { useEffect, useState } from "react"
 import Titulo from "../components/Título";
 import { IconeLixeira } from "../components/Icones";
 import { Usuario } from "@/models/Usuario";
-import { toast } from "sonner";
 import FormCadastrarUsuario from "../components/FormCadastrarUsuario";
+import { toast } from "sonner";
 
 export default function Admin() {
 
@@ -18,35 +18,34 @@ export default function Admin() {
 
         await usuario.deletar()
 
-        obtemUsuarios()
+        carregaUsuarios()
     }
 
     async function cadastrarUsuario(username:string, senha:string) {
 
-        if(username === '' || senha === '') return
+        if(username === '' || senha === '') {
+            toast.warning("Preencha todos os campos")
+            return
+        }
 
         const usuario = new Usuario(username, undefined, senha)
 
         await usuario.cadastrar()
+
+        setAbreCadastro(false)
+        carregaUsuarios()
     }
     
-    async function obtemUsuarios() {
+    async function carregaUsuarios() {
 
-        await Usuario.obtemTodos().then(users => {
-
-            const vetor: Usuario[] = []
-
-            users.map((u:any) => {
-
-                vetor.push(new Usuario(u.username, u.id))
-            })
-
+        await Usuario.obtemTodos().then((users: any[]) => {
+            const vetor = users.map(Usuario.fromJson)
             setUsuarios(vetor)
         })
     }
 
     useEffect(() => {
-        obtemUsuarios()
+        carregaUsuarios()
     }, [])
 
 
@@ -61,8 +60,11 @@ export default function Admin() {
                 <td className={`w-[200px] p-2 text-lg ${((i+1) % 2) ? 'bg-gray-300' : 'bg-gray-200'}`}>
                     {usuario.getUsername}
                 </td>
+
                 <td className={`w-[200px] p-2 text-lg ${((i) % 2) ? 'bg-gray-300' : 'bg-gray-200'} `}>
-                        <button onClick={() => deletaUsuario(usuario)} className="hover:text-red-500 hover:bg-blue-950 p-2 rounded-full">
+
+                        <button onClick={() => deletaUsuario(usuario)} 
+                        className="hover:text-red-500 hover:bg-blue-950 p-2 rounded-full">
                             {IconeLixeira}
                         </button>
                 </td>
@@ -87,7 +89,10 @@ export default function Admin() {
                     Nesta seção, você pode gerenciar os usuários que tem acesso ao sistema.
                 </p>
 
-                <button onClick={() => setAbreCadastro(true)} className="w-max text-white font-bold bg-blue-950 p-3 rounded-md hover:bg-blue-900 duration-300 mb-5">Cadastrar Usuário</button>
+                <button onClick={() => setAbreCadastro(true)} 
+                className="w-max text-white font-bold bg-blue-950 p-3 rounded-md hover:bg-blue-900 duration-300 mb-5">
+                    Cadastrar Usuário
+                </button>
 
                 <table className="w-1/2 rounded-xl">
                     <thead className="font-bold bg-blue-950 text-white">

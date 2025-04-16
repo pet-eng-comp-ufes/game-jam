@@ -20,6 +20,7 @@ export default function Menu() {
     return (
 
         <aside className={`
+            sticky top-0
             flex flex-col h-screen
             bg-blue-950 text-white
         `}>
