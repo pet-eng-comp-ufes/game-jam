@@ -7,6 +7,7 @@ import { IconeLixeira } from "../components/Icones";
 import { Usuario } from "@/models/Usuario";
 import FormCadastrarUsuario from "../components/FormCadastrarUsuario";
 import { toast } from "sonner";
+import Botao from "../components/Botao";
 
 export default function Admin() {
 
@@ -89,10 +90,7 @@ export default function Admin() {
                     Nesta seção, você pode gerenciar os usuários que tem acesso ao sistema.
                 </p>
 
-                <button onClick={() => setAbreCadastro(true)} 
-                className="w-max text-white font-bold bg-blue-950 p-3 rounded-md hover:bg-blue-900 duration-300 mb-5">
-                    Cadastrar Usuário
-                </button>
+                <Botao nome="Cadastrar Usuário" onClick={() => setAbreCadastro(true)}/>
 
                 <table className="w-1/2 rounded-xl">
                     <thead className="font-bold bg-blue-950 text-white">

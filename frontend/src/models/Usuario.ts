@@ -47,6 +47,26 @@ class Usuario {
         }
     }
 
+    static async detalhesUsuarioLogado() {
+
+        const token = getCookieClient()
+
+        if(!token) return
+
+        try {
+            const response = await api.get("/eu", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            return new Usuario(response.data.username, response.data.id)
+        }
+        catch(err) {
+            console.log(err)
+        }
+    }
+
     async cadastrar() {
 
         const token = getCookieClient()
@@ -88,6 +108,30 @@ class Usuario {
                 }
             })
             toast.success('Usuário deletado com sucesso!')
+        }
+        catch(err) {
+            console.log(err)
+            return
+        }
+    }
+
+    async alterarSenha(senha: string) {
+
+        const token = getCookieClient()
+        
+        if(!token) return
+
+        try {
+            await api.put("/users", {
+                id: this.id,
+                senha
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            toast.success('Senha alterada com sucesso!')
         }
         catch(err) {
             console.log(err)

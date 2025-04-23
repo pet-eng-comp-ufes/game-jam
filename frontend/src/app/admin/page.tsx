@@ -1,33 +1,34 @@
 "use client"
 
 import Menu from "./components/Menu";
-import { getCookieClient } from "@/lib/cookieClient"
 import { useEffect, useState } from "react"
-import { api } from "@/services/api"
 import Titulo from "./components/Título";
+import { Usuario } from "@/models/Usuario";
+import Botao from "./components/Botao";
+import FormAlterarSenha from "./components/FormAlterarSenha";
+import { toast } from "sonner";
 
 export default function Admin() {
 
-    const [username, setUsername] = useState('')
+    const [usuario, setUsuario] = useState<Usuario>()
+    const [exibeFormAlterarSenha, setExibeFormAlterarSenha] = useState<boolean>(false)
     
     async function detalhesUsuario() {
         
-        const token = getCookieClient()
+        const res = await Usuario.detalhesUsuarioLogado()
 
-        if(!token) return
+        setUsuario(res)
+    }
 
-        try {
-            const response = await api.get("/eu", {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
+    async function alterarSenha(senha: string, senhaConfirmada: string) {
 
-            setUsername(response.data.username)
+        if(senha != senhaConfirmada){
+            toast.warning("As senhas não coincidem")
+            return
         }
-        catch(err) {
-            console.log(err)
-        }
+
+        await usuario?.alterarSenha(senha)
+        setExibeFormAlterarSenha(false)
     }
 
     useEffect(() => {
@@ -39,9 +40,13 @@ export default function Admin() {
         <div className="flex">
             <Menu />
 
+            {exibeFormAlterarSenha ? <FormAlterarSenha alterarSenha={alterarSenha} fechar={() => setExibeFormAlterarSenha(false)}/> : false}
+
             <div className="flex flex-col border p-10 w-full bg-gray-200">
 
-                <Titulo valor={`Olá, ${username}!`}/>
+                <Titulo valor={`Olá, ${usuario ? usuario.getUsername : ''}!`}/>
+
+                <Botao nome="Alterar Senha" onClick={() => setExibeFormAlterarSenha(true)}/>
 
                 <p>
                     Seja bem-vindo(a) à área administrativa do site do Game Jam! Fique atento nas orientações abaixo para garantir que tudo funcione corretamente.
