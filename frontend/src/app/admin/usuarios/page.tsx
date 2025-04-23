@@ -1,13 +1,12 @@
 "use client"
 
-import Menu from "../components/Menu";
 import { useEffect, useState } from "react"
-import Titulo from "../components/Título";
 import { IconeLixeira } from "../components/Icones";
 import { Usuario } from "@/models/Usuario";
 import FormCadastrarUsuario from "../components/FormCadastrarUsuario";
 import { toast } from "sonner";
 import Botao from "../components/Botao";
+import Layout from "../components/Layout";
 
 export default function Admin() {
 
@@ -77,33 +76,27 @@ export default function Admin() {
 
     return (
 
-        <div className="flex">
-            <Menu />
+        <Layout titulo="Usuários"
+        form={abreCadastro ? <FormCadastrarUsuario cadastrarUsuario={cadastrarUsuario} fechar={() => setAbreCadastro(false)}/> : false}
+        >
 
-            {abreCadastro ? <FormCadastrarUsuario cadastrarUsuario={cadastrarUsuario} fechar={() => setAbreCadastro(false)}/> : false}
+            <p className="mb-10">
+                Nesta seção, você pode gerenciar os usuários que tem acesso ao sistema.
+            </p>
 
-            <div className="flex flex-col border p-10 w-full bg-gray-200">
+            <Botao nome="Cadastrar Usuário" onClick={() => setAbreCadastro(true)}/>
 
-                <Titulo valor="Usuários"/>
-
-                <p className="mb-10">
-                    Nesta seção, você pode gerenciar os usuários que tem acesso ao sistema.
-                </p>
-
-                <Botao nome="Cadastrar Usuário" onClick={() => setAbreCadastro(true)}/>
-
-                <table className="w-1/2 rounded-xl">
-                    <thead className="font-bold bg-blue-950 text-white">
-                        <tr>
-                            <th className="rounded-tl-xl p-2">username</th>
-                            <th className="rounded-tr-xl p-2">ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {renderizaUsuarios()}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+            <table className="w-1/2 rounded-xl">
+                <thead className="font-bold bg-blue-950 text-white">
+                    <tr>
+                        <th className="rounded-tl-xl p-2">username</th>
+                        <th className="rounded-tr-xl p-2">ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {renderizaUsuarios()}
+                </tbody>
+            </table>
+        </Layout>
     )
 }

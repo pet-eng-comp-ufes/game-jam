@@ -1,12 +1,11 @@
 "use client"
 
-import Menu from "./components/Menu";
 import { useEffect, useState } from "react"
-import Titulo from "./components/Título";
 import { Usuario } from "@/models/Usuario";
 import Botao from "./components/Botao";
 import FormAlterarSenha from "./components/FormAlterarSenha";
 import { toast } from "sonner";
+import Layout from "./components/Layout";
 
 export default function Admin() {
 
@@ -37,21 +36,15 @@ export default function Admin() {
 
     return (
 
-        <div className="flex">
-            <Menu />
-
-            {exibeFormAlterarSenha ? <FormAlterarSenha alterarSenha={alterarSenha} fechar={() => setExibeFormAlterarSenha(false)}/> : false}
-
-            <div className="flex flex-col border p-10 w-full bg-gray-200">
-
-                <Titulo valor={`Olá, ${usuario ? usuario.getUsername : ''}!`}/>
+        <Layout titulo={`Olá, ${usuario ? usuario.getUsername : ''}!`}
+        form={exibeFormAlterarSenha ? <FormAlterarSenha alterarSenha={alterarSenha} fechar={() => setExibeFormAlterarSenha(false)}/> : false}
+        >
 
                 <Botao nome="Alterar Senha" onClick={() => setExibeFormAlterarSenha(true)}/>
 
                 <p>
                     Seja bem-vindo(a) à área administrativa do site do Game Jam! Fique atento nas orientações abaixo para garantir que tudo funcione corretamente.
                 </p>
-            </div>
-        </div>
+        </Layout>
     )
 }
