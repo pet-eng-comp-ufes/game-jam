@@ -27,9 +27,9 @@ model User {
 model Season {
 
   id String @id @default(uuid())
-  numero Int
+  numero String
   capa String
-  numParticipantesPorEquipe Int
+  numParticipantesPorEquipe String
   inscricoesAbertas Boolean @default(false)
   atual Boolean @default(false)
   createdAt DateTime? @default(now())
