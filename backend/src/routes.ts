@@ -9,7 +9,10 @@ import { ObtemUsersController } from "./controllers/user/ObtemUsersController";
 import { estaAutenticado } from "./middlewares/estaAutenticado";
 import { DeleteUserController } from "./controllers/user/DeleteUserController";
 import { AlteraSenhaUserController } from "./controllers/user/AlteraSenhaUserController";
+
 import { CriaSeasonController } from "./controllers/season/CriaSeasonController";
+import { AtualSeasonController } from "./controllers/season/AtualSeasonController";
+import { DeletaSeasonController } from "./controllers/season/DeletaSeasonController";
 
 const router = Router()
 
@@ -25,5 +28,7 @@ router.put('/users', estaAutenticado, new AlteraSenhaUserController().handle)
 
 // -- ROUTES SEASON --
 router.post('/seasons', estaAutenticado, upload.single('file'), new CriaSeasonController().handle)
+router.put('/seasons/atual', estaAutenticado, new AtualSeasonController().handle)
+router.delete('/seasons', estaAutenticado, new DeletaSeasonController().handle)
 
 export { router }
