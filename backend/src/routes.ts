@@ -13,6 +13,10 @@ import { AlteraSenhaUserController } from "./controllers/user/AlteraSenhaUserCon
 import { CriaSeasonController } from "./controllers/season/CriaSeasonController";
 import { AtualSeasonController } from "./controllers/season/AtualSeasonController";
 import { DeletaSeasonController } from "./controllers/season/DeletaSeasonController";
+import { ObtemAtualSeasonController } from "./controllers/season/ObtemAtualSeasonController";
+import { ObtemSeasonsController } from "./controllers/season/ObtemSeasonsController";
+import { AbreInscricaoSeasonController } from "./controllers/season/AbreInscricaoSeasonController";
+import { FechaInscricaoSeasonController } from "./controllers/season/FechaInscricaoSeasonController";
 
 const router = Router()
 
@@ -28,7 +32,11 @@ router.put('/users', estaAutenticado, new AlteraSenhaUserController().handle)
 
 // -- ROUTES SEASON --
 router.post('/seasons', estaAutenticado, upload.single('file'), new CriaSeasonController().handle)
-router.put('/seasons/atual', estaAutenticado, new AtualSeasonController().handle)
 router.delete('/seasons', estaAutenticado, new DeletaSeasonController().handle)
+router.get('/seasons', estaAutenticado, new ObtemSeasonsController().handle)
+router.put('/seasons/atual', estaAutenticado, new AtualSeasonController().handle)
+router.get('/seasons/atual', estaAutenticado, new ObtemAtualSeasonController().handle)
+router.put('/seasons/abreInscricao', estaAutenticado, new AbreInscricaoSeasonController().handle)
+router.put('/seasons/fechaInscricao', estaAutenticado, new FechaInscricaoSeasonController().handle)
 
 export { router }
