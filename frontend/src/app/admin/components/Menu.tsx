@@ -30,7 +30,7 @@ export default function Menu() {
             </div>
             <ul className="grow">
                 <MenuItem url="/admin/usuarios" texto="Usuários" icone={IconeUsuarios}/>
-                <MenuItem url="/admin" texto="Season" icone={IconeComputador}/>
+                <MenuItem url="/admin/seasons" texto="Season" icone={IconeComputador}/>
                 <MenuItem url="/admin" texto="Equipes" icone={IconeEquipe}/>
                 <MenuItem url="/admin" texto="Materiais" icone={IconeMaterial}/>
                 <MenuItem url="/admin" texto="Regras" icone={IconeDocumento}/>

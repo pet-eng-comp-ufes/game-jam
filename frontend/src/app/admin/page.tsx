@@ -40,7 +40,7 @@ export default function Admin() {
         form={exibeFormAlterarSenha ? <FormAlterarSenha alterarSenha={alterarSenha} fechar={() => setExibeFormAlterarSenha(false)}/> : false}
         >
 
-                <Botao nome="Alterar Senha" onClick={() => setExibeFormAlterarSenha(true)}/>
+                <Botao nome="Alterar Senha" onClick={() => setExibeFormAlterarSenha(true)} className="mb-5"/>
 
                 <p>
                     Seja bem-vindo(a) à área administrativa do site do Game Jam! Fique atento nas orientações abaixo para garantir que tudo funcione corretamente.

@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import Botao from "../components/Botao";
 import Layout from "../components/Layout";
 
-export default function Admin() {
+export default function Usuarios() {
 
     const [usuarios, setUsuarios] = useState<Usuario[]>([])
 
@@ -84,12 +84,12 @@ export default function Admin() {
                 Nesta seção, você pode gerenciar os usuários que tem acesso ao sistema.
             </p>
 
-            <Botao nome="Cadastrar Usuário" onClick={() => setAbreCadastro(true)}/>
+            <Botao nome="Cadastrar Usuário" onClick={() => setAbreCadastro(true)} className="mb-5"/>
 
             <table className="w-1/2 rounded-xl">
                 <thead className="font-bold bg-blue-950 text-white">
                     <tr>
-                        <th className="rounded-tl-xl p-2">username</th>
+                        <th className="rounded-tl-xl p-2 border-r border-r-white">username</th>
                         <th className="rounded-tr-xl p-2">ações</th>
                     </tr>
                 </thead>
