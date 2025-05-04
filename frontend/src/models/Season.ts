@@ -98,6 +98,29 @@ class Season {
         }
     }
 
+    static async obtemAtual() {
+
+        try {
+            const response = await api.get("/seasons/atual")
+
+            const seasonJSON = response.data
+
+            const seasonAtual = new Season(
+                parseInt(seasonJSON.numero),
+                seasonJSON.capa,
+                parseInt(seasonJSON.numParticipantesPorEquipe),
+                seasonJSON.atual,
+                seasonJSON.inscricoesAbertas,
+                seasonJSON.id
+            )
+
+            return seasonAtual
+        }
+        catch(err) {
+            console.log(err)
+        }
+    }
+
     async tornaAtual() {
 
         const token = getCookieClient()
