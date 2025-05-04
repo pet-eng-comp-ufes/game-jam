@@ -35,7 +35,7 @@ router.post('/seasons', estaAutenticado, upload.single('file'), new CriaSeasonCo
 router.delete('/seasons', estaAutenticado, new DeletaSeasonController().handle)
 router.get('/seasons', estaAutenticado, new ObtemSeasonsController().handle)
 router.put('/seasons/atual', estaAutenticado, new AtualSeasonController().handle)
-router.get('/seasons/atual', estaAutenticado, new ObtemAtualSeasonController().handle)
+router.get('/seasons/atual', new ObtemAtualSeasonController().handle)
 router.put('/seasons/abreInscricao', estaAutenticado, new AbreInscricaoSeasonController().handle)
 router.put('/seasons/fechaInscricao', estaAutenticado, new FechaInscricaoSeasonController().handle)
 

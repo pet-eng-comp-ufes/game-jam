@@ -15,6 +15,17 @@ class DeletaSeasonService {
             }
         })
 
+        const fs = require('fs')
+        const path = require('path')
+
+        if (season.capa) {
+            const imagePath = path.join(__dirname, '..', '..', '..', 'tmp', season.capa);
+            fs.unlink(imagePath, (err) => {
+              if (err) console.error('Erro ao deletar imagem:', err);
+              else console.log('Imagem deletada com sucesso.');
+            });
+        }
+
         return season
     }
 }
