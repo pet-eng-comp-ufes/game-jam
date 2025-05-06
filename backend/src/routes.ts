@@ -20,6 +20,7 @@ import { AbreInscricaoSeasonController } from "./controllers/season/AbreInscrica
 import { FechaInscricaoSeasonController } from "./controllers/season/FechaInscricaoSeasonController";
 
 import { CriaJogoController } from "./controllers/jogo/CriaJogoController";
+import { DeletaJogoController } from "./controllers/jogo/DeletaJogoController";
 
 const router = Router()
 
@@ -45,5 +46,6 @@ router.put('/seasons/fechaInscricao', estaAutenticado, new FechaInscricaoSeasonC
 
 // -- ROUTES JOGO --
 router.post('/jogos', estaAutenticado, upload.single('file'), new CriaJogoController().handle)
+router.delete('/jogos', estaAutenticado, new DeletaJogoController().handle)
 
 export { router }
