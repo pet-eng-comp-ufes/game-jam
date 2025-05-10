@@ -5,7 +5,7 @@ class DeletaJogoController {
 
     async handle(req: Request, res: Response): Promise<any> {
 
-        const { id } = req.body
+        const id = req.query.id as string
 
         const deletaJogoService = new DeletaJogoService()
 
