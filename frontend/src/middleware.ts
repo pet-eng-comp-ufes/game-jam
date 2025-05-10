@@ -12,8 +12,6 @@ export async function middleware(req: NextRequest) {
 
     const token = await getCookieServer()
 
-    console.log(token)
-
     if(pathname.startsWith("/admin")) {
 
         if(!token) {
