@@ -19,9 +19,9 @@ export default function JogoComponente({ jogo, deletaJogo }: JogoProps) {
 
             <div className="md:w-80 w-full flex flex-col">
                 <span className="md:text-xl text-lg font-semibold mb-5">{jogo.getNome}</span>
-                <p className="md:text-base text-sm">
+                <div className="md:text-base text-sm w-full">
                     {jogo.getDescricao}
-                </p>
+                </div>
 
                 <div className="flex grow justify-end items-end">
                     <button onClick={() => deletaJogo(jogo)}
