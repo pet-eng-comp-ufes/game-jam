@@ -12,7 +12,7 @@ class DeletaJogoController {
         const jogo = await deletaJogoService.execute({
             id
         })
-
+        
         return res.json(jogo)
     }
 }
