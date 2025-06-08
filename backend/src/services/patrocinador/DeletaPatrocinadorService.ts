@@ -1,16 +1,13 @@
 import prismaClient from "../../prisma";
 
-interface JogoRequest {
-
+interface PatrocinadorRequest {
     id: string
 }
 
-class DeletaJogoService {
-
-    async execute({ id }: JogoRequest) {
-
-
-        const jogo = await prismaClient.jogo.delete({
+class DeletaPatrocinadorService {
+    
+    async execute({ id }: PatrocinadorRequest) {
+        const patrocinador = await prismaClient.patrocinador.delete({
 
             where: {
                 id
@@ -20,16 +17,16 @@ class DeletaJogoService {
         const fs = require('fs')
         const path = require('path')
 
-        if (jogo.capa) {
-            const imagePath = path.join(__dirname, '..', '..', '..', 'tmp', jogo.capa);
+        if (patrocinador.logo) {
+            const imagePath = path.join(__dirname, '..', '..', '..', 'tmp', patrocinador.logo);
             fs.unlink(imagePath, (err) => {
               if (err) console.error('Erro ao deletar imagem:', err);
               else console.log('Imagem deletada com sucesso.');
             });
         }
 
-        return jogo
+        return patrocinador
     }
 }
 
-export { DeletaJogoService }
+export { DeletaPatrocinadorService }
