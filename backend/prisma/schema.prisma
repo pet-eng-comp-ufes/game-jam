@@ -92,6 +92,7 @@ model Material {
   id String @id @default(uuid())
   nome String
   link String
+  descricao String
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now())
 
