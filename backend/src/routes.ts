@@ -23,7 +23,7 @@ import { CriaJogoController } from "./controllers/jogo/CriaJogoController";
 import { DeletaJogoController } from "./controllers/jogo/DeletaJogoController";
 import { CriaPatrocinadorController } from "./controllers/patrocinador/CriaPatrocinadorController";
 import { DeletaPatrocinadorController } from "./controllers/patrocinador/DeletaPatrocinadorController";
-import { CriaMaterialController } from "./controllers/material/CriaMaterialController";
+//import { CriaMaterialController } from "./controllers/material/CriaMaterialController";
 import { DeletaMaterialController } from "./controllers/material/DeletaMaterialController";
 
 const router = Router()
@@ -53,8 +53,8 @@ router.post('/jogos', estaAutenticado, upload.single('file'), new CriaJogoContro
 router.delete('/jogos', estaAutenticado, new DeletaJogoController().handle)
 
 // -- ROUTES PATROCINADOR --
-router.post('/patrocinador', upload.single('file'), new CriaPatrocinadorController().handle)
-router.delete('/patrocinador', new DeletaPatrocinadorController().handle)
+router.post('/patrocinador', upload.single('logo'), new CriaPatrocinadorController().handle)
+router.delete('/patrocinador/remove', new DeletaPatrocinadorController().handle)
 
 // -- ROUTES MATERIAIS --
 router.post('/material', new CriaMaterialController().handle)
