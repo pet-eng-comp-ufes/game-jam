@@ -1,3 +1,4 @@
+import { api } from "@/services/api"
 import { toast } from "sonner"
 
 interface FormInscricaoProps {
@@ -5,9 +6,26 @@ interface FormInscricaoProps {
     numParticipantesPorEquipe: number
 }
 
+interface Participante {
+
+    nome: string
+    email: string
+    genero: string
+    ufes: boolean
+}
+
+interface Equipe {
+
+    id: string
+    nome: string
+}
+
 export default function FormInscricao({ numParticipantesPorEquipe }: FormInscricaoProps) {
 
-    function handleSubmit(formData: FormData) {
+    async function handleSubmit(formData: FormData) {
+
+        var podeInscrever = true
+        const listaParticipantes: Participante[] = []
 
         const nomeEquipe = formData.get('equipe')
 
@@ -17,17 +35,68 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
         }
 
         for (let index = 1; index <= numParticipantesPorEquipe; index++) {
-            const nome = formData.get('nome' + index)
-            const genero = formData.get('genero' + index)
-            const ufes = formData.get('ufes' + index)
+            const nome = formData.get('nome' + index) as string
+            const email = formData.get('email' + index) as string
+            const genero = formData.get('genero' + index) as string
+            const ufes = formData.get('ufes' + index) as string
 
             const ufesBoolean: boolean = ufes === 'sim' ? true : false
 
-            if(nome === '' && index === 1) {
+            if((nome === '' || email === '') && index === 1) {
                 toast.warning('A equipe deve ter ao menos 1 participante!')
-                return
+                var podeInscrever = false
+                break
             }
-            console.log(nome, genero, ufes)
+
+            if((nome != ''  && email === '') || (nome === '' && email != '')) {
+                toast.warning('Preencha todos os dados de um participante!')
+                podeInscrever = false
+                break
+            }
+
+            if(nome === '' || email === '') break
+
+            const participante: Participante = {
+                nome,
+                email,
+                genero,
+                ufes: ufesBoolean
+            }
+
+            listaParticipantes.push(participante)
+        }
+
+        if(podeInscrever) {
+            
+            try {
+
+                const equipeJson = await api.post("/equipe", {nome: nomeEquipe})
+                const equipe = equipeJson.data as Equipe
+
+                listaParticipantes.map(async (p) => {
+
+                    try {
+
+                        await api.post("/participante", {
+                            nome: p.nome,
+                            email: p.email,
+                            genero: p.genero,
+                            ufes: p.ufes,
+                            equipeId: equipe.id
+                        })
+                    }
+                    catch(err) {
+                        console.log(err)
+                        toast.warning('Ocorreu um erro ao solicitar a inscrição. Tente novamente!')
+                    }
+                })
+
+                toast.success('Inscrição solicitada com sucesso!')
+            }
+            catch(err) {
+                console.log(err)
+                toast.warning('Ocorreu um erro ao solicitar a inscrição. Tente novamente!')
+            }
         }
     }
 
@@ -47,6 +116,7 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
                         name={'nome' + index}
                         className="w-full h-11 bg-gray-200 text-black p-3 rounded-lg mb-3"/>
                         <input type="email"
+                        name={'email' + index}
                         placeholder="email"
                         className="w-full h-11 bg-gray-200 text-black p-3 rounded-lg mb-3"/>
 
