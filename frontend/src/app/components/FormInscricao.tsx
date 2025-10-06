@@ -11,10 +11,9 @@ interface FormInscricaoProps {
 }
 
 interface ParticipanteForm {
-
   nome: string;
   email: string;
-  cpf?: string;
+  cpf: string;
   curso?: string;
   genero: string;
   ufes: boolean;
@@ -23,7 +22,6 @@ interface ParticipanteForm {
 }
 
 export default function FormInscricao({ numParticipantesPorEquipe }: FormInscricaoProps) {
-
   const [formDataState, setFormDataState] = useState<{ [key: string]: string | boolean }>({});
   const [ufesStatus, setUfesStatus] = useState<{ [key: number]: boolean }>(
     Object.fromEntries(Array.from({ length: numParticipantesPorEquipe }, (_, i) => [i + 1, true]))
@@ -54,17 +52,10 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
       const instituicao = (formDataState["instituicao" + index] as string)?.trim() || "";
       const termo = (formDataState["termo" + index] as boolean) || false;
 
-      if ((nome === "" || email === "") && index === 1) {
-        toast.warning("A equipe deve ter ao menos 1 participante!");
+      if (!nome || !email || !cpf) {
+        toast.warning(`Participante ${index}: Nome, CPF e Email são obrigatórios!`);
         return;
       }
-
-      if ((nome && !email) || (!nome && email)) {
-        toast.warning("Preencha todos os dados de um participante!");
-        return;
-      }
-
-      if (!nome || !email) break;
 
       if (!termo) {
         toast.warning(`Participante ${index} deve aceitar o termo!`);
@@ -72,10 +63,9 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
       }
 
       listaParticipantes.push({
-
         nome,
         email,
-        cpf: cpf || undefined,
+        cpf,
         curso: curso || undefined,
         genero,
         ufes,
@@ -85,7 +75,6 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
     }
 
     try {
-
       const equipe = await Equipe.cadastrar(nomeEquipe);
 
       if (!equipe?.getId) {
@@ -94,7 +83,6 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
       }
 
       for (const p of listaParticipantes) {
-
         await Participante.cadastrar({
           nome: p.nome,
           email: p.email,
@@ -110,9 +98,7 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
       toast.success("Inscrição solicitada com sucesso!");
       setFormDataState({});
       setUfesStatus(Object.fromEntries(Array.from({ length: numParticipantesPorEquipe }, (_, i) => [i + 1, true])));
-    }
-    catch (err: any) {
-
+    } catch (err: any) {
       console.error("Erro na submissão:", err.response?.data || err);
       toast.error("Erro ao solicitar inscrição. Veja o console para detalhes.");
     }
@@ -121,11 +107,8 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
   const participantesForm = [];
 
   for (let index = 1; index <= numParticipantesPorEquipe; index++) {
-
     participantesForm.push(
-
       <div key={index} className="mt-12 flex flex-col gap-5">
-
         <span className="text-xl font-bold">Participante {index}</span>
 
         <input
@@ -151,33 +134,37 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
         />
         <input
           type="text"
-          placeholder="Curso"
+          placeholder="Curso (se for estudante universitário)"
           value={(formDataState["curso" + index] as string) || ""}
           onChange={e => handleInputChange("curso" + index, e.target.value)}
           className="w-full h-11 bg-gray-200 text-black p-3 rounded-lg"
         />
 
-        <div className="flex items-center flex-wrap gap-4">
-          <label>Gênero:</label>
-          <select
-            value={(formDataState["genero" + index] as string) || "feminino"}
-            onChange={e => handleInputChange("genero" + index, e.target.value)}
-            className="bg-gray-200 outline-0 text-black rounded p-1"
-          >
-            <option value="feminino">Feminino</option>
-            <option value="masculino">Masculino</option>
-            <option value="outros">Outros</option>
-          </select>
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-2">
+            <label>Gênero:</label>
+            <select
+              value={(formDataState["genero" + index] as string) || "feminino"}
+              onChange={e => handleInputChange("genero" + index, e.target.value)}
+              className="bg-gray-200 text-black rounded pl-3 pr-3 py-1 appearance-none"
+            >
+              <option value="feminino">Feminino</option>
+              <option value="masculino">Masculino</option>
+              <option value="outros">Outros</option>
+            </select>
+          </div>
 
-          <label>É estudante da Ufes?</label>
-          <select
-            value={ufesStatus[index] ? "sim" : "nao"}
-            onChange={e => setUfesStatus(prev => ({ ...prev, [index]: e.target.value === "sim" }))}
-            className="bg-gray-200 outline-0 text-black rounded p-1"
-          >
-            <option value="sim">Sim</option>
-            <option value="nao">Não</option>
-          </select>
+          <div className="flex items-center gap-2">
+            <label>É estudante da Ufes?</label>
+            <select
+              value={ufesStatus[index] ? "sim" : "nao"}
+              onChange={e => setUfesStatus(prev => ({ ...prev, [index]: e.target.value === "sim" }))}
+              className="bg-gray-200 text-black rounded pl-3 pr-3 py-1 appearance-none"
+            >
+              <option value="sim">Sim</option>
+              <option value="nao">Não</option>
+            </select>
+          </div>
         </div>
 
         {!ufesStatus[index] && (
@@ -207,7 +194,6 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
   }
 
   return (
-
     <div className="overflow-y-auto max-h-screen p-6">
       <form onSubmit={handleSubmit} className="flex flex-col w-[80%] mx-auto">
         <label className="mb-3 text-xl font-bold">Qual o nome da sua equipe?</label>
