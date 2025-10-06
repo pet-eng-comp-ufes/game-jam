@@ -52,26 +52,28 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
       const instituicao = (formDataState["instituicao" + index] as string)?.trim() || "";
       const termo = (formDataState["termo" + index] as boolean) || false;
 
-      if (!nome || !email || !cpf) {
+      if ((!nome || !email || !cpf) && (index == 1)) {
         toast.warning(`Participante ${index}: Nome, CPF e Email são obrigatórios!`);
         return;
       }
 
-      if (!termo) {
+      if (!termo && (index == 1)) {
         toast.warning(`Participante ${index} deve aceitar o termo!`);
         return;
       }
 
-      listaParticipantes.push({
-        nome,
-        email,
-        cpf,
-        curso: curso || undefined,
-        genero,
-        ufes,
-        instituicao: ufes ? undefined : instituicao || undefined,
-        termo,
-      });
+      if(nome && email && cpf && termo) {
+        listaParticipantes.push({
+          nome,
+          email,
+          cpf,
+          curso: curso || undefined,
+          genero,
+          ufes,
+          instituicao: ufes ? undefined : instituicao || undefined,
+          termo,
+        });
+      }
     }
 
     try {
@@ -109,7 +111,7 @@ export default function FormInscricao({ numParticipantesPorEquipe }: FormInscric
   for (let index = 1; index <= numParticipantesPorEquipe; index++) {
     participantesForm.push(
       <div key={index} className="mt-12 flex flex-col gap-5">
-        <span className="text-xl font-bold">Participante {index}</span>
+        <span className="text-xl font-bold">Participante {index} {index === 1 ? "(Obrigatório)" : ''}</span>
 
         <input
           type="text"
