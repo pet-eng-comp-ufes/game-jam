@@ -11,6 +11,7 @@ class CriaMaterialService {
     async execute({ nome, descricao, link }: MaterialRequest) {
 
         const m = await prismaClient.material.create({
+            
             data: {
                 nome: nome,
                 descricao: descricao,

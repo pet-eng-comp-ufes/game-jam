@@ -78,13 +78,16 @@ model Participante {
   email String
   genero String
   ufes Boolean
+  cpf String?
+  curso String?
+  instituicao String?
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now())
 
-  season Equipe @relation(fields: [equipeId], references: [id])
+  equipe Equipe @relation(fields: [equipeId], references: [id])
+  equipeId String
 
   @@map("participantes")
-  equipeId String
 }
 
 model Material {
