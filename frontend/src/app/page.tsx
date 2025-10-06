@@ -25,7 +25,7 @@ export default function Home() {
 
     <Layout season={seasonAtual} className="flex items-center justify-center">
 
-      <div className="max-w-6xl w-[80%] mt-6 relative">
+      <div className="max-w-6xl w-[80%] mt-20 relative">
 
         <Titulo valor="O que é?"/>
         <p className="mt-6 mb-10">
@@ -41,8 +41,7 @@ export default function Home() {
 
         <Titulo valor="Premiação"/>
         <p className="mt-6 mb-10">
-        O PET Game Jam é uma competição de desenvolvimento de jogos de navegador criada pelo PET Engenharia de Computação da Ufes. Os participantes devem se organizar em equipes de até três pessoas e programar um jogo de navegador seguindo uma temática fornecida no início da competição.
-        </p>
+        Os jogos deverão ser submetidos até a data proposta nas regras. Eles serão avaliados pela nossa banca composta por especialistas e todos os participantes da melhor equipe ganharão o prêmio, que deverá ser retirado presencialmente na UFES Campus Goiabeiras. </p>
       </div>
     </Layout>
     

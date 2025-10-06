@@ -33,9 +33,9 @@ export default function Menu() {
                 <MenuItem url="/admin/seasons" texto="Season" icone={IconeComputador}/>
                 <MenuItem url="/admin/jogos" texto="Jogos" icone={IconeComputador}/>
                 <MenuItem url="/admin" texto="Equipes" icone={IconeEquipe}/>
-                <MenuItem url="/admin" texto="Materiais" icone={IconeMaterial}/>
+                <MenuItem url="/admin/materiais" texto="Materiais" icone={IconeMaterial}/>
                 <MenuItem url="/admin" texto="Regras" icone={IconeDocumento}/>
-                <MenuItem url="/admin" texto="Patrocício" icone={IconeDinheiro}/>
+                <MenuItem url="/admin/patrocinadores" texto="Patrocício" icone={IconeDinheiro}/>
             </ul>
             <ul>
                 <MenuItem
