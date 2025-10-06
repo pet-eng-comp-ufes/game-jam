@@ -2,11 +2,12 @@ services:
   db:
     image: mysql
     ports:
-      - 3306:3306
+      - ${DB_PORT}:3306
     container_name: db-gamejam
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: gamejam123
-      MYSQL_DATABASE: gamejam
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
     volumes:
       - vol-gamejam-db:/var/lib/mysql
 
@@ -14,7 +15,7 @@ services:
     build: "."
     container_name: api-gamejam
     ports:
-      - 3333:3333
+      - ${PORT}:3333
     depends_on:
       - db
     volumes:
@@ -23,7 +24,7 @@ services:
   phpmyadmin:
     image: phpmyadmin
     ports:
-      - 8081:80
+      - ${PHP_MY_ADMIN_PORT}:80
     environment:
       - PMA_ARBITRARY=1
     
