@@ -13,7 +13,7 @@ interface LayoutProps {
 
 export default function Layout({ season, children, className }: LayoutProps) {
 
-    const capaLink = `http://localhost:3333/files/${season?.getCapa}`
+    const capaLink = `${process.env.NEXT_PUBLIC_API_URL}/files/${season?.getCapa}`
 
     return (
         
