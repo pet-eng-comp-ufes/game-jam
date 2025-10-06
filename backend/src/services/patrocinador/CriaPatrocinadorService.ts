@@ -1,22 +1,23 @@
 import prismaClient from "../../prisma";
 
-interface PatrocinadorRequest{
+interface PatrocinadorRequest {
     nome: string;
     logo: string;
 }
 
-class CriaPatrocinadorService{
+class CriaPatrocinadorService {
 
-    async execute({nome,logo}:PatrocinadorRequest){
-        
+    async execute({ nome, logo }: PatrocinadorRequest) {
+
         const patrocinador = await prismaClient.patrocinador.create({
-            data:{
+            data: {
                 nome,
-                logo,
+                logo
             }
-        })
+        });
+
         return patrocinador;
     }
 }
 
-export {CriaPatrocinadorService}
+export { CriaPatrocinadorService };

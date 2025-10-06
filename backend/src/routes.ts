@@ -23,12 +23,19 @@ import { CriaJogoController } from "./controllers/jogo/CriaJogoController";
 import { DeletaJogoController } from "./controllers/jogo/DeletaJogoController";
 import { CriaPatrocinadorController } from "./controllers/patrocinador/CriaPatrocinadorController";
 import { DeletaPatrocinadorController } from "./controllers/patrocinador/DeletaPatrocinadorController";
-//import { CriaMaterialController } from "./controllers/material/CriaMaterialController";
+import { CriaMaterialController } from "./controllers/material/CriaMaterialController";
 import { DeletaMaterialController } from "./controllers/material/DeletaMaterialController";
+import { ObtemMateriaisController } from "./controllers/material/ObtemMateriaisController";
+import { ObtemPatrocinadoresController } from "./controllers/patrocinador/ObtemPatrocinadorController";
+
+import { CriaEquipeController } from "./controllers/equipe/CriaEquipeController"; 
+import { CriaParticipanteController } from "./controllers/participante/CriaParticipanteController";
 
 const router = Router()
-
 const upload = multer(uploadConfig.upload("./tmp"))
+
+const criaEquipeController = new CriaEquipeController();
+const criaParticipanteController = new CriaParticipanteController();
 
 // -- ROUTES USER --
 router.post('/users', estaAutenticado, new CriaUserController().handle)
@@ -55,9 +62,17 @@ router.delete('/jogos', estaAutenticado, new DeletaJogoController().handle)
 // -- ROUTES PATROCINADOR --
 router.post('/patrocinador', upload.single('logo'), new CriaPatrocinadorController().handle)
 router.delete('/patrocinador/remove', new DeletaPatrocinadorController().handle)
+router.get('/patrocinador', new ObtemPatrocinadoresController().handle)
 
 // -- ROUTES MATERIAIS --
 router.post('/material', new CriaMaterialController().handle)
 router.delete('/material', new DeletaMaterialController().handle)
+router.get('/material', new ObtemMateriaisController().handle)
+
+// -- ROUTES EQUIPES --
+router.post('/equipe', estaAutenticado, criaEquipeController.handle.bind(criaEquipeController));
+
+// -- ROUTES PARTICIPANTES --
+router.post('/participante', estaAutenticado, criaParticipanteController.handle.bind(criaParticipanteController));
 
 export { router }

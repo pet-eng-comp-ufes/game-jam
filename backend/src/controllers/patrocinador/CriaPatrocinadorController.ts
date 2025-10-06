@@ -1,29 +1,27 @@
 import { Request, Response } from "express";
-import { CriaPatrocinadorService } from '../../services/patrocinador/CriaPatrocinadorService'
+import { CriaPatrocinadorService } from "../../services/patrocinador/CriaPatrocinadorService";
 
 class CriaPatrocinadorController {
     
-    async handle(req: Request, res: Response) : Promise<any>{
+    async handle(req: Request, res: Response): Promise<any> {
 
-        const{nome} = req.body
-        
-        const createPatrocinadorService = new CriaPatrocinadorService();
+        const { nome } = req.body;
 
-        if(!req.file){
-            throw new Error("error upload file");
+        if (!req.file) {
+            return res.status(400).json({ error: "Arquivo de logo é obrigatório" });
         }
-        else{
-            const{filename: logo} = req.file;
 
-            const patrocinador = await createPatrocinadorService.execute({
-                nome,
-                logo
-            });
-    
-            return res.json(patrocinador);
-        }
+        const logoPath = `/files/${req.file.filename}`;
+
+        const criaPatrocinadorService = new CriaPatrocinadorService();
+
+        const patrocinador = await criaPatrocinadorService.execute({
+            nome,
+            logo: logoPath
+        });
+
+        return res.status(201).json(patrocinador);
     }
 }
 
-export { CriaPatrocinadorController }
-
+export { CriaPatrocinadorController };
