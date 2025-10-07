@@ -60,9 +60,9 @@ export default function Home() {
           Gerais
         </h2>
         <ol className="list-decimal ml-9 mb-6 space-y-2">
-          <li>O PET Game Jam é um evento aberto para todos, independente da sua idade ou conhecimento em programação;</li>
-          <li>Crie um jogo sozinho ou em grupo no máximo 3 pessoas;</li>
-          <li>Crie um jogo durante o período em que o evento estiver acontecendo;</li>
+          <li>O PET Game Jam é um evento aberto para todos, independente da sua idade ou conhecimento em programação.</li>
+          <li>Crie um jogo sozinho ou em grupo no máximo 3 pessoas.</li>
+          <li>Crie um jogo durante o período em que o evento estiver acontecendo.</li>
           <li>O evento é totalmente gratuito.</li>
         </ol>
 
@@ -72,7 +72,7 @@ export default function Home() {
         </h2>
         <ol className="list-decimal ml-9 mb-6 space-y-2">
           <li>As inscrições serão do dia 07/10/2025 até 12/10/2025.</li>
-          <li>A competição irá acontecer entre os dias 13/10/2025 e 05/11/2025. Esse será o tempo que seu time terá para aprender sobre o desenvolvimento de jogos, para enfim criar e enviar um jogo dentro do tema;</li>
+          <li>A competição irá acontecer entre os dias 13/10/2025 e 05/11/2025. Esse será o tempo que seu time terá para aprender sobre o desenvolvimento de jogos, para enfim criar e enviar um jogo dentro do tema.</li>
           <li>O tema do jogo que vocês terão que seguir será divulgado aqui na página de regras, e também no instagram do PET, no dia 10/10/2025, fiquem atentos!</li>
         </ol>
 
@@ -159,7 +159,7 @@ export default function Home() {
         </h2>
 
         <ol className="list-decimal ml-9 mb-6 space-y-2">
-          <li>O período de votação será de até 1 semana após o fim da competição;</li>
+          <li>O período de votação será de até 1 semana após o fim da competição.</li>
 
           <li>
             Os jogos serão avaliados de duas formas diferentes, sendo que a nota final totaliza 10 pontos,
