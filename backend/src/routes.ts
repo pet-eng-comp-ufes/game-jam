@@ -70,9 +70,9 @@ router.delete('/material', new DeletaMaterialController().handle)
 router.get('/material', new ObtemMateriaisController().handle)
 
 // -- ROUTES EQUIPES --
-router.post('/equipe', estaAutenticado, criaEquipeController.handle.bind(criaEquipeController));
+router.post('/equipe', criaEquipeController.handle.bind(criaEquipeController));
 
 // -- ROUTES PARTICIPANTES --
-router.post('/participante', estaAutenticado, criaParticipanteController.handle.bind(criaParticipanteController));
+router.post('/participante', criaParticipanteController.handle.bind(criaParticipanteController));
 
 export { router }
