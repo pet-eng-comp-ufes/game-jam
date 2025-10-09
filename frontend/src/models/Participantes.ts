@@ -57,16 +57,8 @@ class Participante {
 
     static async cadastrar(data: ParticipanteData) {
 
-        const token = getCookieClient()
-
-        if (!token) return
-
         try {
-            const response = await api.post("/participante", data, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
+            const response = await api.post("/participante", data)
             toast.success('Participante cadastrado com sucesso!')
             return new Participante(response.data, response.data.id, response.data.createdAt, response.data.updatedAt)
         }

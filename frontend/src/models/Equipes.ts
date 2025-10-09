@@ -41,16 +41,8 @@ class Equipe {
 
     static async cadastrar(nome: string) {
 
-        const token = getCookieClient()
-
-        if (!token) return
-
         try {
-            const response = await api.post("/equipe", { nome }, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
+            const response = await api.post("/equipe", { nome })
 
             return new Equipe(response.data.nome, response.data.id, response.data.aprovada, response.data.createdAt, response.data.updatedAt)
         }
