@@ -73,7 +73,7 @@ export default function Home() {
         <ol className="list-decimal ml-9 mb-6 space-y-2">
           <li>As inscrições serão do dia 07/10/2025 até 14/10/2025.</li>
           <li>A competição irá acontecer entre os dias 15/10/2025 e 05/11/2025. Esse será o tempo que seu time terá para aprender sobre o desenvolvimento de jogos, para enfim criar e enviar um jogo dentro do tema.</li>
-          <li>O tema do jogo que vocês terão que seguir será divulgado aqui na página de regras, e também no instagram do PET, no dia 10/10/2025, fiquem atentos!</li>
+          <li>O tema do jogo que vocês terão que seguir será divulgado aqui na página de regras e no instagram do PET, no dia 10/10/2025. Fiquem atentos!</li>
         </ol>
 
         {/* O jogo */}
