@@ -81,7 +81,7 @@ export default function Home() {
           O jogo
         </h2>
         <ol className="list-decimal ml-9 mb-6 space-y-2">
-          <li>Você pode criar seu jogo utilizando qualquer API baseada em JavaScript, mas recomendamos bastante que seja feito em Phaser3. Também é permitido utilizar qualquer código-fonte que você tenha.</li>
+          <li>Você pode criar seu jogo utilizando qualquer API baseada em JavaScript, mas recomendamos bastante que seja feito em Phaser3. Também é permitido utilizar qualquer código fonte que você tenha.</li>
           <li>Nós iremos disponibilizar um jogo base dentro do tema para as equipes que não são familiarizadas com desenvolvimento de jogos. Os participantes poderão optar por melhorar este jogo como quiserem, ou começar um do zero por conta própria.</li>
           <li>Você pode utilizar assests de arte/música/áudio de terceiros, ou que você já tenha criado.</li>
           <li>É fortemente recomendado que seja utilizado apenas assets que você tenha direito de uso.</li>
