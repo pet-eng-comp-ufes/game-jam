@@ -31,7 +31,10 @@ export default function Home() {
           Tema
         </h2>
         <ol className="list-decimal ml-9 mb-6 space-y-2">
-          <li>O tema desta edição do PET Game Jam ainda é um mistério!</li>
+          <li>
+            O tema desta edição do PET Game Jam é:{" "}
+            <span style={{ color: "#85e21f" }}>PLATAFORMAS</span>
+          </li>
         </ol>
 
         {/* Avisos */}
