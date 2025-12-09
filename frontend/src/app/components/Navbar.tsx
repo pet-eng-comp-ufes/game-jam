@@ -8,6 +8,7 @@ const paginas = [
   { label: 'Início', url: '/', value: 'inicio' },
   { label: 'Regras', url: '/regras', value: 'regras' },
   { label: 'Materiais', url: '/materiais', value: 'materiais' },
+  { label: 'Jogos', url: '/jogos', value: 'jogos' },
   { label: 'Apoio', url: '/apoio', value: 'apoio' },
 ]
 
