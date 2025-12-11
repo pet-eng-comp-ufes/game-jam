@@ -29,7 +29,7 @@ export default function Jogos() {
       {
         nome: "Equipe Capivarinhas",
         participantes: ["André Luiz Siqueira", "Arthur Manelli Riva Souza", "Daniela Souza Pimentel"],
-        link: "https://petgamejam-jogo2.vercel.app/"
+        link: "https://petgamejam-jogo.vercel.app/"
       },
     ])
   }, [])
