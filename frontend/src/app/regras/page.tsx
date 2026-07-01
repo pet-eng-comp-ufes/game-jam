@@ -80,61 +80,99 @@ export default function Home() {
         </ol>
 
         {/* O jogo */}
-        <h2 className="text-2xl font-semibold" style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }}>
+        <h2 className="text-2xl font-semibold" style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }} >
           O jogo
         </h2>
+
         <ol className="list-decimal ml-9 mb-6 space-y-2">
-          <li>Você pode criar seu jogo utilizando qualquer API baseada em JavaScript, mas recomendamos bastante que seja feito em Phaser3. Também é permitido utilizar qualquer código fonte que você tenha.</li>
-          <li>Nós iremos disponibilizar um jogo base dentro do tema para as equipes que não são familiarizadas com desenvolvimento de jogos. Os participantes poderão optar por melhorar este jogo como quiserem, ou começar um do zero por conta própria.</li>
-          <li>Você pode utilizar assests de arte/música/áudio de terceiros, ou que você já tenha criado.</li>
-          <li>É fortemente recomendado que seja utilizado apenas assets que você tenha direito de uso.</li>
-          <li>Se seu jogo estiver parecido com um exemplo de jogo que vem em uma ferramenta de desenvolvimento, provavelmente, não terá uma boa pontuação. Certifique-se de personalizá-lo completamente e criar seu próprio jogo.</li>
-          <li>Não será permitido conteúdo ofensivo a qualquer grupo social, incluindo, como exemplo: racismo, sexualidade explícita ou uso de drogas.</li>
-          <li>O tema será postado no começo da competição, caso o jogo não tenha nenhuma relação com o tema, será desclassificado.</li>
-          <li>Seu jogo deve estar com uma resolução de 800x600 pixels, e seu arquivo .html deve estar dessa forma:</li>
-        </ol>
 
-        <div className="ml-9">
-          <img 
-            src="/jogo.png" 
-            alt="Imagem do jogo" 
-            className="my-4 w-[90%] max-w-2xl"
-          />
-          <p className="mt-2 mb-2">
-            <strong>Obs:</strong> É muito importante que a página do seu jogo não possua nenhuma borda, padding ou margem.
-          </p>
-        </div>
-
-        <ol start={9} className="list-decimal ml-9 mb-6 space-y-2">
           <li>
-            Submeter jogos que não são videogames:
-            <ul className="list-disc ml-6 mt-2 space-y-1">
-              <li>É permitido submeter card games e jogos de tabuleiro, porém jogá-los é mais complicado (em geral, é necessário mais de uma pessoa para jogá-los). Jogos mais difíceis de jogar costumam ter uma maior dificuldade para obterem boas classificações.</li>
-              <li>O jogo ideal para o PET Game Jam é aquele que pode ser jogado em poucos minutos e sozinho.</li>
-            </ul>
+            O jogo deve ser desenvolvido durante o período oficial da PET Game Jam.
           </li>
+
+          <li>
+            É permitido utilizar qualquer engine, framework ou linguagem de programação,
+            incluindo Unity, Godot, Unreal Engine, GameMaker, Construct, bibliotecas em
+            C, C++, Java, Python, JavaScript, entre outras.
+          </li>
+
+          <li>
+            Ferramentas de prototipação e design, como Figma, Aseprite, Blender e
+            similares, podem ser utilizadas livremente.
+          </li>
+
+          <li>
+            É permitido utilizar assets de terceiros (arte, modelos 3D, músicas e efeitos
+            sonoros), desde que a equipe possua os direitos de uso e realize os devidos
+            créditos na página de submissão do jogo.
+          </li>
+
+          <li>
+            A criação de assets próprios não é obrigatória, porém será considerada um
+            diferencial durante a avaliação da apresentação audiovisual.
+          </li>
+
+          <li>
+            O uso de Inteligência Artificial generativa para criação de código, arte,
+            roteiro, áudio ou qualquer outro conteúdo do projeto é proibido.
+          </li>
+
+          <li>
+            O jogo deve obrigatoriamente seguir o tema divulgado no início da competição.
+            Jogos que não possuírem relação com o tema poderão ser desclassificados.
+          </li>
+
+          <li>
+            Não serão aceitos jogos que contenham discurso de ódio, conteúdo
+            discriminatório, violência extrema gratuita, material sexualmente explícito ou
+            qualquer conteúdo ofensivo. Projetos que violem esta regra serão
+            desclassificados.
+          </li>
+
+          <li>
+            O foco da competição é o desenvolvimento de jogos digitais. Jogos físicos,
+            jogos de tabuleiro e card games podem ser submetidos, porém sua avaliação
+            poderá ser prejudicada devido à dificuldade de execução pela banca.
+          </li>
+
         </ol>
 
         {/* Submissão */}
-        <h2
-          className="text-2xl font-semibold" 
-          style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }}
-        > 
+
+        <h2 className="text-2xl font-semibold" style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }}>
           Submissão
         </h2>
-        
+
         <ol className="list-decimal ml-9 mb-6 space-y-2">
-          
-          <li>A submissão do seu jogo pode ser feita em qualquer dia e horário da semana de competição. NÃO será disponibilizado um horário extra a partir do fechamento do sistema, que será às 23:59 do dia final.</li>
-          <li>A submissão deve ser feita enviando apenas um arquivo .zip com todas os arquivos do seu jogo, e ele deve estar todo em uma página .html. Exemplo do arquivo .zip:</li>
-          
-          </ol> <img src="/submissao.png" alt="Submissao" className="ml-9 my-4 w-[700px] max-w-full mt-2" />
-          
-          <ol start={3} className="list-decimal ml-9 mb-6 mt-2 space-y-2">
-            
-          <li>Durante a submissão será exigido uma thumbnail para seu jogo, seja criativo. Essa thumbnail deve ter uma resolução de aproximadamente 350x235 pixels.</li>
-          <li>Após a submissão, não será permitida uma submissão de outro jogo ou editar o jogo que foi enviado pela sua equipe. Então fique atento para consertar todos os bugs antes do envio. O único caso de reenvio de jogo será quando por algum erro no sistema ocorra, ou o jogo não funcione na plataforma, nesses casos, tire prints e entre em contato com o PET Engenharia de Computação da UFES.</li>
-          
+
+          <li>
+            Todos os jogos deverão ser enviados pela página oficial da PET Game Jam no
+            itch.io até às 23h59 do último dia da competição.
+          </li>
+
+          <li>
+            É altamente recomendado que o jogo possua uma versão jogável diretamente no
+            navegador (Web/HTML5/WebGL), facilitando a avaliação da banca. Caso isso não
+            seja possível, serão aceitos executáveis para Windows (.exe).
+          </li>
+
+          <li>
+            A página do jogo deverá conter obrigatoriamente:
+            <ul className="list-disc ml-6 mt-2 space-y-1">
+              <li>Nome do jogo;</li>
+              <li>Nome da equipe;</li>
+              <li>Instruções de como jogar;</li>
+              <li>Créditos completos;</li>
+              <li>Referências e licenças dos assets de terceiros utilizados.</li>
+            </ul>
+          </li>
+
+          <li>
+            Após o encerramento do prazo de submissão não serão aceitas alterações,
+            exceto em casos excepcionais autorizados pela organização devido a problemas
+            técnicos na plataforma.
+          </li>
+
         </ol>
 
         {/* Propriedade */}
