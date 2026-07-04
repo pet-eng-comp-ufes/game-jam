@@ -147,7 +147,7 @@ export default function Home() {
 
           <li>
             Todos os jogos deverão ser enviados pela página oficial da PET Game Jam no
-            itch.io até às 23h59 do último dia da competição.
+            itch.io até às 23h59 do último dia da competição.  
           </li>
 
           <li>
