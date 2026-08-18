@@ -19,8 +19,20 @@ app.use(
 app.use((err: Error, req: Request, res: Response, next: NextFunction): any => {
 
     if(err instanceof Error){
-        //Se for uma instancia do tipo error
 
+        // Erro vindo do Prisma nao pode ser devolvido cru: a mensagem dele carrega
+        // o caminho do arquivo, o trecho da query e o nome das colunas. Fica no log
+        // do servidor e o cliente recebe uma mensagem generica.
+        if(err.constructor.name.startsWith('PrismaClient')){
+            console.error(err)
+
+            return res.status(500).json({
+                status: 'error',
+                message: 'Internal server error.'
+            })
+        }
+
+        // Erro lancado pelos services e mensagem de validacao, feita para o cliente ler.
         return res.status(400).json({
             error: err.message
         })
