@@ -6,6 +6,11 @@ import path from 'path'
 import { router } from './routes'
 
 const app = express()
+
+// A API roda atras do Traefik, que termina o TLS e repassa em HTTP. Sem isto o
+// req.protocol devolve 'http', e a URL do logo do patrocinador vira conteudo
+// misto numa pagina servida em https.
+app.set('trust proxy', 1)
 app.use(express.json())
 app.use(cors())
 
