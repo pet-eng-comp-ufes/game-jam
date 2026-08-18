@@ -21,6 +21,12 @@ class CriaEquipeController {
         return res.status(400).json({ error: "Nenhuma temporada atual encontrada." });
       }
 
+      // Esta rota e publica, porque ninguem tem login antes de se inscrever.
+      // A guarda contra escrita fora do periodo e a flag da propria temporada.
+      if (!seasonAtual.inscricoesAbertas) {
+        return res.status(403).json({ error: "As inscrições não estão abertas." });
+      }
+
       const criaEquipeService = new CriaEquipeService();
       const equipe = await criaEquipeService.execute({
         nome,
