@@ -60,16 +60,20 @@ router.post('/jogos', estaAutenticado, upload.single('file'), new CriaJogoContro
 router.delete('/jogos', estaAutenticado, new DeletaJogoController().handle)
 
 // -- ROUTES PATROCINADOR --
-router.post('/patrocinador', upload.single('logo'), new CriaPatrocinadorController().handle)
-router.delete('/patrocinador/remove', new DeletaPatrocinadorController().handle)
+// O GET fica publico porque o site exibe os patrocinadores. Criar e apagar exige login.
+router.post('/patrocinador', estaAutenticado, upload.single('logo'), new CriaPatrocinadorController().handle)
+router.delete('/patrocinador/remove', estaAutenticado, new DeletaPatrocinadorController().handle)
 router.get('/patrocinador', new ObtemPatrocinadoresController().handle)
 
 // -- ROUTES MATERIAIS --
-router.post('/material', new CriaMaterialController().handle)
-router.delete('/material', new DeletaMaterialController().handle)
+// Mesmo criterio do patrocinador: leitura publica, escrita autenticada.
+router.post('/material', estaAutenticado, new CriaMaterialController().handle)
+router.delete('/material', estaAutenticado, new DeletaMaterialController().handle)
 router.get('/material', new ObtemMateriaisController().handle)
 
 // -- ROUTES EQUIPES --
+// Publica de proposito: o participante se inscreve antes de existir login.
+// A guarda esta no controller, que exige temporada atual com inscricoes abertas.
 router.post('/equipe', criaEquipeController.handle.bind(criaEquipeController));
 
 // -- ROUTES PARTICIPANTES --
