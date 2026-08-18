@@ -1,0 +1,21 @@
+# O Dockerfile faz "COPY . .", entao tudo que nao estiver aqui vai para dentro da imagem.
+# Sem este arquivo, o .git inteiro (11 MB, com todo o historico) e os .env iam junto —
+# quem puxasse a imagem levaria o codigo-fonte e as credenciais.
+
+.git
+.gitignore
+.dockerignore
+
+.env
+.env.*
+
+node_modules
+dist
+
+# Uploads em runtime moram no volume vol-imgs-tmp, nao na imagem.
+tmp
+
+.github
+README.md
+docker-compose.yml
+Insomnia*.json
