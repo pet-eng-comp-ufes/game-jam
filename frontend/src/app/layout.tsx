@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Game Jam - PET UFES",
+  title: "PET Game Jam",
   description: "O Game Jam é um torneio de programação de jogos organizado pelo PET Engenharia de Computação da UFES.",
 };
 
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased vsc-initialized`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Toaster 
           position="bottom-right"
