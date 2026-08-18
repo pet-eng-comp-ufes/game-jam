@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Layout from "../components/Layout"
 import Titulo from "../components/Titulo"
+import { Season } from "@/models/Season"
 
 interface Grupo {
   nome: string
@@ -13,6 +14,16 @@ interface Grupo {
 export default function Jogos() {
 
   const [grupos, setGrupos] = useState<Grupo[]>([])
+  const [seasonAtual, setSeasonAtual] = useState<Season>()
+
+  async function obtemSeasonAtual() {
+    const res = await Season.obtemAtual()
+    setSeasonAtual(res)
+  }
+
+  useEffect(() => {
+    obtemSeasonAtual()
+  }, [])
 
   useEffect(() => {
     setGrupos([
@@ -35,7 +46,7 @@ export default function Jogos() {
   }, [])
 
   return (
-    <Layout className="flex items-center justify-center">
+    <Layout season={seasonAtual} className="flex items-center justify-center">
 
       <div className="max-w-5xl w-[80%] mt-20 text-white">
 
