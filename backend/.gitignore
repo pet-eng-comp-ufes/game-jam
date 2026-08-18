@@ -1,2 +1,5 @@
 node_modules
 .env
+# Credencial: DATABASE_URL real estava commitada aqui.
+.env.copia
+dist
