@@ -1,3 +1,7 @@
+// Carrega o .env em desenvolvimento. Em producao nao existe arquivo .env dentro
+// da imagem e as variaveis vem do ambiente do container, entao isto e inerte la.
+import 'dotenv/config'
+
 import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors'
 import cors from 'cors'
