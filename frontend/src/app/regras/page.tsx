@@ -43,7 +43,7 @@ export default function Home() {
         </h2>
         <ol className="list-decimal ml-9 mb-6 space-y-2">
           <li>Devido aos custos flutuantes de fretes e outras tarifas, as premiações físicas da competição são restritas apenas aos competidores residentes da Grande Vitória (região metropolitana da capital Vitória-ES).</li>
-          <li>Equipes de fora irão competir em uma "categoria separada", na qual receberão o certificado de participação e, no caso das melhores colocadas, os devidos créditos nas redes sociais ao final da edição.</li>
+          <li>Equipes de fora irão competir em uma “categoria separada”, na qual receberão o certificado de participação e, no caso das melhores colocadas, os devidos créditos nas redes sociais ao final da edição.</li>
           <li>Todas as equipes que efetivamente participaram receberão a certificação ao final.</li>
           <li>
             Quaisquer dúvidas podem ser esclarecidas no nosso instagram{' '}
