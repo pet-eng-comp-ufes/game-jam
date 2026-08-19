@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Site do PET Game Jam
 
-## Getting Started
+Front-end do Game Jam do PET Engenharia de Computação da UFES: divulgação do
+evento, regras, materiais de apoio, inscrição das equipes, vitrine dos jogos e o
+painel da organização.
 
-First, run the development server:
+| | |
+|---|---|
+| Produção | <https://gamejam.pet.inf.ufes.br> |
+| API | <https://apigamejam.pet.inf.ufes.br> (repositório `new-gamejam-backend`) |
+| Hospedagem | Vercel |
+
+## Como é feito
+
+Next.js 16 com App Router, React 19, TypeScript e Tailwind 4. Os dados vêm todos
+da API — não há banco nem rota de servidor própria aqui.
+
+## Rodando local
 
 ```bash
+cp .env.example .env.local     # preencha o endereço da API
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Sobe em <http://localhost:3000>. Apontar o `NEXT_PUBLIC_API_URL` para a API de
+produção funciona para ver as telas, mas qualquer escrita vai bater no banco de
+verdade — para mexer, suba a API local.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| script | o que faz |
+|---|---|
+| `npm run dev` | desenvolvimento |
+| `npm run build` | build de produção |
+| `npm run lint` | eslint sobre `src/` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Páginas
 
-## Learn More
+```
+/               capa do evento
+/regras         regulamento da edição
+/materiais      links de apoio para os participantes
+/apoio          patrocinadores
+/inscricao      formulário de inscrição da equipe
+/jogos          jogos das edições anteriores
+/login          entrada da organização
+/admin          painel: temporadas, jogos, patrocinadores, materiais, usuários
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Publicação
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O deploy é automático: o que entra no `main` vai para produção.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Com uma pegadinha que já custou seis semanas de site desatualizado — **o plano
+atual da Vercel só publica commit autorado pela conta do PET**. Commit de
+qualquer outra pessoa entra no `main` normalmente, a Vercel recusa com
+`Deployment was blocked`, e ninguém é avisado: o site simplesmente continua na
+versão anterior.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Por isso o caminho é branch, pull request e **merge pela interface do GitHub**,
+que gera um commit de merge autorado pela conta do PET. Squash e rebase estão
+desligados no repositório justamente para não reescrever essa autoria.
