@@ -44,7 +44,7 @@ export default function Login() {
     
     <div className="h-screen flex flex-col justify-center items-center bg-blue-950">
         
-        <img src='logo.png' alt="Logo da Pizzaria" className="md:h-52 h-36"/>
+        <img src="/logo.png" alt="Logo do PET Game Jam" className="md:h-52 h-36"/>
 
         <section className="mt-6 flex flex-col justify-center items-center gap-4 md:w-[600px] w-[90%]">
 

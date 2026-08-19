@@ -40,7 +40,7 @@ export default function Inscricao() {
               ? "Inscrições abertas!"
               : "Inscrições fechadas!"}
           </span>
-          <img src="logo.png" alt="Logo do Game Jam" className="md:h-52 h-36" />
+          <img src="/logo.png" alt="Logo do PET Game Jam" className="md:h-52 h-36" />
 
         </div>
 
