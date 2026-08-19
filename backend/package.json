@@ -1,0 +1,48 @@
+{
+  "name": "new-gamejam-backend",
+  "version": "1.0.0",
+  "description": "API do PET Game Jam: inscricao de equipes, jogos, patrocinadores e materiais.",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "ts-node-dev src/server.ts",
+    "build": "tsc --build",
+    "start": "node dist/server.js",
+    "migrate-build": "prisma generate && prisma migrate deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petengcomp/new-gamejam-backend.git"
+  },
+  "keywords": [
+    "gamejam",
+    "pet-ufes",
+    "express",
+    "prisma"
+  ],
+  "author": "PET Engenharia de Computacao - UFES",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/petengcomp/new-gamejam-backend/issues"
+  },
+  "homepage": "https://github.com/petengcomp/new-gamejam-backend#readme",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/multer": "^1.4.12",
+    "prisma": "^6.6.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.2"
+  }
+}

@@ -1,0 +1,53 @@
+name: Publica imagem no GHCR
+
+# Constroi e publica a imagem a cada push no main. Antes disso a imagem era
+# construida a mao na maquina de alguem: a que rodava em producao era de
+# 06/10/2025 e nao tinha nem tag.
+on:
+  push:
+    branches: [main]
+  # Em pull request a imagem e construida mas nao publicada. Serve para o
+  # Dockerfile ser testado antes do merge: antes disso, um erro so aparecia
+  # depois de ja estar no main.
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        if: github.event_name != 'pull_request'
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/petengcomp/gamejam-backend
+          # Tag por commit para dar rastro, e latest para o compose continuar funcionando.
+          tags: |
+            type=sha,format=long
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          # Grava a origem na imagem. As imagens atuais nao tem label nenhum,
+          # e foi por isso que localizar este repositorio deu tanto trabalho.
+          labels: ${{ steps.meta.outputs.labels }}
+          provenance: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
