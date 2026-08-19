@@ -1,15 +1,21 @@
-name: Publica imagem no GHCR
+name: Publica imagem do backend no GHCR
 
-# Constroi e publica a imagem a cada push no main. Antes disso a imagem era
-# construida a mao na maquina de alguem: a que rodava em producao era de
-# 06/10/2025 e nao tinha nem tag.
+# Constroi e publica a imagem a cada push no main que toque o backend. Antes de
+# existir este workflow, a imagem era construida a mao na maquina de alguem: a
+# que rodava em producao era de 06/10/2025 e nao tinha nem tag.
 on:
   push:
     branches: [main]
+    # So o backend vira imagem. Mexer no site nao precisa reconstruir a API.
+    paths:
+      - 'backend/**'
+      - '.github/workflows/publica-imagem-backend.yml'
   # Em pull request a imagem e construida mas nao publicada. Serve para o
-  # Dockerfile ser testado antes do merge: antes disso, um erro so aparecia
-  # depois de ja estar no main.
+  # Dockerfile ser testado antes do merge.
   pull_request:
+    paths:
+      - 'backend/**'
+      - '.github/workflows/publica-imagem-backend.yml'
   workflow_dispatch:
 
 jobs:
@@ -42,11 +48,11 @@ jobs:
 
       - uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ./backend
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
-          # Grava a origem na imagem. As imagens atuais nao tem label nenhum,
-          # e foi por isso que localizar este repositorio deu tanto trabalho.
+          # Grava a origem na imagem. As imagens antigas nao tinham label nenhum,
+          # e foi por isso que localizar o repositorio deu tanto trabalho.
           labels: ${{ steps.meta.outputs.labels }}
           provenance: false
           cache-from: type=gha

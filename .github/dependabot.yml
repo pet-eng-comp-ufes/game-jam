@@ -1,0 +1,41 @@
+# Um arquivo para os dois projetos. Sem agrupamento o Dependabot abre um PR por
+# pacote — no primeiro dia foram 25 alertas no backend e 32 no frontend.
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /backend
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      backend-producao:
+        dependency-type: production
+      backend-desenvolvimento:
+        dependency-type: development
+
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      frontend-producao:
+        dependency-type: production
+      frontend-desenvolvimento:
+        dependency-type: development
+
+  # O Dockerfile do backend fixa a imagem base por digest. E o Dependabot que
+  # traz o digest novo quando a node:22 recebe correcao — sem isso, o pino vira
+  # imagem parada.
+  - package-ecosystem: docker
+    directory: /backend
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
