@@ -6,7 +6,7 @@ inscrição de equipes, jogos publicados, patrocinadores e materiais de apoio.
 | | |
 |---|---|
 | API em produção | <https://apigamejam.pet.inf.ufes.br> |
-| Site que consome | <https://gamejam.pet.inf.ufes.br> (repositório `new-gamejam-frontend`) |
+| Site que consome | <https://gamejam.pet.inf.ufes.br> (o `frontend/` deste repositório) |
 | Imagem | `ghcr.io/petengcomp/gamejam-backend` |
 
 ## Como é feito

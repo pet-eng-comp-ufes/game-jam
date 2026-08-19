@@ -7,7 +7,7 @@ painel da organização.
 | | |
 |---|---|
 | Produção | <https://gamejam.pet.inf.ufes.br> |
-| API | <https://apigamejam.pet.inf.ufes.br> (repositório `new-gamejam-backend`) |
+| API | <https://apigamejam.pet.inf.ufes.br> (o `backend/` deste repositório) |
 | Hospedagem | Vercel |
 
 ## Como é feito
