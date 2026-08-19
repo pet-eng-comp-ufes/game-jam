@@ -1,0 +1,108 @@
+# API do PET Game Jam
+
+Back-end do Game Jam do PET Engenharia de Computação da UFES: temporadas,
+inscrição de equipes, jogos publicados, patrocinadores e materiais de apoio.
+
+| | |
+|---|---|
+| API em produção | <https://apigamejam.pet.inf.ufes.br> |
+| Site que consome | <https://gamejam.pet.inf.ufes.br> (repositório `new-gamejam-frontend`) |
+| Imagem | `ghcr.io/petengcomp/gamejam-backend` |
+
+## Como é feito
+
+Express 4 com TypeScript, Prisma sobre MySQL. O código de `src/` compila para
+`dist/` e o container executa `node dist/server.js`.
+
+O upload de imagens (capa de temporada, capa de jogo, logo de patrocinador) usa
+multer e grava em `tmp/`, que é o mesmo diretório servido em `/files`. Em
+produção esse diretório é o volume `vol-imgs-tmp` — os arquivos **não** ficam
+dentro da imagem nem do repositório.
+
+A API roda atrás do Traefik, que termina o TLS. Por isso o `server.ts` liga o
+`trust proxy`: sem ele o `req.protocol` devolveria `http` e as URLs de imagem
+sairiam em conteúdo misto numa página servida em `https`.
+
+## Rodando local
+
+Requer Node 22 e um MySQL acessível.
+
+```bash
+cp .env.example .env     # preencha os valores
+npm install
+npx prisma migrate deploy
+npm run dev
+```
+
+Sobe em <http://localhost:3333>.
+
+O `docker-compose.yml` da raiz é só para desenvolvimento — ele constrói a imagem
+localmente e sobe MySQL e phpMyAdmin junto. **Não** é o compose de produção, que
+vive no Portainer da VM do PET.
+
+### Variáveis
+
+| variável | para quê |
+|---|---|
+| `DATABASE_URL` | string de conexão do Prisma, no formato `mysql://usuario:senha@host:porta/banco` |
+| `JWT_SECRET` | assina e valida os tokens de sessão |
+| `PORT` | porta do servidor; sem ela, 3333 |
+
+As demais (`DB_*`, `PHP_MY_ADMIN_PORT`) só existem para o compose de
+desenvolvimento.
+
+## Autenticação
+
+Rotas de escrita exigem `Authorization: Bearer <token>`, e o token vem de
+`POST /sessao`. Leitura de patrocinadores, materiais e da temporada atual é
+pública, porque o site exibe isso para quem não tem login.
+
+A inscrição de equipe (`POST /equipe`) também é pública de propósito: o
+participante se inscreve antes de existir qualquer conta. Quem barra é o
+controller, que só aceita se a temporada atual estiver com inscrições abertas.
+
+## Rotas
+
+```
+POST   /sessao                     login, devolve o token
+GET    /eu                         dados do usuário logado
+
+POST   /users                      cria usuário          (autenticado)
+GET    /users                      lista                 (autenticado)
+PUT    /users                      troca a senha         (autenticado)
+DELETE /users                                            (autenticado)
+
+GET    /seasons/atual              temporada em cartaz
+GET    /seasonsComJogos            temporadas com os jogos de cada uma
+GET    /seasons                                          (autenticado)
+POST   /seasons                    cria, com upload de capa (autenticado)
+DELETE /seasons                                          (autenticado)
+PUT    /seasons/atual              define a temporada atual (autenticado)
+PUT    /seasons/abreInscricao                            (autenticado)
+PUT    /seasons/fechaInscricao                           (autenticado)
+
+POST   /jogos                      cria, com upload de capa (autenticado)
+DELETE /jogos                                            (autenticado)
+
+GET    /patrocinador               lista
+POST   /patrocinador               cria, com upload do logo (autenticado)
+DELETE /patrocinador/remove                              (autenticado)
+
+GET    /material                   lista
+POST   /material                                         (autenticado)
+DELETE /material                                         (autenticado)
+
+POST   /equipe                     inscrição de equipe
+POST   /participante               inscrição de participante
+
+GET    /files/:arquivo             imagens enviadas
+```
+
+## Publicação
+
+Todo push no `main` dispara o workflow `publica-imagem.yml`, que constrói a
+imagem e publica no GHCR com duas tags: `sha-<commit>` e `latest`.
+
+O deploy **não** é automático. A stack no Portainer aponta para a tag do commit,
+de propósito — trocar de versão é um ato deliberado, e a tag diz exatamente qual
+commit está no ar.
