@@ -23,7 +23,7 @@ export default function Layout({ season, children, className }: LayoutProps) {
         
         <div className={`dark bg-background-dark min-h-screen relative`}>
 
-            {capaLink && <img src={capaLink} alt="capa" className="w-full min-h-72 max-h-[500px] object-cover"/>}
+            {capaLink && <img src={capaLink} alt="Capa da temporada" className="w-full min-h-72 max-h-[500px] object-cover"/>}
 
             <Navbar tema="dark" />
 

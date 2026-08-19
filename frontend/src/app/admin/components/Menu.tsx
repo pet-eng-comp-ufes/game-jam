@@ -26,7 +26,7 @@ export default function Menu() {
         `}>
 
             <div className="h-16 p-3 flex justify-center items-center">
-                <Image src={logoPET} alt="logo pet" height={50}/>
+                <Image src={logoPET} alt="Logo do PET Engenharia de Computação" height={50}/>
             </div>
             <ul className="grow">
                 <MenuItem url="/admin/usuarios" texto="Usuários" icone={IconeUsuarios}/>
