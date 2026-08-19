@@ -1,0 +1,91 @@
+import { getCookieClient } from "@/lib/cookieClient"
+import { api } from "@/services/api"
+import { toast } from "sonner"
+
+class Patrocinador {
+
+    private id?: string
+    private nome: string
+    private logo: string
+
+    constructor(nome: string, logo: string, id?: string) {
+
+        this.id = id
+        this.nome = nome
+        this.logo = logo
+    }
+
+    get getId() {
+        return this.id
+    }
+
+    get getNome() {
+        return this.nome
+    }
+
+    get getLogo() {
+        return this.logo
+    }
+
+    static async cadastrar(data: FormData) {
+
+        const token = getCookieClient()
+
+        if (!token) return
+
+        try {
+            await api.post("/patrocinador", data, {
+                headers: { 
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "multipart/form-data" 
+                }
+            })
+            toast.success("Patrocinador cadastrado com sucesso!")
+        }
+        catch (err) {
+            toast.warning("Erro ao cadastrar patrocinador.")
+            console.log(err)
+        }
+    }
+
+    static async obtemTodosPatrocinadores(): Promise<Patrocinador[]> {
+
+        const token = getCookieClient()
+
+        if (!token) return []
+
+        try {
+            const response = await api.get("/patrocinador", {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+
+            return response.data.map((p: any) =>
+                new Patrocinador(p.nome, p.logo, p.id)
+            )
+        }
+        catch (err) {
+            console.log(err)
+            return []
+        }
+    }
+
+    async deletar() {
+
+        const token = getCookieClient()
+
+        if (!token) return
+
+        try {
+            await api.delete("/patrocinador/remove", {
+                params: { id: this.id },
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            toast.success("Patrocinador deletado com sucesso!")
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export { Patrocinador }
