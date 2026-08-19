@@ -1,5 +1,13 @@
-# Um arquivo para os dois projetos. Sem agrupamento o Dependabot abre um PR por
-# pacote — no primeiro dia foram 25 alertas no backend e 32 no frontend.
+# Um arquivo para os dois projetos.
+#
+# Sem agrupamento o Dependabot abre um PR por pacote: no primeiro dia foram 25
+# alertas no backend e 32 no frontend.
+#
+# Os grupos so juntam minor e patch. Major sai sempre em PR proprio, porque na
+# primeira semana os grupos vieram carregando Prisma 6->7, TypeScript 5->7,
+# eslint 9->10 e cookies-next 5->6 no meio de correcoes de rotina. Migracao de
+# major precisa ser lida e testada sozinha.
+
 version: 2
 
 updates:
@@ -12,8 +20,10 @@ updates:
     groups:
       backend-producao:
         dependency-type: production
+        update-types: ["minor", "patch"]
       backend-desenvolvimento:
         dependency-type: development
+        update-types: ["minor", "patch"]
     ignore:
       # O express 5 exige tirar o express-async-errors, que so suporta o 4 e nao
       # recebe versao nova desde 2019. Com os dois juntos o npm ci morre em
@@ -33,8 +43,10 @@ updates:
     groups:
       frontend-producao:
         dependency-type: production
+        update-types: ["minor", "patch"]
       frontend-desenvolvimento:
         dependency-type: development
+        update-types: ["minor", "patch"]
 
   # O Dockerfile do backend fixa a imagem base por digest. E o Dependabot que
   # traz o digest novo quando a node:22 recebe correcao — sem isso, o pino vira
