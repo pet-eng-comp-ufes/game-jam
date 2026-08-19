@@ -3,3 +3,9 @@ node_modules
 # Credencial: DATABASE_URL real estava commitada aqui.
 .env.copia
 dist
+
+# Destino dos uploads (multer) e raiz do /files. Em producao e o volume
+# vol-imgs-tmp; o que cai aqui e arquivo de usuario, nao codigo. Ja houve
+# 10 imagens de producao commitadas por engano.
+tmp/*
+!tmp/.gitkeep
