@@ -1,10 +1,9 @@
 {
   "name": "new-gamejam-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API do PET Game Jam: inscricao de equipes, jogos, patrocinadores e materiais.",
+  "main": "dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev src/server.ts",
     "build": "tsc --build",
     "start": "node dist/server.js",
@@ -14,9 +13,14 @@
     "type": "git",
     "url": "git+https://github.com/petengcomp/new-gamejam-backend.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "gamejam",
+    "pet-ufes",
+    "express",
+    "prisma"
+  ],
+  "author": "PET Engenharia de Computacao - UFES",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/petengcomp/new-gamejam-backend/issues"
   },
@@ -42,4 +46,3 @@
     "multer": "^1.4.5-lts.2"
   }
 }
-
