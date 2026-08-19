@@ -2,7 +2,7 @@
 # aviso: duas construcoes da mesma revisao do codigo podiam gerar imagens
 # diferentes. Quem traz o digest novo quando a base recebe correcao e o
 # Dependabot, configurado em .github/dependabot.yml.
-FROM node:22@sha256:0557ac14e0d45d02ed563067b82856ca5e7aa3437fa28d98d4350ea9c3d9494a
+FROM node:26@sha256:bde0dae02f2b12d2bce5ee72b2432f0e511767b7b2dc4dd3b064df11ae422fee
 
 WORKDIR /app
 
