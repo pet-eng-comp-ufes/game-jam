@@ -31,7 +31,10 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env
+# .env* e nao so .env: o padrao antigo deixava .env.local e
+# .env.production passarem para dentro do commit sem aviso.
+.env*
+!.env.example
 
 # vercel
 .vercel
