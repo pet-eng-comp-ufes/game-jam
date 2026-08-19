@@ -14,6 +14,15 @@ updates:
         dependency-type: production
       backend-desenvolvimento:
         dependency-type: development
+    ignore:
+      # O express 5 exige tirar o express-async-errors, que so suporta o 4 e nao
+      # recebe versao nova desde 2019. Com os dois juntos o npm ci morre em
+      # ERESOLVE e a imagem nao constroi — foi o que derrubou o primeiro PR
+      # agrupado do backend. Voltar a considerar quando o pacote sair do projeto:
+      # o express 5 trata rejeicao de promessa sozinho e o express-async-errors
+      # deixa de ser necessario.
+      - dependency-name: express
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: npm
     directory: /frontend
