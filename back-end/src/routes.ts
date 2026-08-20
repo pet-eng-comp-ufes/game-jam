@@ -6,6 +6,7 @@ import { CriaUserController } from "./controllers/user/CriaUserController";
 import { LogaUserController } from "./controllers/user/LogaUserController";
 import { DetalhesUserController } from "./controllers/user/DetalhesUserController";
 import { ObtemUsersController } from "./controllers/user/ObtemUsersController";
+import { limiteDeLogin, limiteDeInscricao } from './middlewares/limiteDeTaxa'
 import { estaAutenticado } from "./middlewares/estaAutenticado";
 import { DeleteUserController } from "./controllers/user/DeleteUserController";
 import { AlteraSenhaUserController } from "./controllers/user/AlteraSenhaUserController";
@@ -39,7 +40,7 @@ const criaParticipanteController = new CriaParticipanteController();
 
 // -- ROUTES USER --
 router.post('/users', estaAutenticado, new CriaUserController().handle)
-router.post('/sessao', new LogaUserController().handle)
+router.post('/sessao', limiteDeLogin, new LogaUserController().handle)
 router.get('/eu', estaAutenticado,  new DetalhesUserController().handle)
 router.get('/users', estaAutenticado,  new ObtemUsersController().handle)
 router.delete('/users', estaAutenticado, new DeleteUserController().handle)
@@ -74,9 +75,9 @@ router.get('/material', new ObtemMateriaisController().handle)
 // -- ROUTES EQUIPES --
 // Publica de proposito: o participante se inscreve antes de existir login.
 // A guarda esta no controller, que exige temporada atual com inscricoes abertas.
-router.post('/equipe', criaEquipeController.handle.bind(criaEquipeController));
+router.post('/equipe', limiteDeInscricao, criaEquipeController.handle.bind(criaEquipeController));
 
 // -- ROUTES PARTICIPANTES --
-router.post('/participante', criaParticipanteController.handle.bind(criaParticipanteController));
+router.post('/participante', limiteDeInscricao, criaParticipanteController.handle.bind(criaParticipanteController));
 
 export { router }
