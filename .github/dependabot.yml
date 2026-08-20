@@ -33,6 +33,13 @@ updates:
       # deixa de ser necessario.
       - dependency-name: express
         update-types: ["version-update:semver-major"]
+      # @types/node tem que acompanhar o major do Node da imagem base, hoje 24.
+      # Tipo mais novo que o runtime descreve API que nao existe em execucao, e
+      # o compilador aceita — a falha aparece so rodando. O Dependabot ofereceu
+      # o 26 em 20/08/2026 e foi recusado por isso. Quando a base subir de
+      # major, subir este junto e a mao.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: npm
     directory: /front-end
@@ -55,6 +62,14 @@ updates:
     directory: /back-end
     schedule:
       interval: weekly
+    ignore:
+      # Major do Node so entra quando a versao for LTS. O Dependabot ofereceu o
+      # 26 em 20/08/2026, que e linha Current: suporte curto e mudanca durante
+      # o ciclo. API em producao nao anda nela. Quando o 26 virar LTS, remover
+      # esta regra e subir de proposito.
+      # Patch e minor do digest continuam entrando — e o que mantem o pino vivo.
+      - dependency-name: node
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: /
