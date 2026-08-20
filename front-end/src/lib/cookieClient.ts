@@ -1,4 +1,4 @@
-import { getCookie, deleteCookie } from "cookies-next";
+import { getCookie, deleteCookie } from "cookies-next/client";
 
 export function getCookieClient() {
 
