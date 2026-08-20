@@ -1,0 +1,64 @@
+name: Publica imagem do front-end no GHCR
+
+# Espelha o workflow do back-end. Existe porque o site sai da Vercel e passa a
+# rodar na VM como container.
+on:
+  push:
+    branches: [main]
+    # So o front-end vira imagem. Mexer na API nao precisa reconstruir o site.
+    paths:
+      - 'front-end/**'
+      - '.github/workflows/publica-imagem-front-end.yml'
+  pull_request:
+    paths:
+      - 'front-end/**'
+      - '.github/workflows/publica-imagem-front-end.yml'
+  workflow_dispatch:
+
+# ATENCAO: NEXT_PUBLIC_API_URL e assada no build, nao lida em execucao. Definir
+# no compose NAO tem efeito. Trocar o endereco da API exige RECONSTRUIR a
+# imagem, nao reiniciar o container.
+#
+# Hoje aponta para o dominio antigo, que e o unico que existe. Quando o LAR
+# criar game-jam-api.pet.inf.ufes.br, trocar aqui e disparar um build novo.
+env:
+  API_URL: https://apigamejam.pet.inf.ufes.br
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v4
+        if: github.event_name != 'pull_request'
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: ghcr.io/pet-eng-comp-ufes/game-jam_front-end
+          tags: |
+            type=sha,format=long
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v7
+        with:
+          context: ./front-end
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            NEXT_PUBLIC_API_URL=${{ env.API_URL }}
+          provenance: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
