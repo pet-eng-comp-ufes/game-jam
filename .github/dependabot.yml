@@ -12,16 +12,16 @@ version: 2
 
 updates:
   - package-ecosystem: npm
-    directory: /backend
+    directory: /back-end
     schedule:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
     groups:
-      backend-producao:
+      back-end-producao:
         dependency-type: production
         update-types: ["minor", "patch"]
-      backend-desenvolvimento:
+      back-end-desenvolvimento:
         dependency-type: development
         update-types: ["minor", "patch"]
     ignore:
@@ -35,24 +35,24 @@ updates:
         update-types: ["version-update:semver-major"]
 
   - package-ecosystem: npm
-    directory: /frontend
+    directory: /front-end
     schedule:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
     groups:
-      frontend-producao:
+      front-end-producao:
         dependency-type: production
         update-types: ["minor", "patch"]
-      frontend-desenvolvimento:
+      front-end-desenvolvimento:
         dependency-type: development
         update-types: ["minor", "patch"]
 
-  # O Dockerfile do backend fixa a imagem base por digest. E o Dependabot que
-  # traz o digest novo quando a node:22 recebe correcao — sem isso, o pino vira
+  # O Dockerfile do back-end fixa a imagem base por digest. E o Dependabot que
+  # traz o digest novo quando a node:24 recebe correcao — sem isso, o pino vira
   # imagem parada.
   - package-ecosystem: docker
-    directory: /backend
+    directory: /back-end
     schedule:
       interval: weekly
 
