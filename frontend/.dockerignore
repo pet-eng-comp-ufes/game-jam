@@ -1,0 +1,16 @@
+# O Dockerfile faz "COPY . .", entao tudo que nao estiver aqui vai para dentro
+# da imagem. Sem este arquivo o .git e os .env iam junto — quem puxasse a
+# imagem levaria o historico e as credenciais.
+
+.git
+.gitignore
+.dockerignore
+
+.env
+.env.*
+
+node_modules
+.next
+
+.github
+README.md
