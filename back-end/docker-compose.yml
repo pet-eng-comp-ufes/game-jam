@@ -1,33 +1,56 @@
+# AMBIENTE LOCAL DE DESENVOLVIMENTO. Nao e producao.
+#
+# A stack de producao vive no Portainer da VM do PET, chama-se "game-jam" e usa
+# outros nomes, imagens fixadas por digest e o Traefik na frente. NAO copie este
+# arquivo para la: ele publica portas na maquina e nao tem barreira nenhuma.
+#
+# Este arquivo existia com "image: mysql" e "image: phpmyadmin" sem tag, o que
+# faz o Docker baixar a versao mais nova a cada dia. Um banco que sobe numa
+# versao diferente da que criou o diretorio de dados simplesmente nao abre.
+# Por isso as versoes abaixo estao fixadas, e sao as mesmas de producao.
+#
+# Como usar:
+#   cp .env.example .env   # e preencher
+#   docker compose up -d
+
 services:
-  db:
-    image: mysql
+  database:
+    image: mysql:9.5.0
+    restart: unless-stopped
     ports:
       - ${DB_PORT}:3306
-    container_name: db-gamejam
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
     volumes:
-      - vol-gamejam-db:/var/lib/mysql
+      - database-data:/var/lib/mysql
 
-  api:
+  back-end:
     build: "."
-    container_name: api-gamejam
+    restart: unless-stopped
     ports:
       - ${PORT}:3333
     depends_on:
-      - db
+      - database
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
     volumes:
-      - vol-imgs-tmp:/app/tmp
+      - uploads:/app/tmp
 
-  phpmyadmin:
-    image: phpmyadmin
+  database-client:
+    image: phpmyadmin:5.2.3
+    restart: unless-stopped
     ports:
       - ${PHP_MY_ADMIN_PORT}:80
     environment:
-      - PMA_ARBITRARY=1
-    
+      # PMA_ARBITRARY foi removido: ele permite conectar em QUALQUER servidor de
+      # banco a partir da tela de login. Em producao isso e porta aberta; aqui
+      # so atrapalha. Aponte direto para o servico.
+      - PMA_HOST=database
+    depends_on:
+      - database
+
 volumes:
-  vol-gamejam-db:
-  vol-imgs-tmp:
+  database-data:
+  uploads:
