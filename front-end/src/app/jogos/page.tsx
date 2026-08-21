@@ -18,6 +18,8 @@ interface Jogo {
 
 interface Temporada {
   numero: string
+  // Rotulo proprio quando a season nao tem numero conhecido.
+  rotulo?: string
   jogos: Jogo[]
 }
 
@@ -29,12 +31,21 @@ interface Temporada {
 // As capas sao captura da tela inicial de cada jogo. Nao havia capa em lugar
 // nenhum: nem no banco, nem nos repositorios.
 //
-// Existem mais dez jogos, da edicao de 2023, em gitlab.com/petengcomp/petgamejam.
-// NAO entram aqui: os repositorios sao privados, nao tem Pages publicado e nao
-// ha onde jogar. Entrariam como link quebrado.
+// Os de 2023 estavam so no GitLab, em repositorio privado e sem lugar onde
+// jogar. Agora estao publicados na VM, em /arquivo/<jogo>/ no dominio da API.
+// Testei os onze do grupo com navegador: dez rodam. A Lenda de Gabe ficou de
+// fora — e Flutter web de build antiga, inicializa e nao desenha nada.
+//
+// SuperPETs esta hospedado junto mas NAO entra na lista: e o jogo do proprio
+// PET, feito como exemplo de aprendizado, nao trabalho de participante.
+//
+// A season da edicao de 2023 nao esta registrada em lugar nenhum — o banco so
+// conhece a 3 e a 4. Por isso o rotulo aqui e o ano, que e verificavel, e nao
+// um numero chutado.
 const temporadas: Temporada[] = [
   {
     numero: "3",
+    rotulo: "Season 3",
     jogos: [
       {
         nome: "Capybara Airways",
@@ -55,6 +66,21 @@ const temporadas: Temporada[] = [
         link: "https://petgamejam-jogo3.vercel.app/",
         capa: "/jogos/animal.jpg",
       },
+    ],
+  },
+  {
+    numero: "2023",
+    rotulo: "Edição de 2023",
+    jogos: [
+      { nome: "Fire Scape", equipe: "Gabriel Braga Ladislau · Nilo Garcia Monteiro · Gabriel Gomes Lima", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/fire-scape/", capa: "/jogos/fire-scape.jpg" },
+      { nome: "GRVTY", equipe: "Gamepiece Team", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/grvty/", capa: "/jogos/grvty.jpg" },
+      { nome: "Asteroide", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/asteroide/", capa: "/jogos/asteroide.jpg" },
+      { nome: "Dino", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/dino/", capa: "/jogos/dino.jpg" },
+      { nome: "Flappy Bird", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/flappy-bird/", capa: "/jogos/flappy-bird.jpg" },
+      { nome: "Glob Fights The King", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/glob-fights-the-king/", capa: "/jogos/glob-fights-the-king.jpg" },
+      { nome: "Pong", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/pong/", capa: "/jogos/pong.jpg" },
+      { nome: "Separados Pelo Tempo", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/separados-pelo-tempo/", capa: "/jogos/separados-pelo-tempo.jpg" },
+      { nome: "Tarantella", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/tarantella/", capa: "/jogos/tarantella.jpg" },
     ],
   },
 ]
@@ -99,7 +125,7 @@ export default function Jogos() {
                     aria-controls={`season-${t.numero}`}
                     className="flex w-full items-center gap-3 py-4 text-left font-secao text-3xl uppercase text-destaque transition-opacity hover:opacity-80 md:text-4xl"
                   >
-                    Season {t.numero}
+                    {t.rotulo ?? `Season ${t.numero}`}
                     <span aria-hidden className={`text-2xl transition-transform duration-200 ${estaAberta ? "rotate-90" : ""}`}>›</span>
                   </button>
                 </h2>
@@ -118,8 +144,8 @@ export default function Jogos() {
 
                         <div>
                           <h3 className="text-2xl font-bold text-destaque md:text-3xl">{j.nome ?? j.equipe}</h3>
-                          {j.nome && <p className="mt-1 font-bold">{j.equipe}</p>}
-                          <p className="mt-4 text-base">{j.participantes.join(" · ")}</p>
+                          {j.nome && j.equipe && <p className="mt-1 font-bold">{j.equipe}</p>}
+                          {j.participantes.length > 0 && <p className="mt-4 text-base">{j.participantes.join(" · ")}</p>}
 
                           <a
                             href={j.link}
