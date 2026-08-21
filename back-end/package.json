@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "build": "tsc --build",
-    "start": "node dist/server.js",
-    "migrate-build": "prisma generate && prisma migrate deploy"
+    "start": "node dist/server.js"
   },
   "repository": {
     "type": "git",
