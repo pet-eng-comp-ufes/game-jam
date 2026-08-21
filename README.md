@@ -19,30 +19,16 @@ detalhes: [`front-end/README.md`](front-end/README.md) e
 
 ## Publicação
 
-**Site:** hoje é automática pela Vercel — o que entra no `main` vai para
-produção.
+Quase tudo é automático. As duas exceções falham **em silêncio**, então valem
+o parágrafo:
 
-Com uma pegadinha que já custou seis semanas de site desatualizado: o plano
-atual da Vercel **só publica commit autorado pela conta do PET**. Commit de
-outra pessoa entra no `main` normalmente, a Vercel recusa com `Deployment was
-blocked`, e ninguém é avisado — o site simplesmente continua na versão
-anterior.
+**O site:** enquanto ele estiver na Vercel, o merge de um PR que toca
+`front-end/` precisa sair **pela conta do PET**. Merge por qualquer outra
+pessoa é recusado sem aviso, e o site simplesmente continua na versão anterior
+— foi assim que ele serviu um build de dezembro por seis semanas. O workflow
+`confere-versao-no-ar` fica vermelho quando isso acontece, e o site publica no
+HTML qual commit está no ar.
 
-Por isso o caminho é branch, pull request e merge pela interface do GitHub, que
-gera um commit de merge autorado pela conta do PET. Squash e rebase estão
-desligados no repositório para não reescrever essa autoria.
-
-Isso acaba quando o site sair da Vercel. A imagem
-`ghcr.io/pet-eng-comp-ufes/game-jam_front-end` já é construída a cada push que
-toca `front-end/`; falta o DNS apontar para a VM.
-
-**API:** o push no `main` que toca `back-end/` constrói e publica
-`ghcr.io/pet-eng-comp-ufes/game-jam_back-end`, com tag `sha-<commit>` e
-`latest`.
-
-Publicar não é implantar: a stack no Portainer aponta para o **digest** do
-commit, de propósito, e trocar de versão é um ato deliberado.
-
-> **`NEXT_PUBLIC_API_URL` é assada no build**, não lida em execução. Está no
-> workflow do front-end como `build-arg`. Defini-la no compose não tem efeito
-> nenhum — e a falha é silenciosa: o site sobe apontando para lugar nenhum.
+**A API:** o push no `main` que toca `back-end/` publica a imagem, e o CI abre
+um **PR de deploy** com o digest novo. Publicar não é implantar: é mesclar esse
+PR que coloca a versão em produção.
