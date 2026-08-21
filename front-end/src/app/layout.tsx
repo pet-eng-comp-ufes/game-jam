@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Jomhuria } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 
@@ -8,6 +8,14 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+});
+
+// Jomhuria e a condensada dos titulos de secao do mockup (48px). Ao contrario
+// do PacFont, ela TEM os acentuados, entao "DUVIDAS" e "PREMIACAO" saem certos.
+const jomhuria = Jomhuria({
+  variable: "--font-jomhuria",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 // Carimbo de versao: qual commit gerou o que esta no ar.
@@ -64,7 +72,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body
-        className={`${inter.variable} font-sans antialiased`}
+        className={`${inter.variable} ${jomhuria.variable} font-sans antialiased`}
       >
         <Toaster 
           position="bottom-right"

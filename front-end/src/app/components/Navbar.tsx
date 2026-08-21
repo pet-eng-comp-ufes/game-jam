@@ -5,12 +5,14 @@ import { usePathname } from "next/navigation"
 
 // A ordem e os rotulos vem do mockup da Season 4 (Figma, pagina Site).
 // "Apoio" virou "Patrocinadores" e Jogos subiu para a segunda posicao.
+// O ponto da pagina ativa troca de cor conforme a pagina, e as cores sao as
+// dos fantasmas do Pac-Man. Nao e enfeite meu: veio do mockup, uma por frame.
 const paginas = [
-  { label: 'Início', url: '/' },
-  { label: 'Jogos', url: '/jogos' },
-  { label: 'Regras', url: '/regras' },
-  { label: 'Materiais', url: '/materiais' },
-  { label: 'Patrocinadores', url: '/apoio' },
+  { label: 'Início', url: '/', ponto: 'bg-destaque' },
+  { label: 'Jogos', url: '/jogos', ponto: 'bg-agua' },
+  { label: 'Regras', url: '/regras', ponto: 'bg-perigo' },
+  { label: 'Materiais', url: '/materiais', ponto: 'bg-destaque' },
+  { label: 'Patrocinadores', url: '/apoio', ponto: 'bg-agua' },
 ]
 
 export default function Navbar() {
@@ -42,7 +44,7 @@ export default function Navbar() {
                 {ativa && (
                   <span
                     aria-hidden
-                    className="absolute left-1/2 hidden h-[34px] w-[34px] -translate-x-1/2 rounded-full bg-destaque md:block"
+                    className={`absolute left-1/2 hidden h-[34px] w-[34px] -translate-x-1/2 rounded-full md:block ${pagina.ponto}`}
                     style={{ top: "-36px" }}
                   />
                 )}

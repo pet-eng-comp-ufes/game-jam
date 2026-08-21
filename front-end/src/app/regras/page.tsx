@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { Season } from "@/models/Season";
 import Titulo from "../components/Titulo";
+import TituloSecao from "../components/TituloSecao";
 
 export default function Home() {
 
@@ -21,26 +22,22 @@ export default function Home() {
   return (
     <Layout season={seasonAtual} className="flex items-center justify-center">
 
-      <div className="max-w-6xl w-[80%] mt-20 relative text-white">
+      <div className="max-w-6xl w-[80%] mt-20 relative">
 
         {/* Título principal */}
         <Titulo valor="Regras" />
 
         {/* Tema */}
-        <h2 className="text-2xl font-semibold" style={{ color: '#b76cf9', marginTop: '3rem', marginBottom: '1rem' }}>
-          Tema
-        </h2>
+        <TituloSecao valor="Tema" className="mt-12 mb-4" />
         <ol className="list-decimal ml-9 mb-6 space-y-2">
           <li>
             O tema desta edição do PET Game Jam é:{" "}
-            <span style={{ color: "#85e21f" }}>PLATAFORMAS</span>
+            <span className="text-destaque font-semibold">PLATAFORMAS</span>
           </li>
         </ol>
 
         {/* Avisos */}
-        <h2 className="text-2xl font-semibold" style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }}>
-          Avisos para as equipes de fora do Espírito Santo
-        </h2>
+        <TituloSecao valor="Avisos para as equipes de fora do Espírito Santo" className="mt-12 mb-4" />
         <ol className="list-decimal ml-9 mb-6 space-y-2">
           <li>Devido aos custos flutuantes de fretes e outras tarifas, as premiações físicas da competição são restritas apenas aos competidores residentes da Grande Vitória (região metropolitana da capital Vitória-ES).</li>
           <li>Equipes de fora irão competir em uma “categoria separada”, na qual receberão o certificado de participação e, no caso das melhores colocadas, os devidos créditos nas redes sociais ao final da edição.</li>
@@ -51,7 +48,7 @@ export default function Home() {
               href="https://www.instagram.com/petengcomp/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              style={{ color: '#85e21f', textDecoration: 'underline' }}
+              className="text-destaque underline"
             >
               @petengcomp
             </a>.
@@ -59,9 +56,7 @@ export default function Home() {
         </ol>
 
         {/* Gerais */}
-        <h2 className="text-2xl font-semibold" style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }}>
-          Gerais
-        </h2>
+        <TituloSecao valor="Gerais" className="mt-12 mb-4" />
         <ol className="list-decimal ml-9 mb-6 space-y-2">
           <li>O PET Game Jam é um evento aberto para todos, independente da sua idade ou conhecimento em programação.</li>
           <li>Crie um jogo sozinho ou em grupo no máximo 3 pessoas.</li>
@@ -70,9 +65,7 @@ export default function Home() {
         </ol>
 
         {/* Datas */}
-        <h2 className="text-2xl font-semibold" style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }}>
-          Datas
-        </h2>
+        <TituloSecao valor="Datas" className="mt-12 mb-4" />
         <ol className="list-decimal ml-9 mb-6 space-y-2">
           <li>As inscrições serão do dia 07/10/2025 até 14/10/2025.</li>
           <li>A competição irá acontecer entre os dias 15/10/2025 e 05/11/2025. Esse será o tempo que seu time terá para aprender sobre o desenvolvimento de jogos, para enfim criar e enviar um jogo dentro do tema.</li>
@@ -80,9 +73,7 @@ export default function Home() {
         </ol>
 
         {/* O jogo */}
-        <h2 className="text-2xl font-semibold" style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }} >
-          O jogo
-        </h2>
+        <TituloSecao valor="O jogo" className="mt-12 mb-4" />
 
         <ol className="list-decimal ml-9 mb-6 space-y-2">
 
@@ -139,9 +130,7 @@ export default function Home() {
 
         {/* Submissão */}
 
-        <h2 className="text-2xl font-semibold" style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }}>
-          Submissão
-        </h2>
+        <TituloSecao valor="Submissão" className="mt-12 mb-4" />
 
         <ol className="list-decimal ml-9 mb-6 space-y-2">
 
@@ -177,12 +166,7 @@ export default function Home() {
 
         {/* Propriedade */}
 
-        <h2
-          className="text-2xl font-semibold"
-          style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }}
-        > 
-          Propriedade
-        </h2>
+        <TituloSecao valor="Propriedade" className="mt-12 mb-4" />
         
         <ol className="list-decimal ml-9 mb-6 space-y-2">
           
@@ -192,12 +176,7 @@ export default function Home() {
         </ol>
 
         {/* Avaliação */}
-        <h2 
-          className="text-2xl font-semibold" 
-          style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }}
-        >
-          Avaliação
-        </h2>
+        <TituloSecao valor="Avaliação" className="mt-12 mb-4" />
 
         <ol className="list-decimal ml-9 mb-6 space-y-2">
           <li>O período de votação será de até 1 semana após o fim da competição.</li>
@@ -262,12 +241,7 @@ export default function Home() {
         </ol>
 
         {/* Premiação */}
-        <h2 
-          className="text-2xl font-semibold" 
-          style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }}
-        >
-          Premiação
-        </h2>
+        <TituloSecao valor="Premiação" className="mt-12 mb-4" />
 
         <ol className="list-decimal ml-9 mb-6 space-y-2">
 
@@ -307,12 +281,7 @@ export default function Home() {
         </ol>
 
         {/* Dúvidas */}
-        <h2 
-          className="text-2xl font-semibold" 
-          style={{ color: '#b76cf9', marginTop: '2.5rem', marginBottom: '1rem' }}
-        >
-        Dúvidas
-        </h2>
+        <TituloSecao valor="Dúvidas" className="mt-12 mb-4" />
 
         <ol className="list-decimal ml-9 mb-6 space-y-2">
 
@@ -324,7 +293,7 @@ export default function Home() {
           href="https://www.instagram.com/petengcomp/" 
           target="_blank" 
           rel="noopener noreferrer" 
-          style={{ color: '#85e21f', textDecoration: 'underline' }}
+          className="text-destaque underline"
         >
           https://www.instagram.com/petengcomp
         </a>.{" "}

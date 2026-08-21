@@ -74,7 +74,7 @@ export default function Jogos() {
               <a
                 href={grupo.link}
                 target="_blank"
-                className="block text-center bg-[#85e21f] hover:bg-[#76c81b] text-black font-bold py-2 rounded-lg transition"
+                className="block rounded-full bg-destaque py-2 text-center font-bold text-barra transition-opacity hover:opacity-90"
               >
                 Jogar agora
               </a>
