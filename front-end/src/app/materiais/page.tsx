@@ -5,7 +5,6 @@ import Layout from "../components/Layout";
 import { Season } from "@/models/Season";
 import { Material } from "@/models/Materiais";
 import Titulo from "../components/Titulo";
-import TituloSecao from "../components/TituloSecao";
 
 export default function Materiais() {
 
@@ -43,7 +42,7 @@ export default function Materiais() {
       <div className="max-w-6xl w-[80%] mt-20 relative flex flex-col mx-auto px-3.5">
 
         {/* Título */}
-        <Titulo valor="Materiais" />
+        <Titulo valor="materiais" />
 
         <p className="mt-6 mb-10 whitespace-pre-wrap">
           Nesta seção, você encontrará diversos materiais úteis para iniciar e aprofundar seus estudos em desenvolvimento de jogos. Reunimos{"\n"}
@@ -51,7 +50,7 @@ export default function Materiais() {
         </p>
 
         {/* Dicas */}
-        <TituloSecao valor="Dicas" className="mb-2" />
+        <Titulo valor="DICAS" className="mb-2" />
 
         {/* Super PETs */}
         <h4 className="mb-4 mt-7 text-xl font-semibold text-destaque">Super PETs</h4>
@@ -90,7 +89,7 @@ export default function Materiais() {
         </ul>
 
         {/* Vídeos */}
-        <TituloSecao valor="Vídeos" className="mb-2" />
+        <Titulo valor="VIDEOS" className="mb-2" />
 
         <div className="flex flex-col gap-6 mt-8">
         {materiais
