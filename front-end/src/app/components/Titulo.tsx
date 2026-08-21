@@ -1,3 +1,6 @@
+// A CAIXA do texto importa: no PacFont a maiuscula e um desenho vazado e a
+// minuscula e solida, entao trocar o caso troca o estilo do titulo. Por isso
+// nao existe text-transform aqui — quem chama decide, como no mockup.
 interface TituloProps {
 
     valor: string
