@@ -10,8 +10,7 @@ Use um destes canais:
 - **[Security advisory privado](https://github.com/pet-eng-comp-ufes/game-jam/security/advisories/new)**
   — fica visível só para quem mantém o repositório, e vira o registro do
   conserto quando resolvido.
-- Ou escreva para **<petengcomp@inf.ufes.br>**, o endereço do PET Engenharia de
-  Computação da UFES.
+- Ou escreva para **<petengcomp@inf.ufes.br>**.
 
 ### O que incluir
 
@@ -33,8 +32,7 @@ Respondemos assim que possível, e mantemos você informado até o conserto sair
 
 ## O que este repositório contém
 
-O site e a API do Game Jam, mantidos pelo **PET Engenharia de Computação da
-UFES**. A API guarda **dados pessoais de participantes** — nome, e-mail e CPF —,
+O site e a API do Game Jam. A API guarda **dados pessoais de participantes** — nome, e-mail e CPF —,
 então falha de autenticação, de autorização ou de exposição de dados é levada a
 sério mesmo quando parece pequena.
 
