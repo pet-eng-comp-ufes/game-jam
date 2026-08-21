@@ -17,20 +17,6 @@ Cada diretório tem o próprio README com como rodar, variáveis de ambiente e
 detalhes: [`front-end/README.md`](front-end/README.md) e
 [`back-end/README.md`](back-end/README.md).
 
-## Convenção de nomes
-
-Vale para as pastas, para as imagens e para a stack na VM:
-
-- **hífen** separa palavras que se escrevem separadas — `game-jam`, `back-end`
-- **underscore** marca a fronteira entre projeto e objeto — `game-jam_back-end`
-
-O underscore é o mesmo separador que o Docker usa sozinho em volume e rede.
-Sem ele, `game-jam-back-end` não diz onde termina o projeto.
-
-**Exceção obrigatória:** nome de host não aceita underscore. Por isso o domínio
-é `game-jam-api.pet.inf.ufes.br` e o alias de rede do banco é
-`game-jam-database`, com hífen.
-
 ## Publicação
 
 **Site:** hoje é automática pela Vercel — o que entra no `main` vai para
