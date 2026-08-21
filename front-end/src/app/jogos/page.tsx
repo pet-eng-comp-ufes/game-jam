@@ -172,27 +172,30 @@ export default function Jogos() {
                 {estaAberta && (
                   <ul id={`season-${t.numero}`} className="flex flex-col gap-[70px] pb-14 pt-[68px] pl-[101px]">
                     {t.jogos.map((j) => (
-                      <li key={j.link}>
+                      <li key={j.link} className="grid gap-[72px] md:grid-cols-[538px_528px] md:items-start">
+
                         <a
                           href={j.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group grid gap-[72px] rounded-xl outline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-destaque md:grid-cols-[538px_528px] md:items-start"
+                          className="group block rounded-xl outline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-destaque"
                         >
-
-                        <img
-                          src={j.capa}
-                          alt={`Tela inicial do jogo da ${j.equipe}`}
-                          className="w-full rounded-xl border border-destaque-claro/20 transition duration-200 group-hover:border-destaque group-hover:brightness-110 md:h-[421px] md:object-cover"
-                          loading="lazy"
-                        />
+                          {/* O link e so a capa. O alt diz o que ele FAZ, e nao
+                              o que a imagem mostra: quem usa leitor de tela
+                              ouve "Jogar X", que e a acao. */}
+                          <img
+                            src={j.capa}
+                            alt={`Jogar ${j.nome ?? j.equipe}`}
+                            className="w-full rounded-xl border border-destaque-claro/20 transition duration-200 group-hover:border-destaque group-hover:brightness-110 md:h-[421px] md:object-cover"
+                            loading="lazy"
+                          />
+                        </a>
 
                         <div className="md:pt-[66px]">
-                          <h3 className="text-2xl font-bold text-destaque underline-offset-4 group-hover:underline md:text-[34px] md:leading-[42px]">{j.nome ?? j.equipe}</h3>
+                          <h3 className="text-2xl font-bold text-destaque md:text-[34px] md:leading-[42px]">{j.nome ?? j.equipe}</h3>
                           {j.nome && j.equipe && <p className="mt-[6px] font-bold md:text-[29px] md:leading-[35px]">por {j.equipe}</p>}
                           {j.participantes.length > 0 && <p className="mt-[32px] text-base md:text-[29px] md:leading-[35px]">{j.participantes.join(" · ")}</p>}
                         </div>
-                        </a>
                       </li>
                     ))}
                   </ul>
