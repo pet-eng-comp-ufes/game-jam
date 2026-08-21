@@ -26,6 +26,12 @@ COPY . .
 ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
+# Carimbo de versao. Na Vercel o Next le VERCEL_GIT_COMMIT_SHA sozinho; aqui o
+# valor vem do workflow. Sem ele a pagina diz "desconhecida", que ja avisa que a
+# imagem foi construida fora da esteira.
+ARG COMMIT
+ENV COMMIT=${COMMIT}
+
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
