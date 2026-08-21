@@ -24,6 +24,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
 
     steps:
       - uses: actions/checkout@v7
@@ -46,7 +48,8 @@ jobs:
             type=sha,format=long
             type=raw,value=latest,enable={{is_default_branch}}
 
-      - uses: docker/build-push-action@v7
+      - id: build
+        uses: docker/build-push-action@v7
         with:
           context: ./back-end
           push: ${{ github.event_name != 'pull_request' }}
@@ -57,3 +60,68 @@ jobs:
           provenance: false
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  # Publicar nao e implantar. Este job escreve o digest recem-publicado no
+  # docker-compose.prod.yml e abre um PR — e mesclar esse PR E o ato de
+  # implantar, com autor, data e git revert funcionando.
+  #
+  # Existe porque a alternativa e o que sempre aconteceu: a imagem fica pronta
+  # no registry e ninguem clica. Foi assim que o site-api ficou nove meses atras
+  # da versao construida, o ata-manager quatorze e o introbot treze.
+  abre-pr-de-deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Escreve o digest novo no compose de producao
+        env:
+          DIGEST: ${{ needs.build.outputs.digest }}
+        run: |
+          set -e
+          ARQ=docker-compose.prod.yml
+          ATUAL=$(grep -oE 'game-jam_back-end@sha256:[0-9a-f]+' "$ARQ" | head -1)
+          NOVO="game-jam_back-end@${DIGEST}"
+
+          if [ "$ATUAL" = "$NOVO" ]; then
+            echo "O compose ja aponta para este digest — nada a fazer."
+            exit 0
+          fi
+
+          sed -i "s|${ATUAL}|${NOVO}|" "$ARQ"
+          sed -i "s|game-jam_back-end:sha-[0-9a-f]*|game-jam_back-end:sha-${GITHUB_SHA}|" "$ARQ"
+          echo "MUDOU=1" >> "$GITHUB_ENV"
+
+      - name: Abre o PR de deploy
+        if: env.MUDOU == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DIGEST: ${{ needs.build.outputs.digest }}
+        run: |
+          set -e
+          CURTO="${GITHUB_SHA:0:8}"
+          BRANCH="deploy/digest-${CURTO}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git commit -qam "Deploy: back-end no commit ${CURTO}"
+          git push -q origin "$BRANCH"
+
+          {
+            echo "Mesclar este PR **implanta** a API na VM."
+            echo
+            echo "O Portainer acompanha o \`docker-compose.prod.yml\` deste repositorio e aplica quando ele muda."
+            echo
+            echo "- Imagem: \`${DIGEST}\`"
+            echo "- Commit: ${GITHUB_SHA}"
+            echo
+            echo "Publicar nao e implantar: a imagem ja esta no registry desde o build, mas so entra em producao quando este PR for mesclado."
+          } > corpo.md
+
+          gh pr create --base main --head "$BRANCH" --title "Deploy: back-end no commit ${CURTO}" --body-file corpo.md
