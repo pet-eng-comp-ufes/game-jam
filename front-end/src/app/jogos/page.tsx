@@ -83,9 +83,9 @@ const temporadas: Temporada[] = [
 export default function Jogos() {
 
   const [seasonAtual, setSeasonAtual] = useState<Season>()
-  // As seasons sobem na tela (2, 3, ...), como no mockup, mas quem chega quer
-  // ver a mais recente — entao a ultima da lista comeca aberta.
-  const [aberta, setAberta] = useState<string | null>(temporadas[temporadas.length - 1]?.numero ?? null)
+  // Todas comecam fechadas: quem chega escolhe qual quer ver, que e o que o
+  // titulo da pagina pede ("SELECIONE UMA OPÇÃO:").
+  const [aberta, setAberta] = useState<string | null>(null)
 
   async function obtemSeasonAtual() {
     const res = await Season.obtemAtual()
@@ -118,13 +118,13 @@ export default function Jogos() {
                     onClick={() => setAberta(estaAberta ? null : t.numero)}
                     aria-expanded={estaAberta}
                     aria-controls={`season-${t.numero}`}
-                    className="flex w-full items-center gap-3 py-4 text-left font-secao text-3xl uppercase text-destaque transition-opacity hover:opacity-80 md:text-4xl"
+                    className="flex w-full items-center gap-2 py-1 text-left font-secao text-4xl uppercase leading-none text-destaque transition-opacity hover:opacity-80 md:text-5xl"
                   >
                     Season {t.numero}
                     <svg
                       aria-hidden
-                      viewBox="0 0 29 49"
-                      className={`h-7 w-auto shrink-0 transition-transform duration-200 ${estaAberta ? "rotate-90" : ""}`}
+                      viewBox="13.3 11.51 15.04 25.99"
+                      className={`h-[26px] w-[15px] shrink-0 transition-transform duration-200 ${estaAberta ? "rotate-90" : ""}`}
                       fill="none"
                     >
                       <path
