@@ -13,8 +13,23 @@ Use um destes canais:
 - Ou fale diretamente com alguém da **comissão de Manutenção do PET Engenharia
   de Computação**.
 
-Descreva o que encontrou e, se possível, como reproduzir. Não é preciso ter
-certeza de que é explorável — suspeita fundamentada já ajuda.
+### O que incluir
+
+Quanto mais destes você conseguir, mais rápido vira conserto:
+
+- que tipo de problema é;
+- em que arquivo e, se souber, em que linha;
+- em que versão — a tag, o commit, ou só a data em que você viu;
+- que configuração é necessária para reproduzir;
+- o passo a passo para reproduzir;
+- código de prova, se tiver;
+- qual o impacto: o que alguém consegue fazer explorando isso.
+
+**Não é preciso ter tudo, nem ter certeza de que é explorável.** Suspeita
+fundamentada já ajuda — é melhor receber um alarme falso do que não receber o
+verdadeiro.
+
+Respondemos assim que possível, e mantemos você informado até o conserto sair.
 
 ## O que este repositório contém
 
