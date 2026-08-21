@@ -12,6 +12,9 @@ interface Jogo {
   nome?: string
   equipe: string
   participantes: string[]
+  // Descricao do jogo, como no mockup. Nem todos tem: onde falta, a coluna
+  // mostra os participantes.
+  descricao?: string
   link: string
   capa: string
 }
@@ -56,9 +59,22 @@ const temporadas: Temporada[] = [
   {
     numero: "1",
     jogos: [
-      { nome: "SuperPETs", equipe: "PET Engenharia de Computação", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/superpets/", capa: "/jogos/superpets.jpg" },
-      { nome: "A Lenda de Gabe", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/a-lenda-de-gabe/", capa: "/jogos/a-lenda-de-gabe.jpg" },
-      { nome: "Glob Fights The King", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/glob-fights-the-king/", capa: "/jogos/glob-fights-the-king.jpg" },
+      {
+        nome: "A Lenda de Gabe",
+        equipe: "Gabriel Rezende",
+        participantes: [],
+        descricao: "Um morador pacífico, que nunca machucou nem mesmo um inseto, acorda para viver apenas mais um dia em sua pacata vila… Ou será que não?",
+        link: "https://apigamejam.pet.inf.ufes.br/arquivo/a-lenda-de-gabe/",
+        capa: "/jogos/a-lenda-de-gabe.jpg",
+      },
+      {
+        nome: "Glob Fights the King",
+        equipe: "Equipe HTML",
+        participantes: [],
+        descricao: "Jogo de plataforma que narra a jornada de um slime chamado Glob, que busca resgatar seu raro item das mãos do rei slime.",
+        link: "https://apigamejam.pet.inf.ufes.br/arquivo/glob-fights-the-king/",
+        capa: "/jogos/glob-fights-the-king.jpg",
+      },
     ],
   },
   {
@@ -195,7 +211,9 @@ export default function Jogos() {
                         <div className="md:pt-[66px]">
                           <h3 className="text-2xl font-bold text-destaque md:text-[34px] md:leading-[42px]">{j.nome ?? j.equipe}</h3>
                           {j.nome && j.equipe && <p className="mt-[6px] font-bold md:text-[29px] md:leading-[35px]">por {j.equipe}</p>}
-                          {j.participantes.length > 0 && <p className="mt-[32px] text-base md:text-[29px] md:leading-[35px]">{j.participantes.join(" · ")}</p>}
+                          {j.descricao
+                            ? <p className="mt-[32px] text-base md:text-[29px] md:leading-[35px]">{j.descricao}</p>
+                            : j.participantes.length > 0 && <p className="mt-[32px] text-base md:text-[29px] md:leading-[35px]">{j.participantes.join(" · ")}</p>}
                         </div>
                       </li>
                     ))}
