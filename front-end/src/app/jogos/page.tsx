@@ -41,6 +41,20 @@ interface Temporada {
 // do banco, que so conhece a 3 e a 4 — veio de quem organiza o evento.
 const temporadas: Temporada[] = [
   {
+    numero: "2",
+    jogos: [
+      { nome: "Fire Scape", equipe: "Gabriel Braga Ladislau · Nilo Garcia Monteiro · Gabriel Gomes Lima", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/fire-scape/", capa: "/jogos/fire-scape.jpg" },
+      { nome: "GRVTY", equipe: "Gamepiece Team", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/grvty/", capa: "/jogos/grvty.jpg" },
+      { nome: "Asteroide", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/asteroide/", capa: "/jogos/asteroide.jpg" },
+      { nome: "Dino", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/dino/", capa: "/jogos/dino.jpg" },
+      { nome: "Flappy Bird", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/flappy-bird/", capa: "/jogos/flappy-bird.jpg" },
+      { nome: "Glob Fights The King", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/glob-fights-the-king/", capa: "/jogos/glob-fights-the-king.jpg" },
+      { nome: "Pong", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/pong/", capa: "/jogos/pong.jpg" },
+      { nome: "Separados Pelo Tempo", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/separados-pelo-tempo/", capa: "/jogos/separados-pelo-tempo.jpg" },
+      { nome: "Tarantella", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/tarantella/", capa: "/jogos/tarantella.jpg" },
+    ],
+  },
+  {
     numero: "3",
     jogos: [
       {
@@ -64,28 +78,14 @@ const temporadas: Temporada[] = [
       },
     ],
   },
-  {
-    numero: "2",
-    jogos: [
-      { nome: "Fire Scape", equipe: "Gabriel Braga Ladislau · Nilo Garcia Monteiro · Gabriel Gomes Lima", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/fire-scape/", capa: "/jogos/fire-scape.jpg" },
-      { nome: "GRVTY", equipe: "Gamepiece Team", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/grvty/", capa: "/jogos/grvty.jpg" },
-      { nome: "Asteroide", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/asteroide/", capa: "/jogos/asteroide.jpg" },
-      { nome: "Dino", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/dino/", capa: "/jogos/dino.jpg" },
-      { nome: "Flappy Bird", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/flappy-bird/", capa: "/jogos/flappy-bird.jpg" },
-      { nome: "Glob Fights The King", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/glob-fights-the-king/", capa: "/jogos/glob-fights-the-king.jpg" },
-      { nome: "Pong", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/pong/", capa: "/jogos/pong.jpg" },
-      { nome: "Separados Pelo Tempo", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/separados-pelo-tempo/", capa: "/jogos/separados-pelo-tempo.jpg" },
-      { nome: "Tarantella", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/tarantella/", capa: "/jogos/tarantella.jpg" },
-    ],
-  },
 ]
 
 export default function Jogos() {
 
   const [seasonAtual, setSeasonAtual] = useState<Season>()
-  // Comeca com a temporada mais recente aberta: se so ha uma, deixar tudo
-  // fechado faria a pagina parecer vazia.
-  const [aberta, setAberta] = useState<string | null>(temporadas[0]?.numero ?? null)
+  // As seasons sobem na tela (2, 3, ...), como no mockup, mas quem chega quer
+  // ver a mais recente — entao a ultima da lista comeca aberta.
+  const [aberta, setAberta] = useState<string | null>(temporadas[temporadas.length - 1]?.numero ?? null)
 
   async function obtemSeasonAtual() {
     const res = await Season.obtemAtual()
@@ -110,7 +110,7 @@ export default function Jogos() {
             const estaAberta = aberta === t.numero
 
             return (
-              <div key={t.numero} className="border-b border-destaque-claro/30">
+              <div key={t.numero} className="border-b border-destaque-claro">
 
                 <h2>
                   <button
@@ -121,7 +121,19 @@ export default function Jogos() {
                     className="flex w-full items-center gap-3 py-4 text-left font-secao text-3xl uppercase text-destaque transition-opacity hover:opacity-80 md:text-4xl"
                   >
                     Season {t.numero}
-                    <span aria-hidden className={`text-2xl transition-transform duration-200 ${estaAberta ? "rotate-90" : ""}`}>›</span>
+                    <svg
+                      aria-hidden
+                      viewBox="0 0 29 49"
+                      className={`h-7 w-auto shrink-0 transition-transform duration-200 ${estaAberta ? "rotate-90" : ""}`}
+                      fill="none"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M27.7372 25.9513L16.1875 37.501L13.3005 34.6141L23.4068 24.5078L13.3005 14.4016L16.1875 11.5146L27.7372 23.0644C28.1199 23.4472 28.3349 23.9664 28.3349 24.5078C28.3349 25.0492 28.1199 25.5684 27.7372 25.9513Z"
+                        fill="currentColor"
+                      />
+                    </svg>
                   </button>
                 </h2>
 
