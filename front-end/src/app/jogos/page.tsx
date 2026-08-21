@@ -149,7 +149,7 @@ export default function Jogos() {
                     onClick={() => alterna(t.numero)}
                     aria-expanded={estaAberta}
                     aria-controls={`season-${t.numero}`}
-                    className="flex w-full items-center gap-8 py-1 pl-[121px] text-left font-secao text-4xl uppercase leading-none text-destaque transition-opacity hover:opacity-80 md:text-5xl"
+                    className="flex w-full items-center gap-8 pt-[13px] pb-0 pl-[121px] text-left font-secao text-4xl uppercase leading-none text-destaque transition-opacity hover:opacity-80 md:text-5xl"
                   >
                     Season {t.numero}
                     <span aria-hidden className={`shrink-0 leading-[0] ${estaAberta ? "-ml-3 -translate-y-[2px]" : "-ml-1 -translate-y-[4.5px]"}`}>
@@ -170,7 +170,7 @@ export default function Jogos() {
                 </h2>
 
                 {estaAberta && (
-                  <ul id={`season-${t.numero}`} className="flex flex-col gap-[70px] pb-14 pt-[123px] pl-[101px]">
+                  <ul id={`season-${t.numero}`} className="flex flex-col gap-[70px] pb-14 pt-[68px] pl-[101px]">
                     {t.jogos.map((j) => (
                       <li key={j.link} className="grid gap-[72px] md:grid-cols-[538px_528px] md:items-start">
 
@@ -181,9 +181,9 @@ export default function Jogos() {
                           loading="lazy"
                         />
 
-                        <div>
+                        <div className="md:pt-[66px]">
                           <h3 className="text-2xl font-bold text-destaque md:text-[34px] md:leading-[42px]">{j.nome ?? j.equipe}</h3>
-                          {j.nome && j.equipe && <p className="mt-[6px] font-bold md:text-[29px] md:leading-[35px]">{j.equipe}</p>}
+                          {j.nome && j.equipe && <p className="mt-[6px] font-bold md:text-[29px] md:leading-[35px]">por {j.equipe}</p>}
                           {j.participantes.length > 0 && <p className="mt-[32px] text-base md:text-[29px] md:leading-[35px]">{j.participantes.join(" · ")}</p>}
 
                           <a
