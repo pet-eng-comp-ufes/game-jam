@@ -31,6 +31,19 @@ services:
       MYSQL_DATABASE: ${DB_NAME}
     volumes:
       - database-data:/var/lib/mysql
+
+    # O back-end aplica as migracoes ao subir, e para isso precisa do banco ja
+    # aceitando conexao. O depends_on sozinho garante so a ORDEM de partida,
+    # nao a prontidao: sem este healthcheck o back-end tentava migrar contra um
+    # MySQL ainda inicializando, falhava e reiniciava em laco ate dar certo.
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      # Nao conta falha durante a partida. O diretorio de dados ja existe, entao
+      # a subida e rapida; a folga aqui e para o caso de restore ou disco lento.
+      start_period: 40s
     networks:
       internal:
         # Alias com o projeto no nome, e NAO opcional: o back-end tambem esta
@@ -53,7 +66,8 @@ services:
     stdin_open: true
     tty: true
     depends_on:
-      - database
+      database:
+        condition: service_healthy
     environment:
       DATABASE_URL: ${DATABASE_URL}
       JWT_SECRET: ${JWT_SECRET}

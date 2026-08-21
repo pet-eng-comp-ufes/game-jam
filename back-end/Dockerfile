@@ -31,4 +31,5 @@ ENV NODE_ENV=production
 
 EXPOSE 3333
 
-CMD ["npm", "run", "start"]
+# O arranque passa pelo entrada.sh, que aplica as migracoes antes de servir.
+CMD ["./entrada.sh"]
