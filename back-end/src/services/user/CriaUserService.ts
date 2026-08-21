@@ -16,6 +16,12 @@ class CriaUserService {
             throw new Error("Username incorrect")
         }
 
+        // A senha nao era validada aqui — so no AlteraSenha. Dava para criar
+        // usuario com senha vazia, porque hash("", 8) funciona sem reclamar.
+        if(!senha || senha.length < 8){
+            throw new Error("Password invalid")
+        }
+
         const userJaExiste = await prismaClient.user.findFirst({
             where:{
                 username: username

@@ -12,7 +12,7 @@ class AlteraSenhaUserService {
 
     async execute({ id, senha }: UserRequest){
 
-        if(!senha){
+        if(!senha || senha.length < 8){
             throw new Error("Password invalid")
         }
 
@@ -25,6 +25,12 @@ class AlteraSenhaUserService {
             },
             data:{
                 senha: senhaHash
+            },
+            // Sem este select, o update devolve a linha inteira — inclusive o
+            // hash bcrypt da senha recem-criada — no corpo da resposta.
+            select:{
+                id: true,
+                username: true
             }
         })
 

@@ -4,7 +4,7 @@ import Titulo from "./Título"
 interface FormProps {
 
     fechar: () => void
-    alterarSenha: (username:string, senha:string) => void
+    alterarSenha: (senha: string, senhaConfirmada: string) => void
 }
 
 export default function FormAlterarSenha({fechar, alterarSenha}: FormProps) {
