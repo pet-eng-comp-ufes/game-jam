@@ -10,7 +10,8 @@ Use um destes canais:
 - **[Security advisory privado](https://github.com/pet-eng-comp-ufes/game-jam/security/advisories/new)**
   — fica visível só para quem mantém o repositório, e vira o registro do
   conserto quando resolvido.
-- Ou fale diretamente com alguém do **PET Engenharia de Computação — UFES**.
+- Ou escreva para **<petengcomp@inf.ufes.br>**, o endereço do PET Engenharia de
+  Computação da UFES.
 
 ### O que incluir
 
