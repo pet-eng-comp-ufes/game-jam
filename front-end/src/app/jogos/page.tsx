@@ -36,8 +36,15 @@ interface Temporada {
 // Testei os onze do grupo com navegador: dez rodam. A Lenda de Gabe ficou de
 // fora — e Flutter web de build antiga, inicializa e nao desenha nada.
 //
-// A Lenda de Gabe e da season 1 e NAO esta listado: e Flutter web de build
-// antiga, inicializa e nao desenha nada. Entraria como link para tela branca.
+// A Lenda de Gabe RODA. Eu tinha dado ele como quebrado duas vezes, e o erro
+// era meu: e Flutter com CanvasKit, e eu esperava 15s pelo primeiro quadro
+// quando ele precisava de mais de 20 — a maior parte gasta baixando o CanvasKit
+// de um CDN. O CanvasKit foi trazido para dentro do jogo (pasta canvaskit/) e
+// agora ele pinta em 4s, sem depender do unpkg continuar publicando a versao
+// 0.18.1.
+//
+// SuperPETs e o jogo do PROPRIO PET, e nao de participante — por isso o credito
+// vai no lugar do nome da equipe. Ele pertence a season 1 assim mesmo.
 //
 // A edicao de 2023 e a season 2. Isso nao esta em lugar nenhum do codigo nem
 // do banco, que so conhece a 3 e a 4 — veio de quem organiza o evento.
@@ -45,7 +52,8 @@ const temporadas: Temporada[] = [
   {
     numero: "1",
     jogos: [
-      { nome: "SuperPETs", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/superpets/", capa: "/jogos/superpets.jpg" },
+      { nome: "SuperPETs", equipe: "PET Engenharia de Computação", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/superpets/", capa: "/jogos/superpets.jpg" },
+      { nome: "A Lenda de Gabe", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/a-lenda-de-gabe/", capa: "/jogos/a-lenda-de-gabe.jpg" },
       { nome: "Glob Fights The King", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/glob-fights-the-king/", capa: "/jogos/glob-fights-the-king.jpg" },
     ],
   },
