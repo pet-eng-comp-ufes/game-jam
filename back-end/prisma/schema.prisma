@@ -16,7 +16,11 @@ datasource db {
 model User {
 
   id String @id @default(uuid())
-  username String
+  // @unique: o login busca o usuario por este campo. Sem a restricao, dois
+  // registros com o mesmo nome eram aceitos e o findFirst devolvia sempre o
+  // primeiro — o segundo dono do nome nunca mais conseguia entrar, e a causa
+  // nao aparecia em lugar nenhum.
+  username String @unique
   senha String
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now())
