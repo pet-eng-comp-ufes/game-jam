@@ -32,9 +32,10 @@ Respondemos assim que possível, e mantemos você informado até o conserto sair
 
 ## O que este repositório contém
 
-O site e a API do Game Jam. A API guarda **dados pessoais de participantes** — nome, e-mail e CPF —,
+O site e a API do Game Jam. A API guarda **dados pessoais de participantes**,
 então falha de autenticação, de autorização ou de exposição de dados é levada a
-sério mesmo quando parece pequena.
+sério aqui mesmo quando parece pequena — não descarte um achado por supor que a
+severidade é baixa.
 
 ## O que não é vulnerabilidade aqui
 
