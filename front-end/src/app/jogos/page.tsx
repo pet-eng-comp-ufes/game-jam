@@ -83,9 +83,22 @@ const temporadas: Temporada[] = [
 export default function Jogos() {
 
   const [seasonAtual, setSeasonAtual] = useState<Season>()
-  // Todas comecam fechadas: quem chega escolhe qual quer ver, que e o que o
-  // titulo da pagina pede ("SELECIONE UMA OPÇÃO:").
-  const [aberta, setAberta] = useState<string | null>(null)
+  // Um CONJUNTO, e nao uma season so: da para deixar varias abertas ao mesmo
+  // tempo e comparar edicoes sem ficar fechando uma para ver a outra. Todas
+  // comecam fechadas — quem chega escolhe, que e o que o titulo pede.
+  const [abertas, setAbertas] = useState<Set<string>>(new Set())
+
+  function alterna(numero: string) {
+
+    setAbertas((atual) => {
+
+      // Copia antes de mexer: mutar o Set existente nao troca a referencia e o
+      // React nao redesenha.
+      const proximo = new Set(atual)
+      proximo.has(numero) ? proximo.delete(numero) : proximo.add(numero)
+      return proximo
+    })
+  }
 
   async function obtemSeasonAtual() {
     const res = await Season.obtemAtual()
@@ -107,7 +120,7 @@ export default function Jogos() {
         <div className="mt-12">
           {temporadas.map((t) => {
 
-            const estaAberta = aberta === t.numero
+            const estaAberta = abertas.has(t.numero)
 
             return (
               <div key={t.numero} className="border-b border-destaque-claro">
@@ -115,7 +128,7 @@ export default function Jogos() {
                 <h2>
                   <button
                     type="button"
-                    onClick={() => setAberta(estaAberta ? null : t.numero)}
+                    onClick={() => alterna(t.numero)}
                     aria-expanded={estaAberta}
                     aria-controls={`season-${t.numero}`}
                     className="flex w-full items-center gap-8 py-1 text-left font-secao text-4xl uppercase leading-none text-destaque transition-opacity hover:opacity-80 md:text-5xl"
