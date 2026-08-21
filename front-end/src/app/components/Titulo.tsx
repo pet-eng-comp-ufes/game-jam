@@ -8,8 +8,8 @@ export default function Titulo(props: TituloProps) {
 
     return (
 
-        <span className={`md:text-4xl text-2xl font-extrabold text-[#B76CF9] ${props.className}`}>
+        <h2 className={`font-titulo text-3xl leading-tight text-destaque md:text-[53px] md:leading-[71px] ${props.className ?? ""}`}>
             {props.valor}
-        </span>
+        </h2>
     )
 }

@@ -20,16 +20,16 @@ export default function Layout({ season, children, className }: LayoutProps) {
         : undefined
 
     return (
-        
-        <div className={`dark bg-background-dark min-h-screen relative`}>
 
-            {capaLink && <img src={capaLink} alt="Capa da temporada" className="w-full min-h-72 max-h-[500px] object-cover"/>}
+        <div className="relative flex min-h-screen flex-col bg-fundo">
 
-            <Navbar tema="dark" />
+            <Navbar />
 
-            <div className={`${className} dark:text-white md:text-lg text-base`}>
+            {capaLink && <img src={capaLink} alt="Capa da temporada" className="max-h-[500px] min-h-72 w-full object-cover"/>}
+
+            <main className={`flex-1 text-white ${className ?? ""}`}>
                 {children}
-            </div>
+            </main>
 
             <Footer />
         </div>

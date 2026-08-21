@@ -50,7 +50,7 @@ export default function Materiais() {
         </p>
 
         {/* Dicas */}
-        <span className="md:text-3xl text-xl font-extrabold text-[#B76CF9] mb-2">
+        <span className="font-titulo md:text-3xl text-xl text-destaque mb-2">
           Dicas
         </span>
 
@@ -63,7 +63,7 @@ export default function Materiais() {
             href="https://github.com/BrunoAngeloti/SuperPets" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-[#ADF86C] hover:underline font-semibold"
+            className="text-destaque hover:underline font-semibold"
           >
             (repositório)
           </a>. Nesse repositório vocês podem ter uma boa base de como desenvolver um jogo usando o framework Phaser3.
@@ -72,7 +72,7 @@ export default function Materiais() {
         {/* Links úteis */}
         <h4 className="text-xl font-semibold text-white mb-4 mt-3">Links úteis</h4>
 
-        <ul className="list-disc marker:text-[#ADF86C] ml-6 space-y-3 mb-10">
+        <ul className="list-disc marker:text-destaque ml-6 space-y-3 mb-10">
 
           {materiais
             .filter(m => !getYouTubeEmbedUrl(m.getLink))
@@ -82,7 +82,7 @@ export default function Materiais() {
                   href={m.getLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#ADF86C] hover:underline font-semibold"
+                  className="text-destaque hover:underline font-semibold"
                 >
                   {m.getNome}
                 </a>
@@ -91,7 +91,7 @@ export default function Materiais() {
         </ul>
 
         {/* Vídeos */}
-        <span className="md:text-3xl text-xl font-extrabold text-[#B76CF9] mb-2">
+        <span className="font-titulo md:text-3xl text-xl text-destaque mb-2">
         Vídeos
         </span>
 

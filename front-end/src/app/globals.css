@@ -1,34 +1,32 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* PacFont e a fonte de titulo do mockup da Season 4. Nao esta no Google Fonts,
+   entao o arquivo mora no repositorio. Se ele faltar, o navegador cai sozinho
+   para a proxima da pilha e a pagina continua legivel — nao quebra o build. */
+@font-face {
+  font-family: "PacFont";
+  src: url("/fontes/pacfont.woff2") format("woff2"),
+       url("/fontes/pacfont.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-dark-900: #101026;
-  --color-background-dark: #141312;
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  /* Paleta tirada do Figma, arquivo Season 4, pagina Site. */
+  --color-fundo: #00275B;        /* fundo das paginas */
+  --color-barra: #001A3C;        /* navbar e rodape */
+  --color-destaque: #FED212;     /* amarelo dos titulos e botoes */
+  --color-destaque-claro: #FFE884; /* links da navbar */
+  --color-tenue: #4A5568;        /* texto de rodape */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-titulo: "PacFont", "Inter", system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  min-width: 300px;
+  background: var(--color-fundo);
+  color: #FFFFFF;
+  min-width: 320px;
 }
 
-button {
-  cursor: pointer;
-}
+button { cursor: pointer; }

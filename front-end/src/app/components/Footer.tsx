@@ -1,59 +1,50 @@
 import Link from "next/link"
 
+// Os tres contatos do rodape do mockup (Figma, Season 4, grupo "Barra final").
+const contatos = [
+  { icone: "/marca/icone-email.svg", texto: "petengcomp@inf.ufes.br", url: "mailto:petengcomp@inf.ufes.br", alt: "E-mail" },
+  { icone: "/marca/icone-instagram.svg", texto: "@petengcomp", url: "https://www.instagram.com/petengcomp/", alt: "Instagram" },
+  { icone: "/marca/icone-youtube.svg", texto: "PET Eng Comp Ufes", url: "https://www.youtube.com/@PETEngCompUFES", alt: "YouTube" },
+]
+
 export default function Footer() {
   return (
-    <footer className="bg-[#000000] py-4 w-full mt-20">
+    <footer className="mt-24 w-full bg-barra">
 
-      {/* Desktop */}
-      <div className="hidden md:flex justify-between items-center h-[130px] w-[80%] mx-auto mt-3">
-        {/* Logo PET */}
-        <div className="flex justify-start">
-          <Link href="/">
-            <img src="/logopet.png" alt="Logo do PET Engenharia de Computação" className="w-[128px]" />
-          </Link>
-        </div>
+      <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-12 px-9 py-16 md:flex-row md:justify-between md:gap-0">
 
-        {/* Ícones */}
-        <div className="flex items-center gap-4">
-          <a href="mailto:topcomufes@gmail.com" target="_blank" rel="noopener noreferrer">
-            <img src="/Email.png" alt="Email" className="w-[70px]" />
-          </a>
-          <a href="https://www.instagram.com/petengcomp/" target="_blank" rel="noopener noreferrer">
-            <img src="/Instagram.png" alt="Instagram" className="w-[70px]" />
-          </a>
-          <a href="https://www.youtube.com/@PETEngCompUFES" target="_blank" rel="noopener noreferrer">
-            <img src="/youtube.png" alt="Youtube" className="w-[70px]" />
-          </a>
-        </div>
+        <Link href="/" aria-label="PET Engenharia de Computação">
+          <img
+            src="/marca/logo-pet.svg"
+            alt="PET Engenharia de Computação — UFES"
+            className="w-[200px] md:w-[274px]"
+          />
+        </Link>
+
+        <ul className="flex flex-col gap-6">
+          {contatos.map((c) => (
+            <li key={c.url}>
+              <a
+                href={c.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 transition-opacity hover:opacity-70"
+              >
+                <img src={c.icone} alt="" aria-hidden className="h-[42px] w-[42px] shrink-0 md:h-[57px] md:w-[57px]" />
+                <span className="text-lg font-medium text-white md:text-2xl">{c.texto}</span>
+                <span className="sr-only">{c.alt}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      {/* Mobile */}
-      <div className="md:hidden flex justify-between items-center h-[130px] w-[80%] mx-auto mb-4 mt-3">
-        <div className="flex justify-start">
-          <Link href="/">
-            <img src="/logopet.png" alt="Logo do PET Engenharia de Computação" className="w-[100px]" />
-          </Link>
-        </div>
-        <div className="flex items-center gap-3">
-          <a href="mailto:topcomufes@gmail.com" target="_blank" rel="noopener noreferrer">
-            <img src="/Email.png" alt="Email" className="w-[50px]" />
-          </a>
-          <a href="https://www.instagram.com/petengcomp/" target="_blank" rel="noopener noreferrer">
-            <img src="/Instagram.png" alt="Instagram" className="w-[50px]" />
-          </a>
-          <a href="https://www.youtube.com/@PETEngCompUFES" target="_blank" rel="noopener noreferrer">
-            <img src="/youtube.png" alt="Youtube" className="w-[50px]" />
-          </a>
-        </div>
-      </div>
-
-      {/* Texto */}
-      <div className="mx-2">
-        <p className="text-center text-[10px] sm:text-xs md:text-sm text-[#FFFFFF] font-bold">
-          Created by PET Engenharia da Computação UFES ・ 2025 ・ All rights reserved
+      {/* A linha e o credito ficam abaixo de uma divisoria, como no mockup. */}
+      <div className="mx-auto max-w-[1454px] border-t border-white/20 px-9">
+        <p className="py-6 text-center text-sm text-tenue">
+          Created by PET Engenharia da Computação&nbsp;&nbsp;·&nbsp;&nbsp;2025&nbsp;&nbsp;·&nbsp;&nbsp;All rights reserved
         </p>
       </div>
-
     </footer>
   );
 }
