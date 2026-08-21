@@ -19,16 +19,11 @@ detalhes: [`front-end/README.md`](front-end/README.md) e
 
 ## Publicação
 
-Quase tudo é automático. As duas exceções falham **em silêncio**, então valem
-o parágrafo:
+**Publicar não é implantar.** O push no `main` que toca `back-end/` publica a
+imagem, e o CI abre um **PR de deploy** com o digest novo. É mesclar esse PR que
+coloca a versão em produção — se ele ficar parado, a imagem existe e ninguém
+está usando.
 
-**O site:** enquanto ele estiver na Vercel, o merge de um PR que toca
-`front-end/` precisa sair **pela conta do PET**. Merge por qualquer outra
-pessoa é recusado sem aviso, e o site simplesmente continua na versão anterior
-— foi assim que ele serviu um build de dezembro por seis semanas. O workflow
-`confere-versao-no-ar` fica vermelho quando isso acontece, e o site publica no
-HTML qual commit está no ar.
-
-**A API:** o push no `main` que toca `back-end/` publica a imagem, e o CI abre
-um **PR de deploy** com o digest novo. Publicar não é implantar: é mesclar esse
-PR que coloca a versão em produção.
+O site é automático: o que entra no `main` vai para produção. O
+`confere-versao-no-ar` avisa se não for, e a página publica no HTML qual commit
+está no ar.
