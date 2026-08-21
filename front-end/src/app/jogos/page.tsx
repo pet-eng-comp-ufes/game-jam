@@ -18,8 +18,6 @@ interface Jogo {
 
 interface Temporada {
   numero: string
-  // Rotulo proprio quando a season nao tem numero conhecido.
-  rotulo?: string
   jogos: Jogo[]
 }
 
@@ -39,13 +37,11 @@ interface Temporada {
 // SuperPETs esta hospedado junto mas NAO entra na lista: e o jogo do proprio
 // PET, feito como exemplo de aprendizado, nao trabalho de participante.
 //
-// A season da edicao de 2023 nao esta registrada em lugar nenhum — o banco so
-// conhece a 3 e a 4. Por isso o rotulo aqui e o ano, que e verificavel, e nao
-// um numero chutado.
+// A edicao de 2023 e a season 2. Isso nao esta em lugar nenhum do codigo nem
+// do banco, que so conhece a 3 e a 4 — veio de quem organiza o evento.
 const temporadas: Temporada[] = [
   {
     numero: "3",
-    rotulo: "Season 3",
     jogos: [
       {
         nome: "Capybara Airways",
@@ -69,8 +65,7 @@ const temporadas: Temporada[] = [
     ],
   },
   {
-    numero: "2023",
-    rotulo: "Edição de 2023",
+    numero: "2",
     jogos: [
       { nome: "Fire Scape", equipe: "Gabriel Braga Ladislau · Nilo Garcia Monteiro · Gabriel Gomes Lima", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/fire-scape/", capa: "/jogos/fire-scape.jpg" },
       { nome: "GRVTY", equipe: "Gamepiece Team", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/grvty/", capa: "/jogos/grvty.jpg" },
@@ -125,7 +120,7 @@ export default function Jogos() {
                     aria-controls={`season-${t.numero}`}
                     className="flex w-full items-center gap-3 py-4 text-left font-secao text-3xl uppercase text-destaque transition-opacity hover:opacity-80 md:text-4xl"
                   >
-                    {t.rotulo ?? `Season ${t.numero}`}
+                    Season {t.numero}
                     <span aria-hidden className={`text-2xl transition-transform duration-200 ${estaAberta ? "rotate-90" : ""}`}>›</span>
                   </button>
                 </h2>
