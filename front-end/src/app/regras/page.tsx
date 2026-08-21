@@ -25,7 +25,7 @@ export default function Home() {
       <div className="max-w-6xl w-[80%] mt-20 relative">
 
         {/* Título principal */}
-        <Titulo valor="Regras" />
+        <Titulo valor="REGRAS" />
 
         {/* Tema */}
         <TituloSecao valor="Tema" className="mt-12 mb-4" />
