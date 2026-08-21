@@ -8,6 +8,13 @@ const contatos = [
 ]
 
 export default function Footer() {
+
+  // O ano vinha cravado como 2025 e envelheceu sozinho. Aqui ele e resolvido na
+  // construcao do site, entao acompanha os deploys sem ninguem lembrar. Se o
+  // site passar um ano inteiro sem deploy o valor congela — mas ai o problema e
+  // outro.
+  const ano = new Date().getFullYear()
+
   return (
     <footer className="mt-24 w-full bg-barra">
 
@@ -42,7 +49,7 @@ export default function Footer() {
       {/* A linha e o credito ficam abaixo de uma divisoria, como no mockup. */}
       <div className="mx-auto max-w-[1454px] border-t border-white/20 px-9">
         <p className="py-6 text-center text-sm text-tenue">
-          Created by PET Engenharia da Computação&nbsp;&nbsp;·&nbsp;&nbsp;2025&nbsp;&nbsp;·&nbsp;&nbsp;All rights reserved
+          Created by PET Engenharia de Computação&nbsp;&nbsp;·&nbsp;&nbsp;{ano}&nbsp;&nbsp;·&nbsp;&nbsp;All rights reserved
         </p>
       </div>
     </footer>
