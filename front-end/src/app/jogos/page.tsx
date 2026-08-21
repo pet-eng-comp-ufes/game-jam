@@ -149,10 +149,10 @@ export default function Jogos() {
                     onClick={() => alterna(t.numero)}
                     aria-expanded={estaAberta}
                     aria-controls={`season-${t.numero}`}
-                    className="flex w-full items-center gap-8 pt-[13px] pb-0 pl-[121px] text-left font-secao text-4xl uppercase leading-none text-destaque transition-opacity hover:opacity-80 md:text-5xl"
+                    className="flex w-full items-center pt-[13px] pb-0 pl-[121px] text-left font-secao text-4xl uppercase leading-none text-destaque transition-opacity hover:opacity-80 md:text-5xl"
                   >
-                    Season {t.numero}
-                    <span aria-hidden className={`shrink-0 leading-[0] ${estaAberta ? "-ml-3 -translate-y-[2px]" : "-ml-1 -translate-y-[4.5px]"}`}>
+                    <span className="md:w-[129px]">Season {t.numero}</span>
+                    <span aria-hidden className={`flex w-[26px] shrink-0 items-center justify-center leading-[0] ${estaAberta ? "-translate-y-[2px]" : "-translate-y-[4.5px]"}`}>
                     <svg
                       viewBox="13.3 11.51 15.04 25.99"
                       className={`h-[26px] w-[15px] transition-transform duration-200 ${estaAberta ? "rotate-90" : ""}`}
@@ -172,29 +172,27 @@ export default function Jogos() {
                 {estaAberta && (
                   <ul id={`season-${t.numero}`} className="flex flex-col gap-[70px] pb-14 pt-[68px] pl-[101px]">
                     {t.jogos.map((j) => (
-                      <li key={j.link} className="grid gap-[72px] md:grid-cols-[538px_528px] md:items-start">
+                      <li key={j.link}>
+                        <a
+                          href={j.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group grid gap-[72px] rounded-xl outline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-destaque md:grid-cols-[538px_528px] md:items-start"
+                        >
 
                         <img
                           src={j.capa}
                           alt={`Tela inicial do jogo da ${j.equipe}`}
-                          className="w-full rounded-xl border border-destaque-claro/20 md:h-[421px] md:object-cover"
+                          className="w-full rounded-xl border border-destaque-claro/20 transition duration-200 group-hover:border-destaque group-hover:brightness-110 md:h-[421px] md:object-cover"
                           loading="lazy"
                         />
 
                         <div className="md:pt-[66px]">
-                          <h3 className="text-2xl font-bold text-destaque md:text-[34px] md:leading-[42px]">{j.nome ?? j.equipe}</h3>
+                          <h3 className="text-2xl font-bold text-destaque underline-offset-4 group-hover:underline md:text-[34px] md:leading-[42px]">{j.nome ?? j.equipe}</h3>
                           {j.nome && j.equipe && <p className="mt-[6px] font-bold md:text-[29px] md:leading-[35px]">por {j.equipe}</p>}
                           {j.participantes.length > 0 && <p className="mt-[32px] text-base md:text-[29px] md:leading-[35px]">{j.participantes.join(" · ")}</p>}
-
-                          <a
-                            href={j.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-6 inline-block rounded-full bg-destaque px-8 py-3 font-bold text-barra transition-opacity hover:opacity-90"
-                          >
-                            Jogar agora
-                          </a>
                         </div>
+                        </a>
                       </li>
                     ))}
                   </ul>
