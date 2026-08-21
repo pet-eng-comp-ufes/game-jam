@@ -22,9 +22,11 @@ interface Temporada {
 }
 
 // Os jogos ficam aqui, e nao vem da API, porque a tabela `jogos` esta vazia:
-// /seasonsComJogos devolve a season 3 e a season 4 sem nenhum jogo. Estes tres
-// sao os que existem de fato — publicados na Vercel e ainda jogaveis, das
-// equipes da season 3.
+// /seasonsComJogos devolve a season 3 e a season 4 sem nenhum jogo.
+//
+// TODOS sao servidos pela VM, em /arquivo/<jogo>/. Os tres da season 3 moravam
+// em projetos avulsos da Vercel, na conta pessoal do PET; agora estao no mesmo
+// lugar que os de 2023, sob o dominio do proprio PET.
 //
 // As capas sao captura da tela inicial de cada jogo. Nao havia capa em lugar
 // nenhum: nem no banco, nem nos repositorios.
@@ -61,19 +63,19 @@ const temporadas: Temporada[] = [
         nome: "Capybara Airways",
         equipe: "Equipe Capivarinhas",
         participantes: ["André Luiz Siqueira", "Arthur Manelli Riva Souza", "Daniela Souza Pimentel"],
-        link: "https://petgamejam-jogo.vercel.app/",
+        link: "https://apigamejam.pet.inf.ufes.br/arquivo/capybara-airways/",
         capa: "/jogos/capivarinhas.jpg",
       },
       {
         equipe: "Equipe Gaga Games",
         participantes: ["Letícia Rodrigues", "Daniel Siqueira", "Arthur Maciel"],
-        link: "https://petgamejam-jogo1.vercel.app/",
+        link: "https://apigamejam.pet.inf.ufes.br/arquivo/gaga-games/",
         capa: "/jogos/gaga-games.jpg",
       },
       {
         equipe: "Equipe Animal",
         participantes: ["Gustavo", "Tarcio", "Marcos"],
-        link: "https://petgamejam-jogo3.vercel.app/",
+        link: "https://apigamejam.pet.inf.ufes.br/arquivo/equipe-animal/",
         capa: "/jogos/animal.jpg",
       },
     ],
