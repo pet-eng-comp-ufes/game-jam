@@ -36,12 +36,19 @@ interface Temporada {
 // Testei os onze do grupo com navegador: dez rodam. A Lenda de Gabe ficou de
 // fora — e Flutter web de build antiga, inicializa e nao desenha nada.
 //
-// SuperPETs esta hospedado junto mas NAO entra na lista: e o jogo do proprio
-// PET, feito como exemplo de aprendizado, nao trabalho de participante.
+// A Lenda de Gabe e da season 1 e NAO esta listado: e Flutter web de build
+// antiga, inicializa e nao desenha nada. Entraria como link para tela branca.
 //
 // A edicao de 2023 e a season 2. Isso nao esta em lugar nenhum do codigo nem
 // do banco, que so conhece a 3 e a 4 — veio de quem organiza o evento.
 const temporadas: Temporada[] = [
+  {
+    numero: "1",
+    jogos: [
+      { nome: "SuperPETs", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/superpets/", capa: "/jogos/superpets.jpg" },
+      { nome: "Glob Fights The King", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/glob-fights-the-king/", capa: "/jogos/glob-fights-the-king.jpg" },
+    ],
+  },
   {
     numero: "2",
     jogos: [
@@ -50,7 +57,6 @@ const temporadas: Temporada[] = [
       { nome: "Asteroide", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/asteroide/", capa: "/jogos/asteroide.jpg" },
       { nome: "Dino", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/dino/", capa: "/jogos/dino.jpg" },
       { nome: "Flappy Bird", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/flappy-bird/", capa: "/jogos/flappy-bird.jpg" },
-      { nome: "Glob Fights The King", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/glob-fights-the-king/", capa: "/jogos/glob-fights-the-king.jpg" },
       { nome: "Pong", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/pong/", capa: "/jogos/pong.jpg" },
       { nome: "Separados Pelo Tempo", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/separados-pelo-tempo/", capa: "/jogos/separados-pelo-tempo.jpg" },
       { nome: "Tarantella", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/tarantella/", capa: "/jogos/tarantella.jpg" },
