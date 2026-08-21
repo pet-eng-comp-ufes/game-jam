@@ -19,7 +19,7 @@ export default function Inscricao() {
 }, [])
 
   if (!seasonAtual) {
-    return <div className="text-white text-center mt-20">Carregando...</div>
+    return <div className="mt-20 text-center">Carregando...</div>
   }
 
   return (
@@ -34,7 +34,7 @@ export default function Inscricao() {
 
         <div className="lg:flex-1 w-full flex flex-col gap-12 justify-center items-center h-full mt-12 mb-12">
 
-          <span className="text-white lg:text-5xl md:text-4xl text-3xl font-extrabold">
+          <span className="font-titulo text-3xl text-destaque md:text-4xl lg:text-5xl">
 
             {seasonAtual.getInscricoesAbertas
               ? "Inscrições abertas!"
@@ -44,7 +44,7 @@ export default function Inscricao() {
 
         </div>
 
-        <div className="lg:flex-1 w-full text-white flex justify-center items-center">
+        <div className="flex w-full items-center justify-center lg:flex-1">
 
           {seasonAtual.getInscricoesAbertas ? (
             
