@@ -13,10 +13,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Carimbo de versao: qual commit gerou o que esta no ar.
+//
+// Existe por causa de uma falha real. O plano atual da Vercel so implanta commit
+// autorado pela conta do PET; commit de outra pessoa entra no main, a Vercel
+// recusa em silencio, e o site continua na versao anterior. Foi assim que ele
+// serviu um build de dezembro por seis semanas, e ninguem percebeu porque nao
+// havia como olhar o site e saber qual versao era aquela.
+//
+// Com o carimbo, qualquer pessoa confere pelo HTML, e o workflow
+// confere-versao-no-ar.yml confere sozinho a cada push.
+//
+// A Vercel define VERCEL_GIT_COMMIT_SHA no build. Fora dela — na imagem Docker
+// — o valor vem do build-arg COMMIT. Sem nenhum dos dois, fica "desconhecida",
+// que ja e informacao: significa build feito fora da esteira.
+const versao =
+  process.env.VERCEL_GIT_COMMIT_SHA ?? process.env.COMMIT ?? "desconhecida";
+
 const descricao =
   "O Game Jam é um torneio de programação de jogos organizado pelo PET Engenharia de Computação da UFES.";
 
 export const metadata: Metadata = {
+  other: { versao },
   // Sem metadataBase o Next resolve as URLs de imagem contra localhost, e a
   // prévia do link sai quebrada fora da máquina de quem construiu.
   metadataBase: new URL("https://gamejam.pet.inf.ufes.br"),
