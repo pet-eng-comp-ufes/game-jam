@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Layout from "../components/Layout"
 import Titulo from "../components/Titulo"
+import TituloSecao from "../components/TituloSecao"
 import { Season } from "@/models/Season"
 
 interface Grupo {
@@ -46,15 +47,15 @@ export default function Jogos() {
   }, [])
 
   return (
-    <Layout season={seasonAtual} className="flex items-center justify-center">
+    <Layout season={seasonAtual}>
 
-      <div className="max-w-5xl w-[80%] mt-20 text-white">
+      <div className="mx-auto w-[80%] max-w-[1154px] pt-24 pb-10">
 
-        <Titulo valor="Jogos" />
+        <Titulo valor="JOGOS" />
 
-        <h2 className="text-lg mt-10 text-white mb-4">
+        <p className="mt-10 mb-4 text-lg">
           Confira aqui os jogos dos nossos participantes:
-        </h2>
+        </p>
 
         {/* Caixas lado a lado — 3 colunas em telas grandes */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 mb-20">
@@ -62,11 +63,11 @@ export default function Jogos() {
           {grupos.map((grupo, index) => (
             <div
               key={index}
-              className="bg-[#1b1b1d] p-6 rounded-xl border border-gray-800 shadow-lg hover:scale-[1.03] duration-200 min-h-[150px] flex flex-col justify-between"
+              className="flex min-h-[150px] flex-col justify-between rounded-xl border border-destaque-claro/20 bg-barra p-6 transition-transform duration-200 hover:scale-[1.03]"
             >
 
               {/* Nome da equipe — branco e sem ":" */}
-              <h3 className="text-xl font-bold text-white mb-3">
+              <h3 className="mb-3 text-xl font-bold text-destaque">
                 {grupo.nome}
               </h3>
 

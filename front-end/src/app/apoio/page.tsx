@@ -33,9 +33,9 @@ export default function Patrocinadores() {
 
     <Layout season={seasonAtual} className="flex flex-col items-center">
 
-      <div className="flex flex-col items-center mt-20 w-full">
+      <div className="mx-auto flex w-[80%] max-w-[1154px] flex-col items-center pt-24 pb-10">
 
-        <Titulo valor="Patrocinador" />
+        <Titulo valor="PATROCINADORES" />
 
         <div className="mt-15 mb-15 flex flex-wrap justify-center gap-8">
 
@@ -56,7 +56,7 @@ export default function Patrocinadores() {
         )}
 
         {patrocinadores.length === 0 && (
-          <p className="mt-6 text-gray-500">Nenhum patrocinador cadastrado.</p>
+          <p className="mt-6 text-tenue">Nenhum patrocinador cadastrado.</p>
         )}
 
         </div>

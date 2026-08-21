@@ -27,7 +27,7 @@ export default function Layout({ season, children, className }: LayoutProps) {
 
             {capaLink && <img src={capaLink} alt="Capa da temporada" className="max-h-[500px] min-h-72 w-full object-cover"/>}
 
-            <main className={`flex-1 text-white ${className ?? ""}`}>
+            <main className={`flex-1 ${className ?? ""}`}>
                 {children}
             </main>
 

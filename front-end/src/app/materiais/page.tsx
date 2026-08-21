@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 import { Season } from "@/models/Season";
 import { Material } from "@/models/Materiais";
 import Titulo from "../components/Titulo";
+import TituloSecao from "../components/TituloSecao";
 
 export default function Materiais() {
 
@@ -44,20 +45,18 @@ export default function Materiais() {
         {/* Título */}
         <Titulo valor="Materiais" />
 
-        <p className="mt-6 mb-10 text-white whitespace-pre-wrap">
+        <p className="mt-6 mb-10 whitespace-pre-wrap">
           Nesta seção, você encontrará diversos materiais úteis para iniciar e aprofundar seus estudos em desenvolvimento de jogos. Reunimos{"\n"}
           dicas, projetos de exemplo e recursos selecionados para facilitar sua jornada.
         </p>
 
         {/* Dicas */}
-        <span className="font-titulo md:text-3xl text-xl text-destaque mb-2">
-          Dicas
-        </span>
+        <TituloSecao valor="Dicas" className="mb-2" />
 
         {/* Super PETs */}
-        <h4 className="text-xl font-semibold text-white mb-4 mt-7">Super PETs</h4>
+        <h4 className="mb-4 mt-7 text-xl font-semibold text-destaque">Super PETs</h4>
 
-        <p className="mb-5 text-white whitespace-pre-wrap">
+        <p className="mb-5 whitespace-pre-wrap">
           Para ajudá-los nessa nova jornada no desenvolvimento de jogos, o PET EngComp desenvolveu o Super PETs, um jogo de código aberto{"\n"}no github{" "}
           <a 
             href="https://github.com/BrunoAngeloti/SuperPets" 
@@ -70,7 +69,7 @@ export default function Materiais() {
         </p>
         
         {/* Links úteis */}
-        <h4 className="text-xl font-semibold text-white mb-4 mt-3">Links úteis</h4>
+        <h4 className="mb-4 mt-3 text-xl font-semibold text-destaque">Links úteis</h4>
 
         <ul className="list-disc marker:text-destaque ml-6 space-y-3 mb-10">
 
@@ -91,9 +90,7 @@ export default function Materiais() {
         </ul>
 
         {/* Vídeos */}
-        <span className="font-titulo md:text-3xl text-xl text-destaque mb-2">
-        Vídeos
-        </span>
+        <TituloSecao valor="Vídeos" className="mb-2" />
 
         <div className="flex flex-col gap-6 mt-8">
         {materiais
@@ -117,13 +114,13 @@ export default function Materiais() {
 
           {/* Título, autor e descrição */}
           <div className="flex flex-col justify-center ml-4 max-w-xl">
-            <h5 className="text-white font-semibold text-x1">
+            <h5 className="font-semibold text-destaque">
               {m.getNome}
             </h5>
-            <span className="text-white font-semibold text-lg mb-4 mt-1">
+            <span className="mb-4 mt-1 text-sm uppercase tracking-wide text-tenue">
               por EQUIPE PET
             </span>
-            <p className="text-white whitespace-pre-wrap">
+            <p className="whitespace-pre-wrap">
               {m.getDescricao}
             </p>
           </div>

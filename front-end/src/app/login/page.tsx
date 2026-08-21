@@ -48,7 +48,7 @@ export default function Login() {
 
         <section className="mt-6 flex flex-col justify-center items-center gap-4 md:w-[600px] w-[90%]">
 
-          <form action={handleLogin} className="text-white pb-4 text-lg flex flex-col w-[90%] gap-4">
+          <form action={handleLogin} className="flex w-[90%] flex-col gap-4 pb-4 text-lg">
 
             <input 
               type="text"
