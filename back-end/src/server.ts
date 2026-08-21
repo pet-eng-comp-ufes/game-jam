@@ -5,6 +5,7 @@ import 'dotenv/config'
 import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors'
 import cors from 'cors'
+import helmet from 'helmet'
 import path from 'path'
 
 import { router } from './routes'
@@ -17,7 +18,26 @@ const app = express()
 // misto numa pagina servida em https.
 app.set('trust proxy', 1)
 app.use(express.json())
-app.use(cors())
+
+// Cabecalhos de seguranca. crossOriginResourcePolicy fica em cross-origin
+// porque /files serve as imagens dos patrocinadores para o site, que esta em
+// outro dominio — o padrao same-origin bloquearia.
+app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }))
+
+// cors() sem argumento aceita QUALQUER origem: qualquer site conseguia chamar
+// esta API pelo navegador de um visitante. A lista vem do ambiente para o
+// dominio poder mudar sem tocar no codigo; o padrao cobre o site em producao e
+// o desenvolvimento local.
+const ORIGENS = (process.env.CORS_ORIGENS ??
+    'https://gamejam.pet.inf.ufes.br,https://game-jam.pet.inf.ufes.br,http://localhost:3000'
+).split(',').map(o => o.trim()).filter(Boolean)
+
+app.use(cors({
+    // Sem origin (curl, app nativo, mesma origem) passa: CORS protege o
+    // navegador de terceiros, nao substitui autenticacao.
+    origin: (origin, cb) => cb(null, !origin || ORIGENS.includes(origin)),
+    credentials: true
+}))
 
 app.use(router)
 

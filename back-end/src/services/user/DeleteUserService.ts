@@ -13,6 +13,11 @@ class DeleteUserService {
 
             where: {
                 id: id
+            },
+            // Sem o select, o delete devolve a linha inteira, com o hash.
+            select:{
+                id: true,
+                username: true
             }
         })
 
