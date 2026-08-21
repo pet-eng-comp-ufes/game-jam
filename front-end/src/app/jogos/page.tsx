@@ -118,13 +118,13 @@ export default function Jogos() {
                     onClick={() => setAberta(estaAberta ? null : t.numero)}
                     aria-expanded={estaAberta}
                     aria-controls={`season-${t.numero}`}
-                    className="flex w-full items-center gap-2 py-1 text-left font-secao text-4xl uppercase leading-none text-destaque transition-opacity hover:opacity-80 md:text-5xl"
+                    className="flex w-full items-center gap-8 py-1 text-left font-secao text-4xl uppercase leading-none text-destaque transition-opacity hover:opacity-80 md:text-5xl"
                   >
                     Season {t.numero}
+                    <span aria-hidden className="-translate-y-[4.5px] shrink-0 leading-[0]">
                     <svg
-                      aria-hidden
                       viewBox="13.3 11.51 15.04 25.99"
-                      className={`h-[26px] w-[15px] shrink-0 transition-transform duration-200 ${estaAberta ? "rotate-90" : ""}`}
+                      className={`h-[26px] w-[15px] transition-transform duration-200 ${estaAberta ? "rotate-90" : ""}`}
                       fill="none"
                     >
                       <path
@@ -134,6 +134,7 @@ export default function Jogos() {
                         fill="currentColor"
                       />
                     </svg>
+                    </span>
                   </button>
                 </h2>
 
