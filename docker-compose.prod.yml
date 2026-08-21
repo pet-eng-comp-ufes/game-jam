@@ -110,6 +110,39 @@ services:
       - traefik
       - internal
 
+  # Acervo dos jogos das edicoes passadas. Sao jogos estaticos — HTML, JS e
+  # imagem — entao basta um servidor de arquivo; nao ha build nem banco.
+  #
+  # Os arquivos NAO moram no repositorio: sao 240 MB, e no repositorio eles
+  # estourariam o limite de implantacao da Vercel e cairiam no clone de quem so
+  # quer mexer numa cor. Moram em /opt/game-jam/arquivo, no disco da VM.
+  #
+  # O caminho e /arquivo no MESMO dominio da API, que ja aponta para a VM. Isso
+  # evita pedir nome novo ao LAR: um dominio serve quantos jogos existirem,
+  # porque o que separa cada um e caminho, nao DNS.
+  arquivo:
+    image: nginx:1.29-alpine
+    container_name: game-jam_arquivo
+    restart: unless-stopped
+    logging: *logging
+    volumes:
+      - /opt/game-jam/arquivo:/usr/share/nginx/html/arquivo:ro
+      - /opt/game-jam/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    labels:
+      - "traefik.enable=true"
+      # A regra e mais especifica que a do back-end (mesmo Host, mais o
+      # PathPrefix), e no Traefik regra mais longa vence por padrao. A
+      # prioridade vai explicita mesmo assim: se esta ordem inverter, o
+      # /arquivo cai na API e devolve 404 em vez do jogo.
+      - "traefik.http.routers.game-jam_arquivo.rule=Host(`apigamejam.pet.inf.ufes.br`) && PathPrefix(`/arquivo`)"
+      - "traefik.http.routers.game-jam_arquivo.priority=100"
+      - "traefik.http.services.game-jam_arquivo.loadbalancer.server.port=80"
+      - "traefik.http.routers.game-jam_arquivo.entrypoints=websecure"
+      - "traefik.http.routers.game-jam_arquivo.tls.certresolver=le"
+      - "traefik.docker.network=traefik"
+    networks:
+      - traefik
+
 volumes:
   database-data:
   uploads:
