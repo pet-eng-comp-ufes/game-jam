@@ -44,10 +44,10 @@ services:
           - game-jam-database
 
   back-end:
-    # ghcr.io/pet-eng-comp-ufes/game-jam_back-end:sha-89e079baf1d9cbc0beed34b6399e174cc468a83c
+    # ghcr.io/pet-eng-comp-ufes/game-jam/back-end:sha-89e079baf1d9cbc0beed34b6399e174cc468a83c
     # Inclui o limite de taxa no login e na inscricao (PR #46).
-    image: ghcr.io/pet-eng-comp-ufes/game-jam_back-end@sha256:001e9dfce902ffb02369447fe3247084d2bf47d354013930bc91ba82db62f517
-    container_name: game-jam_back-end
+    image: ghcr.io/pet-eng-comp-ufes/game-jam/back-end@sha256:001e9dfce902ffb02369447fe3247084d2bf47d354013930bc91ba82db62f517
+    container_name: game-jam/back-end
     restart: unless-stopped
     logging: *logging
     stdin_open: true
@@ -59,10 +59,10 @@ services:
       JWT_SECRET: ${JWT_SECRET}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.game-jam_back-end.rule=Host(`apigamejam.pet.inf.ufes.br`)"
-      - "traefik.http.services.game-jam_back-end.loadbalancer.server.port=3333"
-      - "traefik.http.routers.game-jam_back-end.entrypoints=websecure"
-      - "traefik.http.routers.game-jam_back-end.tls.certresolver=le"
+      - "traefik.http.routers.game-jam/back-end.rule=Host(`apigamejam.pet.inf.ufes.br`)"
+      - "traefik.http.services.game-jam/back-end.loadbalancer.server.port=3333"
+      - "traefik.http.routers.game-jam/back-end.entrypoints=websecure"
+      - "traefik.http.routers.game-jam/back-end.tls.certresolver=le"
       - "traefik.docker.network=traefik"
     networks:
       - traefik

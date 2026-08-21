@@ -42,7 +42,7 @@ jobs:
       - id: meta
         uses: docker/metadata-action@v6
         with:
-          images: ghcr.io/pet-eng-comp-ufes/game-jam_back-end
+          images: ghcr.io/pet-eng-comp-ufes/game-jam/back-end
           # Tag por commit para dar rastro, e latest para o compose continuar funcionando.
           tags: |
             type=sha,format=long
@@ -85,8 +85,8 @@ jobs:
         run: |
           set -e
           ARQ=docker-compose.prod.yml
-          ATUAL=$(grep -oE 'game-jam_back-end@sha256:[0-9a-f]+' "$ARQ" | head -1)
-          NOVO="game-jam_back-end@${DIGEST}"
+          ATUAL=$(grep -oE 'game-jam/back-end@sha256:[0-9a-f]+' "$ARQ" | head -1)
+          NOVO="game-jam/back-end@${DIGEST}"
 
           if [ "$ATUAL" = "$NOVO" ]; then
             echo "O compose ja aponta para este digest — nada a fazer."
@@ -94,7 +94,7 @@ jobs:
           fi
 
           sed -i "s|${ATUAL}|${NOVO}|" "$ARQ"
-          sed -i "s|game-jam_back-end:sha-[0-9a-f]*|game-jam_back-end:sha-${GITHUB_SHA}|" "$ARQ"
+          sed -i "s|game-jam/back-end:sha-[0-9a-f]*|game-jam/back-end:sha-${GITHUB_SHA}|" "$ARQ"
           echo "MUDOU=1" >> "$GITHUB_ENV"
 
       - name: Abre o PR de deploy
