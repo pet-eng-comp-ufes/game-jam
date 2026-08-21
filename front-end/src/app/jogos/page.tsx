@@ -129,9 +129,11 @@ export default function Jogos() {
 
     <Layout season={seasonAtual}>
 
-      <div className="mx-auto w-[80%] max-w-[1154px] pt-24 pb-10">
+      <div className="mx-auto w-[93%] max-w-[1340px] pt-24 pb-10">
 
-        <Titulo valor="SELECIONE UMA OPÇÃO:" />
+        <div className="pl-[93px]">
+          <Titulo valor="SELECIONE UMA OPÇÃO:" />
+        </div>
 
         <div className="mt-12">
           {temporadas.map((t) => {
@@ -147,10 +149,10 @@ export default function Jogos() {
                     onClick={() => alterna(t.numero)}
                     aria-expanded={estaAberta}
                     aria-controls={`season-${t.numero}`}
-                    className="flex w-full items-center gap-8 py-1 text-left font-secao text-4xl uppercase leading-none text-destaque transition-opacity hover:opacity-80 md:text-5xl"
+                    className="flex w-full items-center gap-8 py-1 pl-[121px] text-left font-secao text-4xl uppercase leading-none text-destaque transition-opacity hover:opacity-80 md:text-5xl"
                   >
                     Season {t.numero}
-                    <span aria-hidden className="-translate-y-[4.5px] shrink-0 leading-[0]">
+                    <span aria-hidden className={`shrink-0 leading-[0] ${estaAberta ? "-ml-3 -translate-y-[2px]" : "-ml-1 -translate-y-[4.5px]"}`}>
                     <svg
                       viewBox="13.3 11.51 15.04 25.99"
                       className={`h-[26px] w-[15px] transition-transform duration-200 ${estaAberta ? "rotate-90" : ""}`}
@@ -168,21 +170,21 @@ export default function Jogos() {
                 </h2>
 
                 {estaAberta && (
-                  <ul id={`season-${t.numero}`} className="flex flex-col gap-12 pb-14 pt-4">
+                  <ul id={`season-${t.numero}`} className="flex flex-col gap-[70px] pb-14 pt-[123px] pl-[101px]">
                     {t.jogos.map((j) => (
-                      <li key={j.link} className="grid gap-8 md:grid-cols-[minmax(0,540px)_1fr] md:items-start">
+                      <li key={j.link} className="grid gap-[72px] md:grid-cols-[538px_528px] md:items-start">
 
                         <img
                           src={j.capa}
                           alt={`Tela inicial do jogo da ${j.equipe}`}
-                          className="w-full rounded-xl border border-destaque-claro/20"
+                          className="w-full rounded-xl border border-destaque-claro/20 md:h-[421px] md:object-cover"
                           loading="lazy"
                         />
 
                         <div>
-                          <h3 className="text-2xl font-bold text-destaque md:text-3xl">{j.nome ?? j.equipe}</h3>
-                          {j.nome && j.equipe && <p className="mt-1 font-bold">{j.equipe}</p>}
-                          {j.participantes.length > 0 && <p className="mt-4 text-base">{j.participantes.join(" · ")}</p>}
+                          <h3 className="text-2xl font-bold text-destaque md:text-[34px] md:leading-[42px]">{j.nome ?? j.equipe}</h3>
+                          {j.nome && j.equipe && <p className="mt-[6px] font-bold md:text-[29px] md:leading-[35px]">{j.equipe}</p>}
+                          {j.participantes.length > 0 && <p className="mt-[32px] text-base md:text-[29px] md:leading-[35px]">{j.participantes.join(" · ")}</p>}
 
                           <a
                             href={j.link}
