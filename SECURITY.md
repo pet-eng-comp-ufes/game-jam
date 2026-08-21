@@ -10,17 +10,33 @@ Use um destes canais:
 - **[Security advisory privado](https://github.com/pet-eng-comp-ufes/game-jam/security/advisories/new)**
   — fica visível só para quem mantém o repositório, e vira o registro do
   conserto quando resolvido.
-- Ou fale diretamente com alguém da **comissão de Manutenção do PET Engenharia
-  de Computação**.
+- Ou escreva para **<petengcomp@inf.ufes.br>**, o endereço do PET Engenharia de
+  Computação da UFES.
 
-Descreva o que encontrou e, se possível, como reproduzir. Não é preciso ter
-certeza de que é explorável — suspeita fundamentada já ajuda.
+### O que incluir
+
+Quanto mais destes você conseguir, mais rápido vira conserto:
+
+- que tipo de problema é;
+- em que arquivo e, se souber, em que linha;
+- em que versão — a tag, o commit, ou só a data em que você viu;
+- que configuração é necessária para reproduzir;
+- o passo a passo para reproduzir;
+- código de prova, se tiver;
+- qual o impacto: o que alguém consegue fazer explorando isso.
+
+**Não é preciso ter tudo, nem ter certeza de que é explorável.** Suspeita
+fundamentada já ajuda — é melhor receber um alarme falso do que não receber o
+verdadeiro.
+
+Respondemos assim que possível, e mantemos você informado até o conserto sair.
 
 ## O que este repositório contém
 
-O site e a API do Game Jam. A API guarda **dados pessoais de participantes** —
-nome, e-mail e CPF —, então falha de autenticação, de autorização ou de
-exposição de dados é levada a sério mesmo quando parece pequena.
+O site e a API do Game Jam, mantidos pelo **PET Engenharia de Computação da
+UFES**. A API guarda **dados pessoais de participantes** — nome, e-mail e CPF —,
+então falha de autenticação, de autorização ou de exposição de dados é levada a
+sério mesmo quando parece pequena.
 
 ## O que não é vulnerabilidade aqui
 
