@@ -46,6 +46,10 @@ interface Temporada {
 // SuperPETs e o jogo do PROPRIO PET, e nao de participante — por isso o credito
 // vai no lugar do nome da equipe. Ele pertence a season 1 assim mesmo.
 //
+// Dino, Pong e Flappy Bird tambem sao do PET e por isso NAO aparecem em season
+// nenhuma. Continuam servidos em /arquivo/ — a pagina de Materiais vai usa-los
+// como exemplo de aprendizado, que e o papel deles.
+//
 // A edicao de 2023 e a season 2. Isso nao esta em lugar nenhum do codigo nem
 // do banco, que so conhece a 3 e a 4 — veio de quem organiza o evento.
 const temporadas: Temporada[] = [
@@ -63,9 +67,6 @@ const temporadas: Temporada[] = [
       { nome: "Fire Scape", equipe: "Gabriel Braga Ladislau · Nilo Garcia Monteiro · Gabriel Gomes Lima", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/fire-scape/", capa: "/jogos/fire-scape.jpg" },
       { nome: "GRVTY", equipe: "Gamepiece Team", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/grvty/", capa: "/jogos/grvty.jpg" },
       { nome: "Asteroide", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/asteroide/", capa: "/jogos/asteroide.jpg" },
-      { nome: "Dino", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/dino/", capa: "/jogos/dino.jpg" },
-      { nome: "Flappy Bird", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/flappy-bird/", capa: "/jogos/flappy-bird.jpg" },
-      { nome: "Pong", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/pong/", capa: "/jogos/pong.jpg" },
       { nome: "Separados Pelo Tempo", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/separados-pelo-tempo/", capa: "/jogos/separados-pelo-tempo.jpg" },
       { nome: "Tarantella", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/tarantella/", capa: "/jogos/tarantella.jpg" },
     ],
