@@ -146,12 +146,15 @@ const temporadas: Temporada[] = [
         capa: "/jogos/capivarinhas.jpg",
       },
       {
+        nome: "Calouro",
         equipe: "Gaga Games",
         participantes: ["Letícia Rodrigues", "Daniel Siqueira", "Arthur Maciel"],
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/gaga-games/",
         capa: "/jogos/gaga-games.jpg",
       },
       {
+        nome: "Tower of Echoes",
+        // Nome no banner.png do repositorio petgamejam-gustavo.
         equipe: "Animal",
         participantes: ["Gustavo", "Tarcio", "Marcos"],
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/equipe-animal/",
