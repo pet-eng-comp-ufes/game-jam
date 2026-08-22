@@ -152,6 +152,8 @@ const temporadas: Temporada[] = [
         capa: "/jogos/gaga-games.jpg",
       },
       {
+        nome: "Tower of Echoes",
+        // Nome no banner.png do repositorio petgamejam-gustavo.
         equipe: "Animal",
         participantes: ["Gustavo", "Tarcio", "Marcos"],
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/equipe-animal/",
