@@ -146,6 +146,7 @@ const temporadas: Temporada[] = [
         capa: "/jogos/capivarinhas.jpg",
       },
       {
+        nome: "Calouro",
         equipe: "Gaga Games",
         participantes: ["Letícia Rodrigues", "Daniel Siqueira", "Arthur Maciel"],
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/gaga-games/",
