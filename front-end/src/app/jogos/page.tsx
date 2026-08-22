@@ -46,6 +46,10 @@ interface Temporada {
 // agora ele pinta em 4s, sem depender do unpkg continuar publicando a versao
 // 0.18.1.
 //
+// O nome da equipe vai SEM o prefixo "Equipe" — ele era invencao da pagina
+// antiga. No banco elas estao registradas como "Animal" e "Gaga games", e a
+// pagina ja escreve "por X" antes, entao o prefixo repetia a ideia.
+//
 // SuperPETs e o jogo do PROPRIO PET, e nao de participante — por isso o credito
 // vai no lugar do nome da equipe. Ele pertence a season 1 assim mesmo.
 //
@@ -69,7 +73,7 @@ const temporadas: Temporada[] = [
       },
       {
         nome: "Glob Fights the King",
-        equipe: "Equipe HTML",
+        equipe: "HTML",
         participantes: [],
         descricao: "Jogo de plataforma que narra a jornada de um slime chamado Glob, que busca resgatar seu raro item das mãos do rei slime.",
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/glob-fights-the-king/",
@@ -92,19 +96,19 @@ const temporadas: Temporada[] = [
     jogos: [
       {
         nome: "Capybara Airways",
-        equipe: "Equipe Capivarinhas",
+        equipe: "Capivarinhas",
         participantes: ["André Luiz Siqueira", "Arthur Manelli Riva Souza", "Daniela Souza Pimentel"],
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/capybara-airways/",
         capa: "/jogos/capivarinhas.jpg",
       },
       {
-        equipe: "Equipe Gaga Games",
+        equipe: "Gaga Games",
         participantes: ["Letícia Rodrigues", "Daniel Siqueira", "Arthur Maciel"],
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/gaga-games/",
         capa: "/jogos/gaga-games.jpg",
       },
       {
-        equipe: "Equipe Animal",
+        equipe: "Animal",
         participantes: ["Gustavo", "Tarcio", "Marcos"],
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/equipe-animal/",
         capa: "/jogos/animal.jpg",
