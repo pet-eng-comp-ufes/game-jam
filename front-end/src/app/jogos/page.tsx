@@ -87,11 +87,13 @@ const temporadas: Temporada[] = [
     numero: "2",
     jogos: [
       {
-        nome: "Fire Scape",
-        // A tela inicial do proprio jogo credita os tres, nesta ordem.
-        equipe: "Gabriel Braga Ladislau, Nilo Garcia Monteiro e Gabriel Gomes Lima",
+        nome: "Fire Escape",
+        // A equipe e BigCapys (Figma da Season 3). A tela inicial do jogo
+        // credita Gabriel Braga Ladislau, Nilo Garcia Monteiro e Gabriel Gomes
+        // Lima — os integrantes.
+        equipe: "BigCapys",
         participantes: [],
-        descricao: "Fire Scape é um jogo em que você não pode ficar parado! O prédio está ruindo, e para fugir você deve correr e evitar obstáculos, tentando chegar o mais longe possível.",
+        descricao: "Fire Escape é um jogo em que você não pode ficar parado! O prédio está ruindo, e para fugir você deve correr e evitar obstáculos, tentando chegar o mais longe possível.",
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/fire-scape/",
         capa: "/jogos/fire-scape.jpg",
       },
@@ -105,10 +107,8 @@ const temporadas: Temporada[] = [
       },
       {
         nome: "Asteroide",
-        equipe: "",
+        equipe: "Geladeira Electrolux 382L",
         participantes: [],
-        // Do README do proprio repositorio. Autoria nao encontrada em lugar
-        // nenhum: o repo tem um commit so, feito por quem arquivou.
         descricao: "Jogo onde você batalha com inimigos e desvia de asteroides.",
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/asteroide/",
         capa: "/jogos/asteroide.jpg",
@@ -119,11 +119,18 @@ const temporadas: Temporada[] = [
         // de creditos mostra a quem joga.
         equipe: "Gustavo Nicoletti, Rafael Ferraço e Michael Gabriel",
         participantes: [],
-        descricao: "Você ficou até tarde jogando com seus amigos e acabou acordando em cima da hora para seu primeiro encontro. Agora precisa correr para chegar a tempo!",
+        descricao: "Você ficou até tarde jogando Minecraft com seus amigos e acabou acordando em cima da hora para seu primeiro encontro com sua webnamorada. Agora você precisa correr para chegar a tempo!",
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/separados-pelo-tempo/",
         capa: "/jogos/separados-pelo-tempo.jpg",
       },
-      { nome: "Tarantella", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/tarantella/", capa: "/jogos/tarantella.jpg" },
+      {
+        nome: "Tarantella",
+        equipe: "Playgramadores",
+        participantes: [],
+        descricao: "Há muito tempo era dito que, se você fosse picado por uma tarântula, a única forma de se curar era dançando a Tarantella, uma dança italiana bem animada. Nosso amigo Francesco foi picado por uma! Ajude ele a não parar de se mexer nesse jogo de ritmo e obtenha a maior pontuação possível.",
+        link: "https://apigamejam.pet.inf.ufes.br/arquivo/tarantella/",
+        capa: "/jogos/tarantella.jpg",
+      },
     ],
   },
   {
