@@ -73,6 +73,8 @@ const temporadas: Temporada[] = [
       },
       {
         nome: "Glob Fights the King",
+        // "HTML" sao as iniciais dos quatro: Henrique, Thiago, Mayke e Luiza.
+        // Achado na tela de creditos do proprio jogo.
         equipe: "HTML",
         participantes: [],
         descricao: "Jogo de plataforma que narra a jornada de um slime chamado Glob, que busca resgatar seu raro item das mãos do rei slime.",
@@ -84,10 +86,43 @@ const temporadas: Temporada[] = [
   {
     numero: "2",
     jogos: [
-      { nome: "Fire Scape", equipe: "Gabriel Braga Ladislau · Nilo Garcia Monteiro · Gabriel Gomes Lima", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/fire-scape/", capa: "/jogos/fire-scape.jpg" },
-      { nome: "GRVTY", equipe: "Gamepiece Team", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/grvty/", capa: "/jogos/grvty.jpg" },
-      { nome: "Asteroide", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/asteroide/", capa: "/jogos/asteroide.jpg" },
-      { nome: "Separados Pelo Tempo", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/separados-pelo-tempo/", capa: "/jogos/separados-pelo-tempo.jpg" },
+      {
+        nome: "Fire Scape",
+        // A tela inicial do proprio jogo credita os tres, nesta ordem.
+        equipe: "Gabriel Braga Ladislau, Nilo Garcia Monteiro e Gabriel Gomes Lima",
+        participantes: [],
+        descricao: "Fire Scape é um jogo em que você não pode ficar parado! O prédio está ruindo, e para fugir você deve correr e evitar obstáculos, tentando chegar o mais longe possível.",
+        link: "https://apigamejam.pet.inf.ufes.br/arquivo/fire-scape/",
+        capa: "/jogos/fire-scape.jpg",
+      },
+      {
+        nome: "GRVTY",
+        equipe: "Gamepiece",
+        participantes: [],
+        descricao: "Nera é uma garota esperançosa e corre destemida pelo mundo ordinário e sem cor. Um mundo com dois lados opostos, em que a vida é refletida como um espelho e a própria gravidade perdeu seu sentido. O que será que ela busca?",
+        link: "https://apigamejam.pet.inf.ufes.br/arquivo/grvty/",
+        capa: "/jogos/grvty.jpg",
+      },
+      {
+        nome: "Asteroide",
+        equipe: "",
+        participantes: [],
+        // Do README do proprio repositorio. Autoria nao encontrada em lugar
+        // nenhum: o repo tem um commit so, feito por quem arquivou.
+        descricao: "Jogo onde você batalha com inimigos e desvia de asteroides.",
+        link: "https://apigamejam.pet.inf.ufes.br/arquivo/asteroide/",
+        capa: "/jogos/asteroide.jpg",
+      },
+      {
+        nome: "Separados pelo Tempo",
+        // Creditos do proprio jogo (config.js, constante CREDITS), que a tela
+        // de creditos mostra a quem joga.
+        equipe: "Gustavo Nicoletti, Rafael Ferraço e Michael Gabriel",
+        participantes: [],
+        descricao: "Você ficou até tarde jogando com seus amigos e acabou acordando em cima da hora para seu primeiro encontro. Agora precisa correr para chegar a tempo!",
+        link: "https://apigamejam.pet.inf.ufes.br/arquivo/separados-pelo-tempo/",
+        capa: "/jogos/separados-pelo-tempo.jpg",
+      },
       { nome: "Tarantella", equipe: "", participantes: [], link: "https://apigamejam.pet.inf.ufes.br/arquivo/tarantella/", capa: "/jogos/tarantella.jpg" },
     ],
   },
