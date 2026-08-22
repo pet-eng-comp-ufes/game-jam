@@ -115,9 +115,11 @@ const temporadas: Temporada[] = [
       },
       {
         nome: "Separados pelo Tempo",
-        // Creditos do proprio jogo (config.js, constante CREDITS), que a tela
-        // de creditos mostra a quem joga.
-        equipe: "Gustavo Nicoletti, Rafael Ferraço e Michael Gabriel",
+        // A equipe se chama "void 0" — confirmado no banco de 2024, campo
+        // games.team. Eu tinha inferido que era bug de JavaScript e creditado
+        // os integrantes (Gustavo Nicoletti, Rafael Ferraço, Michael Gabriel,
+        // dos creditos do jogo); o nome de equipe e este mesmo.
+        equipe: "void 0",
         participantes: [],
         descricao: "Você ficou até tarde jogando Minecraft com seus amigos e acabou acordando em cima da hora para seu primeiro encontro com sua webnamorada. Agora você precisa correr para chegar a tempo!",
         link: "https://apigamejam.pet.inf.ufes.br/arquivo/separados-pelo-tempo/",
